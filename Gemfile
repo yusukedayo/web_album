@@ -39,6 +39,7 @@ end
 group :test do
   gem 'capybara'
   gem 'webdrivers'
+  gem 'simplecov'
 end
 
 group :development do
