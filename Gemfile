@@ -51,6 +51,8 @@ group :development do
   gem 'pry-byebug'
   #コード補完
   gem 'solargraph'
+  #モデルファイルにカラムを表示
+  gem 'annotate'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
