@@ -49,6 +49,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-byebug'
+  #コード補完
+  gem 'solargraph'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
