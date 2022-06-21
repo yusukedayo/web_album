@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
-  let(:user){ create(:user) }
+RSpec.describe 'Users', type: :system do
+  let(:user) { create(:user) }
 
   describe 'ユーザー新規作成' do
     context 'フォームの入力値が正常' do
@@ -26,7 +28,7 @@ RSpec.describe "Users", type: :system do
         fill_in 'パスワード確認', with: 'password'
         click_button '登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
-        expect(page).to have_content "姓を入力してください"
+        expect(page).to have_content '姓を入力してください'
         expect(current_path).to eq users_path
       end
     end
@@ -41,7 +43,7 @@ RSpec.describe "Users", type: :system do
         fill_in 'パスワード確認', with: 'password'
         click_button '登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
-        expect(page).to have_content "メールアドレスを入力してください"
+        expect(page).to have_content 'メールアドレスを入力してください'
         expect(current_path).to eq users_path
       end
     end

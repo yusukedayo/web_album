@@ -31,15 +31,15 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  #test
-  gem 'rspec-rails'
+  # test
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'capybara'
-  gem 'webdrivers'
   gem 'simplecov'
+  gem 'webdrivers'
 end
 
 group :development do
@@ -73,4 +73,3 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
-
