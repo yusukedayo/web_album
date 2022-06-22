@@ -14,7 +14,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'password', with: 'password'
         fill_in 'password_confirmation', with: 'password'
         click_button '登録'
-        #expect(page).to have_content 'ユーザー登録が完了'
+        # expect(page).to have_content 'ユーザー登録が完了'
         expect(current_path).to eq root_path
       end
     end
@@ -27,8 +27,8 @@ RSpec.describe 'Users', type: :system do
         fill_in 'password', with: 'password'
         fill_in 'password_confirmation', with: 'password'
         click_button '登録'
-        #expect(page).to have_content 'ユーザー登録に失敗しました'
-        #expect(page).to have_content '姓を入力してください'
+        # expect(page).to have_content 'ユーザー登録に失敗しました'
+        # expect(page).to have_content '姓を入力してください'
         expect(current_path).to eq '/users'
       end
     end
@@ -41,8 +41,8 @@ RSpec.describe 'Users', type: :system do
         fill_in 'password', with: 'password'
         fill_in 'password_confirmation', with: 'password'
         click_button '登録'
-       #expect(page).to have_content 'ユーザー登録に失敗しました'
-       #expect(page).to have_content 'メールアドレスを入力してください'
+        # expect(page).to have_content 'ユーザー登録に失敗しました'
+        # expect(page).to have_content 'メールアドレスを入力してください'
         expect(current_path).to eq '/users'
       end
     end
@@ -56,10 +56,10 @@ RSpec.describe 'Users', type: :system do
         fill_in 'password', with: 'password'
         fill_in 'password_confirmation', with: 'password'
         click_button '登録'
-        #expect(page).to have_content 'ユーザー登録に失敗しました'
-        #expect(page).to have_content 'メールアドレスはすでに存在します'
+        # expect(page).to have_content 'ユーザー登録に失敗しました'
+        # expect(page).to have_content 'メールアドレスはすでに存在します'
         expect(current_path).to eq '/users'
-        #expect(page).to have_field 'メールアドレス', with: user.email
+        # expect(page).to have_field 'メールアドレス', with: user.email
       end
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe 'Users', type: :system do
         fill_in 'email', with: user.email
         fill_in 'password', with: 'password'
         click_button 'ログイン'
-        #expect(page).to have_content 'ログインしました'
+        # expect(page).to have_content 'ログインしました'
         expect(current_path).to eq root_path
       end
     end
@@ -82,8 +82,8 @@ RSpec.describe 'Users', type: :system do
         fill_in 'email', with: ''
         fill_in 'password', with: 'password'
         click_button 'ログイン'
-        #expect(page).to have_content 'ログインに失敗しました'
-        expect(current_path).to eq "/users/sign_in"
+        # expect(page).to have_content 'ログインに失敗しました'
+        expect(current_path).to eq '/users/sign_in'
       end
     end
 
@@ -93,8 +93,8 @@ RSpec.describe 'Users', type: :system do
         fill_in 'email', with: user.email
         fill_in 'password', with: ''
         click_button 'ログイン'
-        #expect(page).to have_content 'ログインに失敗しました'
-        expect(current_path).to eq "/users/sign_in"
+        # expect(page).to have_content 'ログインに失敗しました'
+        expect(current_path).to eq '/users/sign_in'
       end
     end
 
@@ -104,8 +104,8 @@ RSpec.describe 'Users', type: :system do
         fill_in 'email', with: ''
         fill_in 'password', with: ''
         click_button 'ログイン'
-        #expect(page).to have_content 'ログインに失敗しました'
-        expect(current_path).to eq "/users/sign_in"
+        # expect(page).to have_content 'ログインに失敗しました'
+        expect(current_path).to eq '/users/sign_in'
       end
     end
   end
@@ -116,7 +116,7 @@ RSpec.describe 'Users', type: :system do
         login_as(user)
         find_by_id('profile').click
         click_on 'ログアウト'
-        #expect(page).to have_content 'ログアウトしました'
+        # expect(page).to have_content 'ログアウトしました'
         expect(current_path).to eq root_path
       end
     end
