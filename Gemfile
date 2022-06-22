@@ -75,3 +75,4 @@ gem 'net-pop'
 gem 'net-smtp'
 
 gem 'devise'
+gem 'rails-i18n'
