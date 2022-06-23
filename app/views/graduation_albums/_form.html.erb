@@ -1,0 +1,15 @@
+<div class="mt-8">
+  <%= form_with model: graduation_album, class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
+    <div class="mb-8">
+      <%= f.label :title, class: "text-sm block"%>
+      <%= f.text_field :title, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+    </div>
+    <div class="mb-8">
+      <%= f.label :album_name, class: "text-sm block"%>
+      <%= f.text_field :album_name, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+    </div>
+    <div class='form-control mt-6'>
+      <%= f.submit '作成する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
