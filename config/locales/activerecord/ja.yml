@@ -8,3 +8,6 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: '名前'
+      graduation_album:
+        album_name: 'アルバム名'
+        title: 'タイトル'
