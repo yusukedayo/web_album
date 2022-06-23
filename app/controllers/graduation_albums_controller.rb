@@ -4,6 +4,7 @@ class GraduationAlbumsController < ApplicationController
   end
 
   def show
+    @graduation_album = GraduationAlbum.find(params[:id])
   end
 
   def new
