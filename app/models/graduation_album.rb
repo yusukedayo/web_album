@@ -20,5 +20,5 @@
 class GraduationAlbum < ApplicationRecord
   belongs_to :user
 
-  validates :title, :album_name, presence: true
+  validates :title, :album_name, presence: true, length: { maximum: 255 }
 end
