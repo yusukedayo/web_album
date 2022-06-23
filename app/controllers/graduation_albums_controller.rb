@@ -21,9 +21,18 @@ class GraduationAlbumsController < ApplicationController
     end
   end
 
-
-
   def edit
+    @graduation_album = GraduationAlbum.find(params[:id])
+  end
+
+  def update
+    graduation_album = GraduationAlbum.find(params[:id])
+    if graduation_album.update(graduation_album_params)
+      redirect_to graduation_albums_path, notice: '作成に成功しました'
+    else
+      flash.now['alert'] = '作成に失敗しました'
+      render :edit
+    end
   end
 
   private
