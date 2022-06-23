@@ -1,11 +1,11 @@
 class GraduationAlbumsController < ApplicationController
+  before_action :set_graduation_album, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   def index
     @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
   end
 
-  def show
-    @graduation_album = GraduationAlbum.find(params[:id])
-  end
+  def show; end
 
   def new
     @graduation_album = GraduationAlbum.new
@@ -21,13 +21,10 @@ class GraduationAlbumsController < ApplicationController
     end
   end
 
-  def edit
-    @graduation_album = GraduationAlbum.find(params[:id])
-  end
+  def edit; end
 
   def update
-    graduation_album = GraduationAlbum.find(params[:id])
-    if graduation_album.update(graduation_album_params)
+    if @graduation_album.update(graduation_album_params)
       redirect_to graduation_albums_path, notice: '編集に成功しました'
     else
       flash.now['alert'] = '編集に失敗しました'
@@ -36,8 +33,7 @@ class GraduationAlbumsController < ApplicationController
   end
 
   def destroy
-    graduation_album = GraduationAlbum.find(params[:id])
-    graduation_album.destroy!
+    @graduation_album.destroy!
     redirect_to graduation_albums_path, notice: 'アルバムの削除に成功しました'
   end
 
@@ -45,5 +41,9 @@ class GraduationAlbumsController < ApplicationController
 
   def graduation_album_params 
     params.require(:graduation_album).permit(:album_name, :title)
+  end
+
+  def set_graduation_album
+    @graduation_album = current_user.graduation_albums.find(params[:id])
   end
 end
