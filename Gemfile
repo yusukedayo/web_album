@@ -34,6 +34,8 @@ group :development, :test do
   # test
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  #デバック
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -59,7 +61,6 @@ group :development do
   # デバックツール
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-byebug'
   # コード補完
   gem 'solargraph'
   # モデルファイルにカラムを表示
