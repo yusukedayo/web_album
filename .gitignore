@@ -49,3 +49,5 @@ coverage/*
 config/database.yml
 
 .solargraph.yml
+
+/public/uploads
