@@ -76,5 +76,5 @@ gem 'net-smtp'
 
 gem 'devise'
 gem 'rails-i18n'
-#devise日本語化
+# devise日本語化
 gem 'devise-i18n'
