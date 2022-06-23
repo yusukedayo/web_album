@@ -35,6 +35,12 @@ class GraduationAlbumsController < ApplicationController
     end
   end
 
+  def destroy
+  graduation_album = GraduationAlbum.find(params[:id])
+  graduation_album.destroy!
+  redirect_to graduation_albums_path
+end
+
   private
 
   def graduation_album_params 
