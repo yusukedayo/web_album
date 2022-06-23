@@ -28,18 +28,18 @@ class GraduationAlbumsController < ApplicationController
   def update
     graduation_album = GraduationAlbum.find(params[:id])
     if graduation_album.update(graduation_album_params)
-      redirect_to graduation_albums_path, notice: '作成に成功しました'
+      redirect_to graduation_albums_path, notice: '編集に成功しました'
     else
-      flash.now['alert'] = '作成に失敗しました'
+      flash.now['alert'] = '編集に失敗しました'
       render :edit
     end
   end
 
   def destroy
-  graduation_album = GraduationAlbum.find(params[:id])
-  graduation_album.destroy!
-  redirect_to graduation_albums_path
-end
+    graduation_album = GraduationAlbum.find(params[:id])
+    graduation_album.destroy!
+    redirect_to graduation_albums_path, notice: 'アルバムの削除に成功しました'
+  end
 
   private
 
