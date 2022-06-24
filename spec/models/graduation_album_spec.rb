@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: graduation_albums
@@ -23,7 +25,7 @@ require 'rails_helper'
 RSpec.describe GraduationAlbum, type: :model do
   describe 'バリデーション' do
     it 'アルバム名、タイトルが存在し、どちらも255字以内の場合有効であること' do
-			graduation_album = build(:graduation_album)
+      graduation_album = build(:graduation_album)
       expect(graduation_album).to be_valid
       expect(graduation_album.errors).to be_empty
     end
@@ -31,7 +33,7 @@ RSpec.describe GraduationAlbum, type: :model do
     it 'アルバム名が無い場合不正であること' do
       graduation_album_without_album_name = build(:graduation_album, album_name: nil)
       expect(graduation_album_without_album_name).to be_invalid
-      expect(graduation_album_without_album_name.errors[:album_name]).to eq ['を入力してください'] 
+      expect(graduation_album_without_album_name.errors[:album_name]).to eq ['を入力してください']
     end
 
     it 'タイトルが無い場合不正であること' do

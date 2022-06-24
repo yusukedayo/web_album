@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "GraduationAlbums", type: :system do
-  let(:user){ create(:user) }
-  let(:graduation_album){ create(:graduation_album, user: user) }
+RSpec.describe 'GraduationAlbums', type: :system do
+  let(:user) { create(:user) }
+  let(:graduation_album) { create(:graduation_album, user:) }
   let(:graduation_album_by_others) { create(:graduation_album) }
   describe 'ログイン後' do
     before do
@@ -43,7 +45,7 @@ RSpec.describe "GraduationAlbums", type: :system do
         end
       end
     end
-  
+
     describe 'アルバムの編集' do
       context 'フォームの入力値が正常' do
         it 'アルバムの編集が成功する' do
@@ -86,7 +88,7 @@ RSpec.describe "GraduationAlbums", type: :system do
         end
       end
     end
-  
+
     describe 'アルバムの削除' do
       context '作成ユーザーが自分のアルバムを削除' do
         it 'アルバムの削除が成功する' do

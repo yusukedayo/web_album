@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class GraduationAlbumsController < ApplicationController
-  before_action :set_graduation_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_graduation_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   def index
     @graduation_albums = GraduationAlbum.all.includes(:user).order(created_at: :desc)
@@ -39,8 +41,8 @@ class GraduationAlbumsController < ApplicationController
 
   private
 
-  def graduation_album_params 
-    params.require(:graduation_album).permit(:album_name, :title, {photos: []})
+  def graduation_album_params
+    params.require(:graduation_album).permit(:album_name, :title, { photos: [] })
   end
 
   def set_graduation_album
