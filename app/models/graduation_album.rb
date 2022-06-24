@@ -23,7 +23,7 @@
 class GraduationAlbum < ApplicationRecord
   mount_uploaders :photos, PhotoUploader
   belongs_to :user
-  has_many :comments, dependent: :destroy
+  has_many :message_for_everyones, dependent: :destroy
 
   validates :title, :album_name, presence: true, length: { maximum: 255 }
 end

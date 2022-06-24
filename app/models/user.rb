@@ -25,7 +25,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :graduation_albums, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :message_for_everyones, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true
