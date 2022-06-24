@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "GraduationAlbums", type: :system do
   let(:user){ create(:user) }
   let(:graduation_album){ create(:graduation_album, user: user) }
+  let(:graduation_album_by_others) { create(:graduation_album) }
   describe 'ログイン後' do
     before do
       login_as(user)
@@ -45,38 +46,43 @@ RSpec.describe "GraduationAlbums", type: :system do
   
     describe 'アルバムの編集' do
       context 'フォームの入力値が正常' do
-        fit 'アルバムの編集が成功する' do
+        it 'アルバムの編集が成功する' do
           graduation_album
           visit edit_graduation_album_path(graduation_album)
           fill_in 'アルバム名', with: 'after_edit'
           click_button '作成する'
           expect(page).to have_content '編集に成功しました'
           expect(current_path).to eq graduation_albums_path
-          visit graduation_albums_path
-          expect(page).to have_content 'after_edit'
         end
       end
 
-      context 'フォームの入力値が不正' do
-        fit 'アルバムの新規作成が失敗する' do
+      context 'タイトルがnil' do
+        it 'アルバムの編集が失敗する' do
           graduation_album
           visit edit_graduation_album_path(graduation_album)
           fill_in 'タイトル', with: nil
           fill_in 'アルバム名', with: 'test'
           click_button '作成する'
-          expect(page).to have_content '作成に失敗しました'
-          expect(current_path).to eq edit_graduation_album_path(graduation_album)
+          expect(current_path).to eq graduation_album_path(graduation_album)
+        end
+      end
+
+      context 'タイトルがnil' do
+        it 'アルバムの編集が失敗する' do
+          graduation_album
+          visit edit_graduation_album_path(graduation_album)
+          fill_in 'タイトル', with: 'test'
+          fill_in 'アルバム名', with: nil
+          click_button '作成する'
+          expect(current_path).to eq graduation_album_path(graduation_album)
         end
       end
 
       context '他のユーザーがアルバムを編集' do
         it 'アルバムの編集が失敗する' do
-          visit new_graduation_album_path
-          fill_in 'タイトル', with: 'test'
-          fill_in 'アルバム名', with: 'test'
-          click_button '作成する'
-          expect(page).to have_content '作成に成功しました'
-          expect(current_path).to eq graduation_albums_path
+          graduation_album_by_others
+          visit graduation_albums_path
+          expect(page).not_to have_content '編集'
         end
       end
     end
@@ -84,27 +90,20 @@ RSpec.describe "GraduationAlbums", type: :system do
     describe 'アルバムの削除' do
       context '作成ユーザーが自分のアルバムを削除' do
         it 'アルバムの削除が成功する' do
-          visit '/users/new'
-          fill_in '名前', with: 'test_name'
-          fill_in 'メールアドレス', with: 'test@example.com'
-          fill_in 'パスワード', with: 'password'
-          fill_in 'パスワード確認', with: 'password'
-          click_button '登録'
-          expect(page).to have_content 'ユーザー登録が完了'
-          expect(current_path).to eq login_path
+          graduation_album
+          visit graduation_albums_path
+          page.accept_confirm do
+            click_on :delete_button
+          end
+          expect(current_path).to eq graduation_albums_path
         end
       end
 
       context '他のユーザーがアルバムを削除' do
         it 'アルバムの削除が失敗する' do
-          visit '/users/new'
-          fill_in '名前', with: 'test_name'
-          fill_in 'メールアドレス', with: 'test@example.com'
-          fill_in 'パスワード', with: 'password'
-          fill_in 'パスワード確認', with: 'password'
-          click_button '登録'
-          expect(page).to have_content 'ユーザー登録が完了'
-          expect(current_path).to eq login_path
+          graduation_album_by_others
+          visit graduation_albums_path
+          expect(page).not_to have_content '削除'
         end
       end
     end
