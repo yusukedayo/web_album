@@ -24,7 +24,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :graduation_albums
+  has_many :graduation_albums, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true
