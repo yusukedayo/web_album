@@ -22,4 +22,6 @@
 class MessageForEveryone < ApplicationRecord
   belongs_to :user
   belongs_to :graduation_album
+
+  validates :body, presence: true, length: { maximum: 65535 }
 end
