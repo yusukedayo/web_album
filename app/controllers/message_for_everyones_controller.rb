@@ -11,14 +11,20 @@ class MessageForEveryonesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @graduation_album = GraduationAlbum.find(@message_for_everyone.graduation_album_id)
+  end
 
   def update
+    graduation_album = GraduationAlbum.find(@message_for_everyone.graduation_album_id)
     @message_for_everyone.update(message_for_everyone_update_params)
+    redirect_to graduation_album_path(graduation_album), notice: 'コメントを編集しました'
   end
 
   def destroy
+    graduation_album = GraduationAlbum.find(@message_for_everyone.graduation_album_id)
     @message_for_everyone.destroy!
+    redirect_to graduation_album_path(graduation_album), notice: 'コメントを削除しました'
   end
 
   private

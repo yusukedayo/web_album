@@ -1,5 +1,9 @@
 <!-- person - start -->
 <div class="flex flex-col items-center">
+  <% if current_user.own?(message_for_everyone) %>
+    <%= link_to '編集', edit_graduation_album_message_for_everyone_path(message_for_everyone.graduation_album, message_for_everyone), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+    <%= link_to '削除', graduation_album_message_for_everyone_path(message_for_everyone.graduation_album, message_for_everyone), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+  <% end %>
   <div>
     <div class="text-indigo-500 md:text-lg font-bold text-center">John McCulling</div>
     <p class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4"></p>
