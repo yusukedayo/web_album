@@ -7,7 +7,10 @@ class GraduationAlbumsController < ApplicationController
     @graduation_albums = GraduationAlbum.all.includes(:user).order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @message_for_everyones = @graduation_album.message_for_everyones.order(created_at: :desc)
+    @message_for_everyone = MessageForEveryone.new
+  end
 
   def new
     @graduation_album = GraduationAlbum.new
