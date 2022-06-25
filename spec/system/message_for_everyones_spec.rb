@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "MessageForEveryones", type: :system do
+RSpec.describe 'MessageForEveryones', type: :system do
   let(:user) { create(:user) }
   let(:graduation_album) { create(:graduation_album, user:) }
   let(:message_for_everyone) { create(:message_for_everyone, user:, graduation_album:) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessageForEveryonesController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :set_message_for_everyone, only: %i[edit update destroy]
@@ -28,6 +30,7 @@ class MessageForEveryonesController < ApplicationController
   end
 
   private
+
   def set_message_for_everyone
     @message_for_everyone = current_user.message_for_everyones.find(params[:id])
   end
