@@ -24,9 +24,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :graduation_albums
+  has_many :graduation_albums, dependent: :destroy
+  has_many :message_for_everyones, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true
   validates :name, presence: true, length: { maximum: 255 }
+
+  def own?(object)
+    id == object.user_id
+  end
 end

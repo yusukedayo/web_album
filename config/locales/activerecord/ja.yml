@@ -12,3 +12,5 @@ ja:
         album_name: 'アルバム名'
         title: 'タイトル'
         photos: '写真'
+      message_for_everyone:
+        body: コメント

@@ -4,7 +4,7 @@
   </a>
   <div class="flex flex-col">
     <%= link_to graduation_album.album_name, graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-    <% if current_user == graduation_album.user %>
+    <% if current_user.own?(graduation_album) %>
       <%= link_to '編集', edit_graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
       <%= link_to '削除', graduation_album_path(graduation_album), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
     <% end %>

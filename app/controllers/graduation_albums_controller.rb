@@ -4,10 +4,13 @@ class GraduationAlbumsController < ApplicationController
   before_action :set_graduation_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   def index
-    @graduation_albums = GraduationAlbum.all.includes(:user).order(created_at: :desc)
+    @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @message_for_everyones = @graduation_album.message_for_everyones.order(created_at: :desc)
+    @message_for_everyone = MessageForEveryone.new
+  end
 
   def new
     @graduation_album = GraduationAlbum.new
