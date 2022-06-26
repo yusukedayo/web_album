@@ -26,6 +26,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :graduation_albums, dependent: :destroy
   has_many :message_for_everyones, dependent: :destroy
+  has_many :message_for_each_menbers, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true
