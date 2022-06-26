@@ -7,6 +7,10 @@ class GraduationAlbumsController < ApplicationController
     @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
   end
 
+  def menber_page
+    @menber = User.find(params[:id])
+  end
+
   def show
     @message_for_everyones = @graduation_album.message_for_everyones.order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
