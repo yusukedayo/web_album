@@ -1,0 +1,13 @@
+<div class="mt-8">
+  <%= form_with model: message_for_each_menber,  url: [graduation_album, message_for_each_menber], class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="mb-8">
+      <%= f.label :body, class: "text-sm block"%>
+      <%= f.text_field :body, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "メッセージを送ろう" %>
+      <%= f.hidden_field :to_user, :value => graduation_album.id %>
+    </div>
+    <div class='form-control mt-6'>
+      <%= f.submit '作成する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
