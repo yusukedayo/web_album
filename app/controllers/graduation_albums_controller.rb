@@ -11,6 +11,7 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = GraduationAlbum.find(params[:id])
     @message_for_everyones = @graduation_album.message_for_everyones.includes(:user).order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
+    @events = @graduation_album.events.includes(:user).order(created_at: :desc)
   end
 
   def new
