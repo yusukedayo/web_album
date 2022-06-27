@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
 class GraduationAlbumsController < ApplicationController
-  before_action :set_graduation_album, only: %i[show edit update destroy]
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_graduation_album, only: %i[edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy menber_page]
   def index
     @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
   end
 
   def menber_page
     @menber = User.find(params[:id])
+    @graduation_album = GraduationAlbum.find(params[:id])
+    @message_for_each_menber = MessageForEachMenber.new
   end
 
   def show
-    @message_for_everyones = @graduation_album.message_for_everyones.order(created_at: :desc)
+    @graduation_album = GraduationAlbum.find(params[:id])
+    @message_for_everyones = @graduation_album.message_for_everyones.includes(:user).order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
   end
 
