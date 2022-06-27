@@ -9,7 +9,7 @@
     <!-- text - end -->
 
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
-      <% if @graduation_album %>
+      <% if @graduation_album.photos %>
         <% @graduation_album.photos.each do |photo| %> 
           <!-- image - start -->
           <a href="#" class="group h-48 md:h-96 flex justify-end items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative">
@@ -35,5 +35,6 @@
     <%= render 'message_for_everyones/message_for_everyones', { message_for_everyones: @message_for_everyones } %>
     <% end %>
     <%= render 'message_for_everyones/form', { graduation_album: @graduation_album, message_for_everyone: @message_for_everyone } %>
+    <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
   </div>
 </div>

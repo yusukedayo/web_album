@@ -1,5 +1,5 @@
 <div class="mt-8">
-  <%= form_with model: message_for_each_menber,  url: graduation_album_message_for_each_menbers_path, class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
+  <%= form_with model: message_for_each_menber,  url: [graduation_album, message_for_each_menber], class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
   <%= render "shared/error_messages", object: f.object %>
     <div class="mb-8">
       <%= f.label :body, class: "text-sm block"%>
