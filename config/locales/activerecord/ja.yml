@@ -13,4 +13,6 @@ ja:
         title: 'タイトル'
         photos: '写真'
       message_for_everyone:
-        body: コメント
+        body: メッセージ
+      message_for_each_menber:
+        body: メッセージ

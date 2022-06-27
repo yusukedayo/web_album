@@ -1,0 +1,17 @@
+<!-- person - start -->
+<div class="flex flex-col items-center">
+  <% if current_user.own?(message_for_each_menber) %>
+    <%= link_to '編集', edit_graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+    <%= link_to '削除', graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+  <% end %>
+  <div>
+    <div class="text-indigo-500 md:text-lg font-bold text-center">John McCulling</div>
+    <p class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4"></p>
+    <%= message_for_each_menber.body %>
+  </div>
+  <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+    <img src="https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256" loading="lazy" alt="Photo by Radu Florin" class="w-full h-full object-cover object-center" />
+  </div>
+    <%= link_to message_for_each_menber.user.name, graduation_album_menber_path(message_for_each_menber.graduation_album, message_for_each_menber.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+</div>
+<!-- person - end -->

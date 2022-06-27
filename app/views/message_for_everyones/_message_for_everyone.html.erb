@@ -12,5 +12,6 @@
   <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
     <img src="https://images.unsplash.com/photo-1567515004624-219c11d31f2e??auto=format&q=75&fit=crop&w=256" loading="lazy" alt="Photo by Radu Florin" class="w-full h-full object-cover object-center" />
   </div>
+  <%= link_to message_for_everyone.user.name, graduation_album_menber_path(message_for_everyone.graduation_album, message_for_everyone.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
 </div>
 <!-- person - end -->

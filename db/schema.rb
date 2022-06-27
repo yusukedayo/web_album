@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_624_144_339) do
+ActiveRecord::Schema.define(version: 20_220_626_052_758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20_220_624_144_339) do
     t.datetime 'updated_at', precision: 6, null: false
     t.json 'photos'
     t.index ['user_id'], name: 'index_graduation_albums_on_user_id'
+  end
+
+  create_table 'message_for_each_menbers', force: :cascade do |t|
+    t.text 'body', null: false
+    t.bigint 'user_id', null: false
+    t.bigint 'graduation_album_id', null: false
+    t.integer 'to_user', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['graduation_album_id'], name: 'index_message_for_each_menbers_on_graduation_album_id'
+    t.index ['user_id'], name: 'index_message_for_each_menbers_on_user_id'
   end
 
   create_table 'message_for_everyones', force: :cascade do |t|
@@ -50,6 +61,8 @@ ActiveRecord::Schema.define(version: 20_220_624_144_339) do
   end
 
   add_foreign_key 'graduation_albums', 'users'
+  add_foreign_key 'message_for_each_menbers', 'graduation_albums'
+  add_foreign_key 'message_for_each_menbers', 'users'
   add_foreign_key 'message_for_everyones', 'graduation_albums'
   add_foreign_key 'message_for_everyones', 'users'
 end

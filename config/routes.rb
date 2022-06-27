@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome_pages#top'
   resources :graduation_albums do
+    resources :menbers, only: %i[show]
     resources :message_for_everyones, only: %i[create edit destroy update]
+    resources :message_for_each_menbers, only: %i[create edit destroy update]
   end
 end
