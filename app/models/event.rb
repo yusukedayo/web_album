@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :graduation_album
 
-  validates :title, description, presence: true
+  validates :title, :description, presence: true
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 65535 }
 end
