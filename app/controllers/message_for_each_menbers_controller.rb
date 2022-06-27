@@ -14,11 +14,17 @@ class MessageForEachMenbersController < ApplicationController
   def edit; end
 
   def update
-    @message_for_each_menber.update(message_for_each_menber_update_params)
+    if @message_for_each_menber.update(message_for_each_menber_update_params)
+      redirect_to graduation_albums_path, notice: '編集に成功しました'
+    else
+      flash.now['alert'] = '編集に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
     @message_for_each_menber.destroy!
+    redirect_to graduation_albums_path, notice: 'アルバムの削除に成功しました'
   end
 
   private
@@ -27,7 +33,7 @@ class MessageForEachMenbersController < ApplicationController
   end
 
   def message_for_each_menber_params
-    params.require(:message_for_each_menber).permit(:body).merge(graduation_album_id: params[:graduation_album_id])
+    params.require(:message_for_each_menber).permit(:body, :to_user).merge(graduation_album_id: params[:graduation_album_id])
   end
 
   def message_for_each_menber_update_params
