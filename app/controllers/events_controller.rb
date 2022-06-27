@@ -40,10 +40,10 @@ class EventsController < ApplicationController
   private
   
   def set_event
-    params.require(:event).permit(:title, :description, :event_date).merge(graduation_album_id: params[:graduation_album_id])
+    params.require(:event).permit(:title, :description, :event_date, {event_photos: []}).merge(graduation_album_id: params[:graduation_album_id])
   end
 
   def event_update_params
-    params.require(:event).permit(:title, :description, :event_date)
+    params.require(:event).permit(:title, :description, :event_date, {event_photos: []})
   end
 end
