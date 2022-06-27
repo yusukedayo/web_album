@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMessageForEachMenbers < ActiveRecord::Migration[6.1]
   def change
     create_table :message_for_each_menbers do |t|

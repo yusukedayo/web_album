@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: message_for_each_menbers
@@ -24,5 +26,5 @@ class MessageForEachMenber < ApplicationRecord
   belongs_to :user
   belongs_to :graduation_album
 
-  validates :body, presence: true, length: { maximum: 65535 }
+  validates :body, presence: true, length: { maximum: 65_535 }
 end

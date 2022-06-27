@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessageForEachMenbersController < ApplicationController
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :set_message_for_each_menber, only: %i[edit update destroy]
@@ -28,12 +30,14 @@ class MessageForEachMenbersController < ApplicationController
   end
 
   private
+
   def set_message_for_each_menber
     @message_for_each_menber = current_user.message_for_each_menbers.find(params[:id])
   end
 
   def message_for_each_menber_params
-    params.require(:message_for_each_menber).permit(:body, :to_user).merge(graduation_album_id: params[:graduation_album_id])
+    params.require(:message_for_each_menber).permit(:body,
+                                                    :to_user).merge(graduation_album_id: params[:graduation_album_id])
   end
 
   def message_for_each_menber_update_params

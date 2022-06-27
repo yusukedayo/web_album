@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MenbersController < ApplicationController
   def show
     @menber = User.find(params[:id])
