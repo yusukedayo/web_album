@@ -2,15 +2,9 @@
 
 class GraduationAlbumsController < ApplicationController
   before_action :set_graduation_album, only: %i[edit update destroy]
-  before_action :authenticate_user!, only: %i[new create edit update destroy menber_page]
+  before_action :authenticate_user!, only: %i[new create edit update destroy ]
   def index
     @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
-  end
-
-  def menber_page
-    @menber = User.find(params[:id])
-    @graduation_album = GraduationAlbum.find(params[:id])
-    @message_for_each_menber = MessageForEachMenber.new
   end
 
   def show
