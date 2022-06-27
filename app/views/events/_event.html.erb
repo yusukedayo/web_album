@@ -1,7 +1,7 @@
 <div class="card lg:card-side bg-base-100 my-6 shadow-xl">
   <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album"></figure>
   <div class="card-body">
-    <h2 class="card-title"><%= link_to event.title, graduation_album_event_path(event)%></h2>
+    <h2 class="card-title"><%= link_to event.title, graduation_album_event_path(event.graduation_album, event)%></h2>
     <p> <%= event.description %></p>
     <div class="card-actions justify-end">
       <% if current_user.own?(event) %>

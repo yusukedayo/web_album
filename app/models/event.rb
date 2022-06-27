@@ -5,6 +5,7 @@
 #  id                  :bigint           not null, primary key
 #  description         :text             not null
 #  event_date          :date
+#  event_photos        :json
 #  title               :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -22,6 +23,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Event < ApplicationRecord
+  mount_uploaders :event_photos, PhotoUploader
   belongs_to :user
   belongs_to :graduation_album
 
