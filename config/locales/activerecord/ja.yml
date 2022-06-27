@@ -13,6 +13,11 @@ ja:
         title: 'タイトル'
         photos: '写真'
       message_for_everyone:
-        body: メッセージ
+        body: 'メッセージ'
       message_for_each_menber:
-        body: メッセージ
+        body: 'メッセージ'
+      event:
+        title: 'タイトル'
+        description: '詳細'
+        event_date: '日付'
+        event_photos: '写真'
