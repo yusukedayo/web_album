@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_28_065950) do
+ActiveRecord::Schema.define(version: 2022_06_28_090312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 2022_06_28_065950) do
     t.index ["user_id"], name: "index_message_for_everyones_on_user_id"
   end
 
+  create_table "rank_choices", force: :cascade do |t|
+    t.string "content", null: false
+    t.bigint "rank_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rank_id"], name: "index_rank_choices_on_rank_id"
+  end
+
   create_table "ranks", force: :cascade do |t|
     t.string "rank_title", null: false
     t.text "rank_description", null: false
@@ -90,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_06_28_065950) do
   add_foreign_key "message_for_each_menbers", "users"
   add_foreign_key "message_for_everyones", "graduation_albums"
   add_foreign_key "message_for_everyones", "users"
+  add_foreign_key "rank_choices", "ranks"
   add_foreign_key "ranks", "graduation_albums"
   add_foreign_key "ranks", "users"
 end
