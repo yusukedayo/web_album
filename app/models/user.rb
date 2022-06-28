@@ -29,6 +29,7 @@ class User < ApplicationRecord
   has_many :message_for_each_menbers, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :ranks, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true

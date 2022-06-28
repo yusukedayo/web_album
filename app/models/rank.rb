@@ -24,6 +24,7 @@ class Rank < ApplicationRecord
   belongs_to :user
   belongs_to :graduation_album
   has_many :rank_choices
+  has_many :answers, dependent: :destroy
 
   validates :rank_title, :rank_description, presence: true
   validates :rank_title, length: { maximum: 255 }

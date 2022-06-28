@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_28_090312) do
+ActiveRecord::Schema.define(version: 2022_06_28_131111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "rank_id", null: false
+    t.bigint "rank_choice_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rank_choice_id"], name: "index_answers_on_rank_choice_id"
+    t.index ["rank_id"], name: "index_answers_on_rank_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
@@ -91,6 +102,9 @@ ActiveRecord::Schema.define(version: 2022_06_28_090312) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "rank_choices"
+  add_foreign_key "answers", "ranks"
+  add_foreign_key "answers", "users"
   add_foreign_key "events", "graduation_albums"
   add_foreign_key "events", "users"
   add_foreign_key "graduation_albums", "users"
