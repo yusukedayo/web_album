@@ -1,0 +1,6 @@
+<% if current_user.own?(@rank) %>
+  <%= link_to '編集', edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+  <%= link_to '削除', graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+<% end %>
+<%= @rank.rank_title %>
+<%= @rank.rank_description %>
