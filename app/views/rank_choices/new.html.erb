@@ -1,0 +1,12 @@
+<div class="mt-8">
+  <%= form_with model: @rank_choice, url: graduation_album_rank_rank_choices_path, class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="mb-8">
+      <%= f.label :content, class: "text-sm block"%>
+      <%= f.text_field :content, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+    </div>
+    <div class='form-control mt-6'>
+      <%= f.submit '作成する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

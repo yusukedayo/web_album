@@ -2,5 +2,13 @@
   <%= link_to '編集', edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
   <%= link_to '削除', graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
 <% end %>
-<%= @rank.rank_title %>
+<br>
+<%= @rank.rank_title %><br>
 <%= @rank.rank_description %>
+<br>
+<% @rank_choices.each do |choice| %>
+    <%= link_to '編集', edit_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank, choice), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+    <%= link_to '削除', graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank, choice), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+  <%= choice.content%><br>
+<% end %>
+<button class="btn btn-outline"><%= link_to '選択肢を追加', new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) %></button>

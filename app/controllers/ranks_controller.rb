@@ -19,12 +19,13 @@ class RanksController < ApplicationController
   
   def show
     @rank = Rank.find(params[:id])
+    @rank_choices = @rank.rank_choices.order(created_at: :desc)
   end
   
   def update
     @rank = Rank.find(params[:id])
     if @rank.update(set_rank)
-      redirect_to graduation_album_rank_path(@rank.graduation_album, @rank), notice: 'ランキングを編集しました'
+      redirect_to graduation_album_rank_path(@rank.graduation_album, @rank), notice: 'ランキングを投稿しました'
     else
       flash.now['alert'] = 'ランキング編集に失敗しました'
       render :edit
