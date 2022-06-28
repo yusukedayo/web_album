@@ -1,0 +1,13 @@
+<div class="card lg:card-side bg-base-100 my-6 shadow-xl">
+  <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album"></figure>
+  <div class="card-body">
+    <h2 class="card-title"><%= link_to rank.rank_title, graduation_album_rank_path(rank.graduation_album, rank)%></h2>
+    <p> <%= rank.rank_description %></p>
+    <div class="card-actions justify-end">
+      <% if current_user.own?(rank) %>
+        <%= link_to '編集', edit_graduation_album_rank_path(rank.graduation_album, rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+        <%= link_to '削除', graduation_album_rank_path(rank.graduation_album, rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+      <% end %>
+    </div>
+  </div>
+</div>
