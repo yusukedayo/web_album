@@ -19,7 +19,9 @@ class RanksController < ApplicationController
   
   def show
     @rank = Rank.find(params[:id])
-    @rank_choices = @rank.rank_choices.order(created_at: :desc)
+    @rank_choices = @rank.rank_choices.find(Answer.group(:rank_choice_id).order('count(rank_choice_id) desc').pluck(:rank_choice_id))
+    @rank_choices = @rank_choices.push(@rank.rank_choices - @rank_choices)
+    @rank_choices.flatten!
   end
   
   def update
