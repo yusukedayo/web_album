@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: ranks
+#
+#  id                  :bigint           not null, primary key
+#  rank_description    :text             not null
+#  rank_title          :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  graduation_album_id :bigint           not null
+#  user_id             :bigint           not null
+#
+# Indexes
+#
+#  index_ranks_on_graduation_album_id  (graduation_album_id)
+#  index_ranks_on_user_id              (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (graduation_album_id => graduation_albums.id)
+#  fk_rails_...  (user_id => users.id)
+#
 require 'rails_helper'
 
 RSpec.describe Rank, type: :model do
