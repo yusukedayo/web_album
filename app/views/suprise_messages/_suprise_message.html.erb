@@ -1,0 +1,13 @@
+<div class="card lg:card-side bg-base-100 my-6 shadow-xl">
+  <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album"></figure>
+  <div class="card-body">
+    <h2 class="card-title"><%= link_to suprise_message.suprise_title, graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message)%></h2>
+    <p> <%= suprise_message.suprise_message %></p>
+    <div class="card-actions justify-end">
+      <% if current_user.own?(suprise_message) %>
+        <%= link_to '編集', edit_graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
+        <%= link_to '削除', graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+      <% end %>
+    </div>
+  </div>
+</div>
