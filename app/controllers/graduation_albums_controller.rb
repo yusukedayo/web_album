@@ -4,7 +4,8 @@ class GraduationAlbumsController < ApplicationController
   before_action :set_graduation_album, only: %i[edit update destroy]
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   def index
-    @graduation_albums = GraduationAlbum.all.order(created_at: :desc)
+    @graduation_albums = current_user.belong_albums.order(created_at: :desc)
+    @users = User.all
   end
 
   def show
@@ -21,6 +22,7 @@ class GraduationAlbumsController < ApplicationController
 
   def create
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
+    @graduation_album.users << current_user
     if @graduation_album.save
       redirect_to graduation_albums_path, notice: '作成に成功しました'
     else
@@ -33,6 +35,7 @@ class GraduationAlbumsController < ApplicationController
 
   def update
     if @graduation_album.update(graduation_album_params)
+      @graduation_album.users << current_user
       redirect_to graduation_albums_path, notice: '編集に成功しました'
     else
       flash.now['alert'] = '編集に失敗しました'
@@ -48,7 +51,7 @@ class GraduationAlbumsController < ApplicationController
   private
 
   def graduation_album_params
-    params.require(:graduation_album).permit(:album_name, :title, { photos: [] })
+    params.require(:graduation_album).permit(:album_name, :title, { photos: [] }, {user_ids: []})
   end
 
   def set_graduation_album
