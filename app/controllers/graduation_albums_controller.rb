@@ -14,6 +14,7 @@ class GraduationAlbumsController < ApplicationController
     @message_for_everyone = MessageForEveryone.new
     @events = @graduation_album.events.order(created_at: :desc)
     @ranks = @graduation_album.ranks.order(created_at: :desc)
+    @suprise_messages = @graduation_album.suprise_messages.order(created_at: :desc)
   end
 
   def new
