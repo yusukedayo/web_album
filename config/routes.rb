@@ -16,8 +16,12 @@ Rails.application.routes.draw do
   root 'welcome_pages#top'
   resources :graduation_albums do
     resources :menbers, only: %i[show]
+    resources :ranks, only: %i[create update edit destroy new show] do
+      resources :rank_choices, only: %i[create update edit destroy new show]
+    end
     resources :events, only: %i[create update edit destroy new show]
     resources :message_for_everyones, only: %i[create edit destroy update]
     resources :message_for_each_menbers, only: %i[create edit destroy update]
   end
+  resources :answers, only: %i[create]
 end

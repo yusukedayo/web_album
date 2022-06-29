@@ -21,3 +21,8 @@ ja:
         description: '詳細'
         event_date: '日付'
         event_photos: '写真'
+      rank:
+        rank_title: 'タイトル'
+        rank_description: '詳細'
+      rank_choice:
+        content: '選択肢'
