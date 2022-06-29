@@ -45,13 +45,14 @@ RSpec.describe "Events", type: :system do
         end
       end
       context 'タイトルが未入力' do
-        xit 'イベントの編集が失敗する' do
+        it 'イベントの編集が失敗する' do
           event
           visit graduation_album_path(graduation_album)
           click_link '編集'
           fill_in 'タイトル', with: nil
           fill_in '詳細', with: 'イベントのテスト'
           click_button '作成する'
+          expect(page).to have_content 'タイトルを入力してください'
         end
       end
     end
