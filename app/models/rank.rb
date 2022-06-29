@@ -28,5 +28,5 @@ class Rank < ApplicationRecord
 
   validates :rank_title, :rank_description, presence: true
   validates :rank_title, length: { maximum: 255 }
-  validates :rank_description, length: { maximum: 65535 }
+  validates :rank_description, length: { maximum: 65_535 }
 end
