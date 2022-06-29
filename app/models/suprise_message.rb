@@ -3,7 +3,7 @@
 # Table name: suprise_messages
 #
 #  id                  :bigint           not null, primary key
-#  state               :integer          not null
+#  state               :integer          default("publish_wait"), not null
 #  suprise_message     :text             not null
 #  suprise_time        :date             not null
 #  suprise_title       :string           not null
@@ -33,8 +33,8 @@ class SupriseMessage < ApplicationRecord
   validate :check_suprise_time
 
   def check_suprise_time
-    errors.add(:suprise_time, "日付は今日以降に設定してください") unless
-    self.suprise_time < Date.today
+    if self.suprise_time < Date.today
+      errors.add(:suprise_time, "日付は今日以降に設定してください")
     end
   end
 end
