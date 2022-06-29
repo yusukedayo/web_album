@@ -24,4 +24,5 @@ Rails.application.routes.draw do
     resources :message_for_each_menbers, only: %i[create edit destroy update]
   end
   resources :answers, only: %i[create]
+  resources :relationships, only: [:create, :destroy]
 end

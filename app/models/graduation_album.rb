@@ -27,6 +27,8 @@ class GraduationAlbum < ApplicationRecord
   has_many :message_for_each_menbers, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :ranks, dependent: :destroy
+  has_many :album_users, dependent: :destroy
+  has_many :users, through: :album_users, source: :user
 
   validates :title, :album_name, presence: true, length: { maximum: 255 }
 end

@@ -14,5 +14,9 @@
         <p>投稿はありません</p>
       <% end %>
     </div>
+    <% @users.each do |user| %>
+    <%= user.name %>
+    <%= render 'relationships/follow_button', user: user %>
+    <% end %>
   </div>
 </div>
