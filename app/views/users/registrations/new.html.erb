@@ -16,6 +16,12 @@
           </div>
           <div class='form-control'>
             <label class='label'>
+              <%= f.label :avatar, class: 'label-text' %><br />
+            </label>
+            <%= f.file_field :avatar, class: 'input input-bordered' %>
+          </div>
+          <div class='form-control'>
+            <label class='label'>
               <%= f.label :email, class: 'label-text' %><br />
             </label>
             <%= f.email_field :email, autofocus: true, placeholder: 'email', class: 'input input-bordered' %>

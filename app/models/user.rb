@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  avatar                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           not null
@@ -13,6 +14,7 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  face_id                :string
 #
 # Indexes
 #
@@ -22,6 +24,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :avatar, AvatarUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :graduation_albums, dependent: :destroy
