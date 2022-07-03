@@ -86,3 +86,5 @@ gem 'whenever', require: false
 # 投稿された画像をs3に保存
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
+# awsのパスワードを管理
+gem 'dotenv-rails'
