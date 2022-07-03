@@ -81,3 +81,5 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 # 画像投稿
 gem 'carrierwave'
+# rakeタスク
+gem 'whenever', require: false

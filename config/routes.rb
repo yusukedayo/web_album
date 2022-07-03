@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[create update edit destroy new show]
     resources :message_for_everyones, only: %i[create edit destroy update]
     resources :message_for_each_menbers, only: %i[create edit destroy update]
+    resources :suprise_messages, only: %i[create edit destroy update new show]
   end
   resources :answers, only: %i[create]
   resources :relationships, only: [:create, :destroy]
