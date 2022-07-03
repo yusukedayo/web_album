@@ -25,6 +25,43 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.users << current_user
     if @graduation_album.save
+      if @graduation_album.photos
+        binding.pry
+        num = @graduation_album.photos.size
+        images = []
+        num.times do |num|
+          images.push(@graduation_album.photos[num].current_path)
+        end
+        credentials = Aws::Credentials.new(
+              ENV['AWS_ACCESS_KEY_ID'],
+              ENV['AWS_SECRET_ACCESS_KEY']
+            )
+        client   = Aws::Rekognition::Client.new credentials: credentials
+        unless PhotoCollection.find_by(name: @graduation_album.id)
+          client.create_collection({
+            collection_id: @graduation_album.id.to_s, 
+          })
+          collection = PhotoCollection.new
+          collection.name = @graduation_album.id.to_s
+          collection.save
+        end
+        images.each do |image|
+          image_detail = PhotoPath.new
+          image_detail.graduation_album_id = @graduation_album.id
+          resp = client.index_faces({
+          collection_id: @graduation_album.id.to_s,
+          image: {
+            s3_object: {
+              bucket: "aws-test-rails", 
+              name: image, 
+            }, 
+          }, 
+          })
+          image_detail.path = image
+          image_detail.image_id = resp.to_h[:face_records][0][:face][:image_id]
+          image_detail.save
+        end
+      end
       redirect_to graduation_albums_path, notice: '作成に成功しました'
     else
       flash.now['alert'] = '作成に失敗しました'
