@@ -88,3 +88,5 @@ gem 'fog-aws'
 gem "aws-sdk-s3", require: false
 # awsのパスワードを管理
 gem 'dotenv-rails'
+# aws_rekognition
+gem 'aws-sdk-rekognition'
