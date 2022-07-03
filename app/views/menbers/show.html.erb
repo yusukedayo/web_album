@@ -19,12 +19,29 @@
     <div class="flex relative z-20 items-center">
         <div class="container mx-auto px-6 flex flex-col justify-between items-center relative py-4">
             <div class="flex flex-col">
-                <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" class="rounded-full w-28 mx-auto"/>
+                <%= image_tag @menber.avatar.to_s, class:"rounded-full w-28 mx-auto" %>
                 <p class="text-3xl my-6 text-center dark:text-white">
                     Hi, I&#x27;m <%= @menber.name %> 🤘
+                    <%= link_to '写真の取得', graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post, class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
                 </p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2">
+                  <% if @mathed_face_paths %>
+                    <% num = @mathed_face_paths[0].size %>
+                      <% num.times do |num| %> 
+                      <!-- image - start -->
+                      <a href="#" class="group h-80 md:h-96 flex justify-end items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative">
+                        <%= image_tag @mathed_face_paths[0][num].path %>
+                        <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
+                      </a>
+                      <!-- image - end -->
+                    <% end %>
+                  <% end %>
+                </div>
+
+
+
+
                 <h2 class="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
-                    
                 </h2>
                 <%= render 'message_for_each_menbers/message_for_each_menbers', { message_for_each_menbers: @message_for_each_menbers } %>
                 <%= render 'message_for_each_menbers/form', { graduation_album: @graduation_album, message_for_each_menber: @message_for_each_menber, menber: @menber } %>
