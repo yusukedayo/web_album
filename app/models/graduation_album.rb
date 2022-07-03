@@ -30,6 +30,7 @@ class GraduationAlbum < ApplicationRecord
   has_many :album_users, dependent: :destroy
   has_many :users, through: :album_users, source: :user
   has_many :suprise_messages, dependent: :destroy
+  has_many :photo_path
 
   validates :title, :album_name, presence: true, length: { maximum: 255 }
 end

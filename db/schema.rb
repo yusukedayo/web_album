@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_151828) do
+ActiveRecord::Schema.define(version: 2022_07_03_132455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["graduation_album_id"], name: "index_message_for_everyones_on_graduation_album_id"
     t.index ["user_id"], name: "index_message_for_everyones_on_user_id"
+  end
+
+  create_table "photo_paths", force: :cascade do |t|
+    t.bigint "graduation_album_id", null: false
+    t.string "path", null: false
+    t.string "image_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["graduation_album_id"], name: "index_photo_paths_on_graduation_album_id"
   end
 
   create_table "rank_choices", force: :cascade do |t|
@@ -146,6 +155,7 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
   add_foreign_key "message_for_each_menbers", "users"
   add_foreign_key "message_for_everyones", "graduation_albums"
   add_foreign_key "message_for_everyones", "users"
+  add_foreign_key "photo_paths", "graduation_albums"
   add_foreign_key "rank_choices", "ranks"
   add_foreign_key "ranks", "graduation_albums"
   add_foreign_key "ranks", "users"
