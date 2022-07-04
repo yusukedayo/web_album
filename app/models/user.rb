@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :album_users, dependent: :destroy
   has_many :belong_albums, through: :album_users, source: :graduation_album
   has_many :suprise_messages, dependent: :destroy
+  has_many :registered_collections, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true

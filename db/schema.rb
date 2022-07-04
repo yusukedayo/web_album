@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_03_141334) do
+ActiveRecord::Schema.define(version: 2022_07_04_124335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,14 @@ ActiveRecord::Schema.define(version: 2022_07_03_141334) do
     t.index ["user_id"], name: "index_ranks_on_user_id"
   end
 
+  create_table "registered_collections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "collection_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_registered_collections_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "follow_id"
@@ -167,6 +175,7 @@ ActiveRecord::Schema.define(version: 2022_07_03_141334) do
   add_foreign_key "rank_choices", "ranks"
   add_foreign_key "ranks", "graduation_albums"
   add_foreign_key "ranks", "users"
+  add_foreign_key "registered_collections", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "suprise_messages", "graduation_albums"

@@ -4,13 +4,13 @@ class MenbersController < ApplicationController
   def show
     @menber = User.find(params[:id])
     @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
-    if @menber.avatar && @menber.face_id
+    collection_id = @graduation_album.id.to_s
+    if @menber.face_id && @menber.registered_collections.pluck(:collection_name).include?("#{collection_id}")
       credentials = Aws::Credentials.new(
           ENV['AWS_ACCESS_KEY_ID'],
           ENV['AWS_SECRET_ACCESS_KEY']
       )
       client = Aws::Rekognition::Client.new credentials: credentials
-      collection_id = @graduation_album.id.to_s
       face_id = @menber.face_id
       resp = client.search_faces({
         collection_id: collection_id, 
@@ -26,8 +26,7 @@ class MenbersController < ApplicationController
         end
         @mathed_face_paths = []
         mathed_faces.each do |image|
-        	@mathed_face_paths.push(PhotoPath.where(image_id: image))
-          @mathed_face_paths.flatten
+        	@mathed_face_paths.push(PhotoPath.where(graduation_album_id: @graduation_album.id).where(image_id: image))
 			  end
       end
 		end
