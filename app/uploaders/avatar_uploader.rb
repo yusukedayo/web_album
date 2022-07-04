@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class PhotoUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -37,26 +35,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_allowlist
-    %w[jpg jpeg gif png]
-  end
+  # def extension_allowlist
+  #   %w(jpg jpeg gif png)
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
-  end
-
-  def secure_token
-    media_original_filenames_var = :"@#{mounted_as}_original_filenames"
-
-    model.instance_variable_set(media_original_filenames_var, {}) unless model.instance_variable_get(media_original_filenames_var)
-
-    unless model.instance_variable_get(media_original_filenames_var).map { |k, _v| k }.include? original_filename.to_sym
-      new_value = model.instance_variable_get(media_original_filenames_var).merge({ "#{original_filename}": SecureRandom.uuid })
-      model.instance_variable_set(media_original_filenames_var, new_value)
-    end
-
-    model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
+    original_filename
   end
 end

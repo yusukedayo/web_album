@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_151828) do
+ActiveRecord::Schema.define(version: 2022_07_04_124335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,21 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
     t.index ["user_id"], name: "index_message_for_everyones_on_user_id"
   end
 
+  create_table "photo_collections", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "photo_paths", force: :cascade do |t|
+    t.bigint "graduation_album_id", null: false
+    t.string "path", null: false
+    t.string "image_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["graduation_album_id"], name: "index_photo_paths_on_graduation_album_id"
+  end
+
   create_table "rank_choices", force: :cascade do |t|
     t.string "content", null: false
     t.bigint "rank_id", null: false
@@ -96,6 +111,14 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["graduation_album_id"], name: "index_ranks_on_graduation_album_id"
     t.index ["user_id"], name: "index_ranks_on_user_id"
+  end
+
+  create_table "registered_collections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "collection_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_registered_collections_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -130,6 +153,8 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
+    t.string "face_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -146,9 +171,11 @@ ActiveRecord::Schema.define(version: 2022_06_29_151828) do
   add_foreign_key "message_for_each_menbers", "users"
   add_foreign_key "message_for_everyones", "graduation_albums"
   add_foreign_key "message_for_everyones", "users"
+  add_foreign_key "photo_paths", "graduation_albums"
   add_foreign_key "rank_choices", "ranks"
   add_foreign_key "ranks", "graduation_albums"
   add_foreign_key "ranks", "users"
+  add_foreign_key "registered_collections", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "suprise_messages", "graduation_albums"

@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  avatar                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           not null
@@ -13,6 +14,7 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  face_id                :string
 #
 # Indexes
 #
@@ -22,6 +24,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :avatar, AvatarUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :graduation_albums, dependent: :destroy
@@ -37,6 +41,7 @@ class User < ApplicationRecord
   has_many :album_users, dependent: :destroy
   has_many :belong_albums, through: :album_users, source: :graduation_album
   has_many :suprise_messages, dependent: :destroy
+  has_many :registered_collections, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :email, presence: true
@@ -47,17 +52,15 @@ class User < ApplicationRecord
   end
 
   def follow(other_user)
-    unless self == other_user
-      self.relationships.find_or_create_by(follow_id: other_user.id)
-    end
+    relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
   end
 
   def unfollow(other_user)
-    relationship = self.relationships.find_by(follow_id: other_user.id)
-    relationship.destroy if relationship
+    relationship = relationships.find_by(follow_id: other_user.id)
+    relationship&.destroy
   end
 
   def following?(other_user)
-    self.followings.include?(other_user)
+    followings.include?(other_user)
   end
 end
