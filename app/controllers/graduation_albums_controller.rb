@@ -29,10 +29,9 @@ class GraduationAlbumsController < ApplicationController
         num = @graduation_album.photos.size
         images = []
         photo_links = []
-        binding.pry
         num.times do |num|
           images.push(@graduation_album.photos[num].current_path)
-          photo_links.push(@graduation_album.photos[num].to_s)
+          photo_links.push(@graduation_album.photos[num].identifier)
         end
         credentials = Aws::Credentials.new(
               ENV['AWS_ACCESS_KEY_ID'],

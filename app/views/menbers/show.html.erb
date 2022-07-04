@@ -26,21 +26,16 @@
                 </p>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2">
                   <% if @mathed_face_paths %>
-                    <% num = @mathed_face_paths[0].size %>
-                      <% num.times do |num| %> 
-                      <!-- image - start -->
-                      <a href="#" class="group h-80 md:h-96 flex justify-end items-end bg-gray-100 overflow-hidden rounded-lg shadow-lg relative">
-                        <%= image_tag @mathed_face_paths[0][num].path %>
-                        <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
-                      </a>
-                      <!-- image - end -->
-                    <% end %>
+                        <% a = @graduation_album.photos %>
+                        <% a.each do |a|%>
+                          <%  @mathed_face_paths[0].each do |mathed_face_path|%>
+                            <% if a.identifier == mathed_face_path.path %>
+                              <%= image_tag a.to_s %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
                   <% end %>
                 </div>
-
-
-
-
                 <h2 class="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
                 </h2>
                 <%= render 'message_for_each_menbers/message_for_each_menbers', { message_for_each_menbers: @message_for_each_menbers } %>
