@@ -34,14 +34,14 @@ class GraduationAlbumsController < ApplicationController
           photo_links.push(@graduation_album.photos[num].identifier)
         end
         credentials = Aws::Credentials.new(
-              ENV['AWS_ACCESS_KEY_ID'],
-              ENV['AWS_SECRET_ACCESS_KEY']
-            )
-        client   = Aws::Rekognition::Client.new credentials: credentials
+          ENV.fetch('AWS_ACCESS_KEY_ID', nil),
+          ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
+        )
+        client = Aws::Rekognition::Client.new credentials: credentials
         unless PhotoCollection.find_by(name: @graduation_album.id)
           client.create_collection({
-            collection_id: @graduation_album.id.to_s, 
-          })
+                                     collection_id: @graduation_album.id.to_s
+                                   })
           collection = PhotoCollection.new
           collection.name = @graduation_album.id.to_s
           collection.save
@@ -51,14 +51,14 @@ class GraduationAlbumsController < ApplicationController
             image_detail = PhotoPath.new
             image_detail.graduation_album_id = @graduation_album.id
             resp = client.index_faces({
-            collection_id: @graduation_album.id.to_s,
-            image: {
-              s3_object: {
-                bucket: "aws-test-rails", 
-                name: image, 
-              }, 
-            }, 
-            })
+                                        collection_id: @graduation_album.id.to_s,
+                                        image: {
+                                          s3_object: {
+                                            bucket: 'aws-test-rails',
+                                            name: image
+                                          }
+                                        }
+                                      })
             image_detail.path = photo
             image_detail.image_id = resp.to_h[:face_records][0][:face][:image_id]
             image_detail.save
@@ -92,7 +92,7 @@ class GraduationAlbumsController < ApplicationController
   private
 
   def graduation_album_params
-    params.require(:graduation_album).permit(:album_name, :title, { photos: [] }, {user_ids: []})
+    params.require(:graduation_album).permit(:album_name, :title, { photos: [] }, { user_ids: [] })
   end
 
   def set_graduation_album

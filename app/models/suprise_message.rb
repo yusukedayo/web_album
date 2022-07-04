@@ -26,15 +26,13 @@ class SupriseMessage < ApplicationRecord
   belongs_to :graduation_album
   belongs_to :user
 
-  enum state: { publish_wait: 0, published: 1}
+  enum state: { publish_wait: 0, published: 1 }
   validates :suprise_title, :suprise_message, :suprise_time, presence: true
   validates :suprise_title, length: { maximum: 255 }
   validates :suprise_message, length: { maximum: 65_535 }
   validate :check_suprise_time
 
   def check_suprise_time
-    if self.suprise_time < Date.today
-      errors.add(:suprise_time, "日付は今日以降に設定してください")
-    end
+    errors.add(:suprise_time, '日付は今日以降に設定してください') if suprise_time < Date.today
   end
 end

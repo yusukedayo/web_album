@@ -27,5 +27,5 @@ Rails.application.routes.draw do
     resources :suprise_messages, only: %i[create edit destroy update new show]
   end
   resources :answers, only: %i[create]
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: %i[create destroy]
 end
