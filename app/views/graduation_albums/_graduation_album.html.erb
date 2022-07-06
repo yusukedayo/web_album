@@ -1,12 +1,21 @@
-<div>
-  <a href="#" class="group h-96 block bg-gray-100 rounded-lg overflow-hidden shadow-lg mb-2 lg:mb-3">
-    <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-200" />
-  </a>
-  <div class="flex flex-col">
-    <%= link_to graduation_album.album_name, graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-    <% if current_user.own?(graduation_album) %>
-      <%= link_to '編集', edit_graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
-      <%= link_to '削除', graduation_album_path(graduation_album), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-    <% end %>
+<div class="p-4 shadow-lg rounded-lg pt-6">
+  <%= link_to graduation_album_path(graduation_album), class:"group h-96 block bg-gray-100 rounded-lg overflow-hidden shadow-lg mb-2 lg:mb-3" do %>
+    <%= image_tag 'album.jpg', class:"w-full h-full object-cover object-center  transition duration-200"%>
+  <% end %>
+  <div class="flex justify-between">
+    <div class="flex flex-col text-left">
+      <%= link_to graduation_album.album_name, graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+      <%= l graduation_album.created_at %>
+    </div>
+    <div class="flex">
+      <% if current_user.own?(graduation_album) %>
+        <%= link_to edit_graduation_album_path(graduation_album), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl p-2 font-bold transition duration-100" do %>
+          <i class="fa-solid fa-pen-to-square fa-lg"></i>
+        <% end %>
+        <%= link_to graduation_album_path(graduation_album), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl p-2 font-bold transition duration-100" do %>
+          <i class="fa-solid fa-trash-can fa-lg"></i>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

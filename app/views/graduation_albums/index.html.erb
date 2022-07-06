@@ -1,22 +1,22 @@
-<div class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-    <div class="flex justify-between items-end gap-4 mb-6">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold">Collections</h2>
-
-      <a href="#" class="inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 border text-gray-500 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 md:px-8 py-2 md:py-3">Show more</a>
+<div class="bg-white py-3 sm:py-4 lg:py-6">
+  <div class="max-w-screen-2xl px-2 md:px-4 mx-auto">
+    <!-- text - start -->
+    <div class="flex justify-center items-center pb-6">
+      <div class="flex flex-col border-dotted border-4 border-gray-300 px-10 py-3">
+        <i class="fa-solid fa-book-open fa-5x"></i>
+        <div class="py-3"><p>あなたの大切な思い出をアルバムに</p></div>
+        <%= link_to new_graduation_album_path, class:"btn btn-success" do %>
+          <i class="fa-solid fa-plus fa-lg pr-2 "></i>作成する
+        <% end %>
+      </div>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
-      <!-- アルバム -->
+    <div class="grid sm:grid-cols-2 gap-6">
       <% if @graduation_albums.present? %>
         <%= render @graduation_albums %>
       <% else %>
         <p>投稿はありません</p>
       <% end %>
     </div>
-    <% @users.each do |user| %>
-    <%= user.name %>
-    <%= render 'relationships/follow_button', user: user %>
-    <% end %>
   </div>
 </div>
