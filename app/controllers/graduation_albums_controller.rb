@@ -92,7 +92,7 @@ class GraduationAlbumsController < ApplicationController
   private
 
   def graduation_album_params
-    params.require(:graduation_album).permit(:album_name, :title, { photos: [] }, { user_ids: [] })
+    params.require(:graduation_album).permit(:album_name, { photos: [] }, { user_ids: [] })
   end
 
   def set_graduation_album
