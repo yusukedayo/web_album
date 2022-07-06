@@ -14,8 +14,12 @@
       <%= f.file_field :photos, multiple: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
     </div>
     <div class="mb-8">
-      <%= f.label :user_ids, class: "text-sm block"%>
-      <%= f.collection_check_boxes :user_ids, current_user.followings, :id, :name %>
+      <% unless current_user.followings.count == 0 %>
+        <%= f.label :user_ids, 'メンバー', class: "text-sm block"%>
+        <%= f.collection_check_boxes :user_ids, current_user.followings, :id, :name %>
+      <% else %>
+        フォロワーがいません
+      <% end %>
     </div>
     <div class='form-control mt-6'>
       <%= f.submit '作成する', class: 'btn btn-primary' %>
