@@ -15,7 +15,6 @@ RSpec.describe 'GraduationAlbums', type: :system do
       context 'フォームの入力値が正常' do
         it 'アルバムの新規作成が成功する' do
           visit new_graduation_album_path
-          fill_in 'タイトル', with: 'test'
           fill_in 'アルバム名', with: 'test'
           click_button '作成する'
           expect(page).to have_content '作成に成功しました'
@@ -26,7 +25,6 @@ RSpec.describe 'GraduationAlbums', type: :system do
       context 'タイトルが未入力' do
         it 'アルバムの新規作成が失敗する' do
           visit new_graduation_album_path
-          fill_in 'タイトル', with: nil
           fill_in 'アルバム名', with: 'test'
           click_button '作成する'
           expect(page).to have_content '作成に失敗しました'
@@ -37,7 +35,6 @@ RSpec.describe 'GraduationAlbums', type: :system do
       context 'アルバム名が未入力' do
         it 'アルバムの新規作成が失敗する' do
           visit new_graduation_album_path
-          fill_in 'タイトル', with: 'test'
           fill_in 'アルバム名', with: nil
           click_button '作成する'
           expect(page).to have_content '作成に失敗しました'
@@ -58,22 +55,10 @@ RSpec.describe 'GraduationAlbums', type: :system do
         end
       end
 
-      context 'タイトルがnil' do
+      context 'アルバム名がnil' do
         it 'アルバムの編集が失敗する' do
           graduation_album
           visit edit_graduation_album_path(graduation_album)
-          fill_in 'タイトル', with: nil
-          fill_in 'アルバム名', with: 'test'
-          click_button '作成する'
-          expect(current_path).to eq graduation_album_path(graduation_album)
-        end
-      end
-
-      context 'タイトルがnil' do
-        it 'アルバムの編集が失敗する' do
-          graduation_album
-          visit edit_graduation_album_path(graduation_album)
-          fill_in 'タイトル', with: 'test'
           fill_in 'アルバム名', with: nil
           click_button '作成する'
           expect(current_path).to eq graduation_album_path(graduation_album)
@@ -94,7 +79,6 @@ RSpec.describe 'GraduationAlbums', type: :system do
         it 'アルバムの削除が成功する' do
           graduation_album
           visit new_graduation_album_path
-          fill_in 'タイトル', with: 'test'
           fill_in 'アルバム名', with: 'test'
           click_button '作成する'
           visit graduation_albums_path

@@ -3,15 +3,15 @@
   <%= render "shared/error_messages", object: f.object %>
     <div class="mb-8">
       <%= f.label :suprise_title, class: "text-sm block"%>
-      <%= f.text_field :suprise_title, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+      <%= f.text_field :suprise_title, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "タイトル" %>
     </div>
     <div class="mb-8">
       <%= f.label :suprise_message, class: "text-sm block"%>
-      <%= f.text_field :suprise_message, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+      <%= f.text_field :suprise_message, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "メッセージ" %>
     </div>
     <div class="mb-8">
       <%= f.label :suprise_time, class: "text-sm block"%>
-      <%= f.date_field :suprise_time, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "山田太郎" %>
+      <%= f.date_field :suprise_time, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "日付" %>
     </div>
     <div class='form-control mt-6'>
       <%= f.submit '作成する', class: 'btn btn-primary' %>

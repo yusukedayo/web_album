@@ -26,3 +26,7 @@ ja:
         rank_description: '詳細'
       rank_choice:
         content: '選択肢'
+      suprise_message:
+        suprise_title: 'タイトル'
+        suprise_message: 'メッセージ'
+        suprise_time: 'サプライズ実行日'
