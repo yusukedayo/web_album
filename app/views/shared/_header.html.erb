@@ -13,10 +13,9 @@
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>
             <a class="justify-between">
-              プロフィール
+              <%= link_to "プロフィール", users_show_path %>
             </a>
           </li>
-          <li><a>設定</a></li>
           <li><%= link_to "ログアウト", logout_path %></li>
         </ul>
       </div>
