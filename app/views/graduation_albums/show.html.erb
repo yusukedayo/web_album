@@ -2,9 +2,9 @@
   <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
     <!-- text - start -->
     <div class="mb-10 md:mb-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Gallery</h2>
+      <h1 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline"><%= @graduation_album.album_name %></h1>
 
-      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto"><%= @graduation_album.album_name%>へようこそ！コンテンツを増やしてアルバムを盛り上げよう</p>
     </div>
     <!-- text - end -->
 
@@ -24,14 +24,20 @@
 </div>
 
 <!-- message for everyone -->
+<h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline">メンバー</h2>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <!-- text - start -->
     <div class="mb-10 md:mb-16">
       <% @graduation_album.users.each do |user| %>
-        <%= user.name %>
+        <div class="flex flex-col items-center">
+          <%= link_to graduation_album_menber_path(@graduation_album, user), class:"w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
+            <%= image_tag user.avatar.to_s %>
+          <% end %>
+          <%= link_to user.name, graduation_album_menber_path(@graduation_album, user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+        </div>
       <% end %>
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">メンバーからのメッセージ</h2>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center pt-4 mb-4 md:mb-6 underline">メンバーからのメッセージ</h2>
     </div>
     <!-- text - end -->
     <%if @message_for_everyones %>
