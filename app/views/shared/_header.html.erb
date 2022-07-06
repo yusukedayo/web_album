@@ -1,12 +1,9 @@
 <header>
-  <div class="navbar bg-base-300">
+  <div class="navbar bg-green-100">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">Web卒アル</a>
+      <%= link_to 'Web卒アル', graduation_albums_path, class:"btn btn-ghost normal-case text-xl" %>
     </div>
     <div class="flex-none">
-      <button class="btn btn-link">
-        <%= link_to 'アルバム作成', new_graduation_album_path %>
-      </button>
       <div class="dropdown dropdown-end" id='profile'>
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
