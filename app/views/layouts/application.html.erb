@@ -11,14 +11,16 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
     <%= render 'shared/flash' %>
-    <%= yield %>
+    <div class='flex-grow'>
+      <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>

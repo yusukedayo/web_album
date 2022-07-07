@@ -1,0 +1,36 @@
+<!-- component -->
+<div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-2xl rounded-xl mt-16 bg-gray-100">
+    <div class="px-6 pt-10">
+      <div class='text-right'>
+        <%= link_to edit_user_registration_path, class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+          <i class="fa-solid fa-pen-to-square fa-lg"></i>
+        <% end %>
+        <%= link_to logout_path, method: :delete, id: "delete_button", data: {confirm: "ログアウトしますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+          <i class="fas fa-sign-out-alt fa-lg"></i>
+        <% end %>
+      </div>
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full flex justify-center">
+                <div class="relative">
+                    <%= image_tag @user.avatar.to_s ,class:"shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"%>
+                </div>
+            </div>
+            <div class="w-full text-center mt-20">
+                <div class="flex justify-center lg:pt-4 pt-8 pb-0">
+                    <div class="p-3 text-center">
+                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followers.count %></span>
+                        <span class="text-sm text-slate-400">フォロー</span>
+                    </div>
+                    <div class="p-3 text-center">
+                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followings.count %></span>
+                        <span class="text-sm text-slate-400">フォロワー</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2 pb-6">
+          <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1"><%= @user.name %></h3>
+          <p class=" text-slate-700 font-bold leading-normal mb-1">メールアドレス：<%= @user.email %></p>
+        </div>
+    </div>
+</div>
