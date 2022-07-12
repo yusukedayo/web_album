@@ -90,3 +90,5 @@ gem 'fog-aws'
 gem 'dotenv-rails'
 # aws_rekognition
 gem 'aws-sdk-rekognition'
+# 画像のサイズ調節
+gem 'mini_magick'
