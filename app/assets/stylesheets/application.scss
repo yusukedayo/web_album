@@ -20,3 +20,27 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 @import 'swiper/swiper-bundle.min.css';
+
+#album-swiper {
+  height: 400px;
+}
+
+#album-swiper>img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#loop-swiper {
+  height: 200px;
+}
+
+#loop-swiper>img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}
