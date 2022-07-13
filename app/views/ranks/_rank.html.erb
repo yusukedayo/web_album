@@ -1,9 +1,22 @@
 <div class="card lg:card-side bg-base-100 my-6 shadow-xl">
-  <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album"></figure>
-  <div class="card-body">
+  <div class="card-body ">
     <h2 class="card-title"><%= link_to rank.rank_title, graduation_album_rank_path(rank.graduation_album, rank)%></h2>
-    <p> <%= rank.rank_description %></p>
-    <div class="card-actions justify-end">
+    <% rank.rank_choices.order(answers_count: 'DESC').each do |choice| %>
+        <div class="flex items-center mt-4">
+          <div class="grid grid-cols-6 gap-4">
+            <span class="col-span-2 text-sm font-medium text-blue-600 dark:text-blue-500"><%= choice.content %></span>
+            <div class="self-center col-span-3 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+              <% unless choice.answers.count == 0 %>
+                <div class="col-span-3  h-5 bg-yellow-400 rounded" style="width:<%= (choice.answers.count.quo(rank.answers.count).to_f*100).floor %>%"></div>
+              <% else %>
+                <div class="col-span-3 h-5 bg-yellow-400 rounded" style="width:0%"></div>
+              <% end %>
+            </div>
+          <span class="self-center col-span-1 text-sm font-medium text-blue-600 dark:text-blue-500"><%= choice.answers.count %></span>
+          </div>
+      </div>
+      <p> </p>
+    <% end %>
       <% if current_user.own?(rank) %>
         <%= link_to '編集', edit_graduation_album_rank_path(rank.graduation_album, rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
         <%= link_to '削除', graduation_album_rank_path(rank.graduation_album, rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
