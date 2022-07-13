@@ -22,7 +22,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Answer < ApplicationRecord
+  belongs_to :rank_choice, counter_cache: true
   belongs_to :rank
-  belongs_to :rank_choice
   belongs_to :user
 end
