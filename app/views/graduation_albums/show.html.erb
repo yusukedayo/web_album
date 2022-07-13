@@ -13,11 +13,9 @@
                     <%= image_tag photo.url(:ablum_photo), class:"swiper-slide rounded-lg", id:"album-swiper" %>
                   <% end %>
                 </div><!-- .swiper-wrapper -->
-                                <div class="swiper-pagination"></div>
-                  <div class="swiper-button-prev">
-                  </div><!-- .swiper-button-prev -->
-                <div class="swiper-button-next">
-                </div><!-- .swiper-button-next -->
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
               </div><!-- .swiper mySwiper -->
           <% end %>
           </div>
@@ -26,7 +24,6 @@
     </div>
   </div>
 </div>
-
 <!-- message for everyone -->
 <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline">メンバー</h2>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -44,27 +41,28 @@
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center pt-4 mb-4 md:mb-6 underline">メンバーからのメッセージ</h2>
     </div>
     <!-- text - end -->
-  </div>
-</div>
     <%if @message_for_everyones %>
       <%= render 'message_for_everyones/message_for_everyones', { message_for_everyones: @message_for_everyones } %>
     <% end %>
     <%= render 'message_for_everyones/form', { graduation_album: @graduation_album, message_for_everyone: @message_for_everyone } %>
-    <div class='pt-5'>
-    <% if @graduation_album.photos %>
-      <div class="swiper loopSwiper">
-        <div class="swiper-wrapper">
-          <% @graduation_album.photos.each do |photo| %> 
-            <%= image_tag photo.url(:ablum_photo), class:"swiper-slide rounded-lg", id:"loop-swiper" %>
-          <% end %>
-        </div>
+  </div>
+</div>
+    
+<div class='pt-5'>
+  <% if @graduation_album.photos %>
+    <div class="swiper loopSwiper">
+      <div class="swiper-wrapper">
+        <% @graduation_album.photos.each do |photo| %> 
+          <%= image_tag photo.url(:ablum_photo), class:"swiper-slide rounded-lg", id:"loop-swiper" %>
+        <% end %>
       </div>
-    <% end %>
     </div>
+  <% end %>
+</div>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
-    <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks } %>
+    <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks, rank_choices: @rank_choices } %>
     <%= render 'suprise_messages/suprise_messages', { graduation_album: @graduation_album, suprise_messages: @suprise_messages } %>
   </div>
 </div>

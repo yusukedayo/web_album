@@ -2,5 +2,10 @@
   <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6">思い出の行事</h2>
   <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">みんなとの楽しい思い出を共有しよう</p>
 </div>
-<%= render events %>
+<ol class="relative border-l border-gray-200 dark:border-gray-700">                  
+  <%= render events %>
+</ol>
+
+<div class='text-center'>
 <button class="btn btn-outline"><%= link_to 'イベントを作成', new_graduation_album_event_path(@graduation_album) %></button>
+</div>

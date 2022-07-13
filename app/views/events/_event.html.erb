@@ -1,13 +1,37 @@
-<div class="card lg:card-side bg-base-100 my-6 shadow-xl">
-  <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album"></figure>
-  <div class="card-body">
-    <h2 class="card-title"><%= link_to event.title, graduation_album_event_path(event.graduation_album, event)%></h2>
-    <p> <%= event.description %></p>
-    <div class="card-actions justify-end">
-      <% if current_user.own?(event) %>
-        <%= link_to '編集', edit_graduation_album_event_path(event.graduation_album, event), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
-        <%= link_to '削除', graduation_album_event_path(event.graduation_album, event), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-      <% end %>
+<li class="mb-10 ml-6">         
+    <span class="flex absolute -left-3 justify-center items-center w-10 h-10 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+        <i class="fa-solid fa-plane-departure"></i>
+    </span>
+    <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white px-4 pt-2"><div class='text-right'><%= l event.event_date %></div></h3>
+    <div class="bg-white py-3 sm:py-4 lg:py-6">
+      <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+        <div class="md:h-80 flex flex-col sm:flex-row bg-gray-200 rounded-lg overflow-hidden">
+          <!-- image - start -->
+          <div class="w-full sm:w-1/2 lg:w-2/5 h-48 sm:h-auto order-first sm:order-none bg-gray-300">
+            <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
+              <%= image_tag event.event_photos.shuffle.first.to_s %>
+            <% end %>
+          </div>
+          <!-- image - end -->
+          <!-- content - start -->
+          <div class="w-full sm:w-1/2 lg:w-3/5 flex flex-col p-4 sm:p-8">
+            <h2 class="text-gray-800 text-xl md:text-2xl lg:text-4xl font-bold mb-4"><%= link_to event.title, graduation_album_event_path(event.graduation_album, event)%></h2>
+            <p class="max-w-md text-gray-600 mb-8"><%= event.description %></p>
+            <div class="mt-auto text-right">
+              <% if current_user.own?(event) %>
+                <%= link_to graduation_album_event_path(event.graduation_album, event), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" do%>
+                  <i class="fa-solid fa-trash-can fa-lg"></i>
+                <% end %>
+              <% end %>
+              <%= link_to '詳細へ', graduation_album_event_path(event.graduation_album, event), class: "inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 text-gray-800 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+            </div>
+          </div>
+          <!-- content - end -->
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+</li>
+
+
+  
+
