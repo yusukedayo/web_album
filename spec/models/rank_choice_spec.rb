@@ -3,7 +3,7 @@
 # Table name: rank_choices
 #
 #  id            :bigint           not null, primary key
-#  answers_count :integer
+#  answers_count :integer          default(0)
 #  content       :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
