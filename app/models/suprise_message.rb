@@ -30,9 +30,4 @@ class SupriseMessage < ApplicationRecord
   validates :suprise_title, :suprise_message, :suprise_time, presence: true
   validates :suprise_title, length: { maximum: 255 }
   validates :suprise_message, length: { maximum: 65_535 }
-  validate :check_suprise_time
-
-  def check_suprise_time
-    errors.add(:suprise_time, '日付は今日以降に設定してください') if suprise_time < Date.today
-  end
 end
