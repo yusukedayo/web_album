@@ -1,16 +1,47 @@
-<% if current_user.own?(@rank) %>
-  <%= link_to '編集', edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
-  <%= link_to '削除', graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-<% end %>
-<br>
-<%= @rank.rank_title %><br>
-<%= @rank.rank_description %>
-<br>
-<% unless @rank_choices == nil%>
-  <% @rank_choices.each do |choice| %>
-    <%= link_to '編集', edit_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank, choice), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %> 
-    <%= link_to '削除', graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank, choice), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-    <%= link_to choice.content, answers_path(rank_id: @rank.id, id: choice.id), method: :post %> <%= choice.answers.count %>票
-  <% end %>
-<% end %>
-<button class="btn btn-outline"><%= link_to '選択肢を追加', new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) %></button>
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center self-start pt-8">
+    <div class="card lg:card-side bg-base-100 my-6 shadow-xl">
+      <div class="card-body">
+        <div class='p-2'>
+          <div class="grid grid-cols-5 gap-4">
+            <div class="col-start-2 col-span-3 text-gray-700 text-center px-4 py-2 m-2 text-2xl font-bold"><%= @rank.rank_title %></div>
+            <div class="col-end-6 col-span-1 text-gray-700 text-center px-4 py-2 m-2">
+              <% if current_user.own?(@rank) %>
+                <%= link_to edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+                  <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                <% end %>
+                <%= link_to graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do%>
+                  <i class="fa-solid fa-trash-can fa-lg"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <%= @rank.rank_description %>
+        </div>
+        <% @rank.rank_choices.order(answers_count: "DESC").each do |choice| %>
+          <div class="grid grid-cols-12 flex items-center mt-4">
+            <div class="text-2xl col-span-3 text-sm font-medium text-blue-600 dark:text-blue-500 text-center">
+              <i class="fa-solid fa-crown"></i> <%= choice.content %>
+            </div>
+            <div class="self-center col-span-7 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+              <% unless choice.answers.count == 0 %>
+                <div class="col-span-7 h-5 bg-yellow-400 rounded" style="width:<%= (choice.answers.count.quo(@rank.answers.count).to_f*100).floor %>%"></div>
+              <% else %>
+                <div class="col-span-7 h-5 bg-yellow-400 rounded" style="width:0%"></div>
+              <% end %>
+            </div>
+            <span class="self-center col-span-1 text-sm font-medium text-blue-600 dark:text-blue-500 text-center text-2xl"><%= choice.answers.count %>票</span>
+            <span class="self-center col-span-1 text-sm font-medium text-blue-600 dark:text-blue-500 text-center">
+              <%= link_to answers_path(rank_id: @rank.id, id: choice.id), method: :post do %>
+                <i class="fa-solid fa-check-to-slot fa-2x"></i>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+        <div class='pt-6'>
+          <button class="btn btn-outline"><%= link_to '選択肢を追加', new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
