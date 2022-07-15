@@ -25,7 +25,7 @@
                     <%= link_to '写真の取得', graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post, class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
                 </p>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2">
-                  <% if @mathed_face_paths %>
+                  <% if @mathed_face_paths && @mathed_face_paths.count != 0 %>
                         <% a = @graduation_album.photos %>
                         <% a.each do |a|%>
                           <%  @mathed_face_paths[0].each do |mathed_face_path|%>
