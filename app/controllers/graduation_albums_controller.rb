@@ -26,13 +26,6 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album.users << current_user
     if @graduation_album.save
       if @graduation_album.photos
-        num = @graduation_album.photos.size
-        images = []
-        photo_links = []
-        num.times do |num|
-          images.push(@graduation_album.photos[num].current_path)
-          photo_links.push(@graduation_album.photos[num].identifier)
-        end
         credentials = Aws::Credentials.new(
           ENV.fetch('AWS_ACCESS_KEY_ID', nil),
           ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
@@ -46,23 +39,16 @@ class GraduationAlbumsController < ApplicationController
           collection.name = @graduation_album.id.to_s
           collection.save
         end
-        images.each do |image|
-          photo_links.each do |photo|
-            image_detail = PhotoPath.new
-            image_detail.graduation_album_id = @graduation_album.id
+        @graduation_album.photos.each do |image|
             resp = client.index_faces({
                                         collection_id: @graduation_album.id.to_s,
                                         image: {
                                           s3_object: {
                                             bucket: 'aws-test-rails',
-                                            name: image
+                                            name: image.current_path
                                           }
                                         }
                                       })
-            image_detail.path = photo
-            image_detail.image_id = resp.to_h[:face_records][0][:face][:image_id]
-            image_detail.save
-          end
         end
       end
       redirect_to graduation_albums_path, notice: '作成に成功しました'
