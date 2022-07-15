@@ -20,7 +20,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class GraduationAlbum < ApplicationRecord
-  mount_uploaders :photos, PhotoUploader
   belongs_to :user
   has_many :message_for_everyones, dependent: :destroy
   has_many :message_for_each_menbers, dependent: :destroy
