@@ -23,7 +23,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Event < ApplicationRecord
-  mount_uploaders :event_photos, PhotoUploader
+  mount_uploaders :event_photos, EventPhotoUploader
   belongs_to :user
   belongs_to :graduation_album
 
