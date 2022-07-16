@@ -24,7 +24,7 @@
           <%= link_to edit_graduation_album_message_for_everyone_path(message_for_everyone.graduation_album, message_for_everyone), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
             <i class="fa-solid fa-pen-to-square fa-lg"></i>
           <% end %>
-          <%= link_to graduation_album_message_for_everyone_path(message_for_everyone.graduation_album, message_for_everyone), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do%>
+          <%= link_to graduation_album_message_for_everyone_path(message_for_everyone.graduation_album, message_for_everyone), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100", remote: true do%>
             <i class="fa-solid fa-trash-can fa-lg"></i>
           <% end %>
         <% end %>
