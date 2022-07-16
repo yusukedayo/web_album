@@ -6,11 +6,7 @@ class MessageForEveryonesController < ApplicationController
 
   def create
     @message_for_everyone = current_user.message_for_everyones.build(message_for_everyone_params)
-    if @message_for_everyone.save
-      redirect_to graduation_album_path(@message_for_everyone.graduation_album), notice: 'コメントを投稿しました'
-    else
-      redirect_to graduation_album_path(@message_for_everyone.graduation_album), alert: 'コメントの投稿に失敗しました'
-    end
+    @message_for_everyone.save
   end
 
   def edit
@@ -26,7 +22,6 @@ class MessageForEveryonesController < ApplicationController
   def destroy
     graduation_album = GraduationAlbum.find(@message_for_everyone.graduation_album_id)
     @message_for_everyone.destroy!
-    redirect_to graduation_album_path(graduation_album), notice: 'コメントを削除しました'
   end
 
   private
