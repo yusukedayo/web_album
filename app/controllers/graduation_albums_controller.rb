@@ -49,8 +49,10 @@ class GraduationAlbumsController < ApplicationController
               }
             }
           })
-          image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s, image_id: resp.to_h[:face_records][0][:face][:image_id])
-          image_detail.save!
+          unless resp.to_h[:face_records] == []
+            image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s, image_id: resp.to_h[:face_records][0][:face][:image_id])
+            image_detail.save!
+          end
         end
       end
       redirect_to graduation_albums_path, notice: '作成に成功しました'
