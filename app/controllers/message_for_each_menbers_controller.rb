@@ -6,11 +6,7 @@ class MessageForEachMenbersController < ApplicationController
 
   def create
     @message_for_each_menber = current_user.message_for_each_menbers.build(message_for_each_menber_params)
-    if @message_for_each_menber.save
-      redirect_to graduation_album_path(@message_for_each_menber.graduation_album), success: 'コメントを投稿しました'
-    else
-      redirect_to graduation_album_path(@message_for_each_menber.graduation_album), danger: 'コメントの投稿に失敗しました'
-    end
+    @message_for_each_menber.save
   end
 
   def edit; end
@@ -26,7 +22,6 @@ class MessageForEachMenbersController < ApplicationController
 
   def destroy
     @message_for_each_menber.destroy!
-    redirect_to graduation_albums_path, notice: 'アルバムの削除に成功しました'
   end
 
   private

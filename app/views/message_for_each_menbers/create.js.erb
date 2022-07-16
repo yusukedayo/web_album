@@ -1,0 +1,7 @@
+$("#error_messages").remove()
+<% if @message_for_each_menber.errors.present? %>
+  $("#new_message_for_each_menber").prepend("<%= j(render('shared/error_messages', object: @message_for_each_menber)) %>")
+<% else %>
+  $("#js-table-message_for_each_menber").prepend("<%= j(render('message_for_each_menbers/message_for_each_menber', message_for_each_menber: @message_for_each_menber)) %>")
+  $("#js-new-message_for_each_menber-body").val('')
+<% end %>
