@@ -5,12 +5,12 @@
       <h1 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline"><%= @graduation_album.album_name %></h1>
       <div class="bg-white py-3 sm:py-4 lg:py-6">
         <div class=" px-4 md:px-8 mx-auto">
-          <% if @graduation_album.photos %>
+          <% if @graduation_album.images %>
           <div class="swiper-container">
               <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                  <% @graduation_album.photos.each do |photo| %> 
-                    <%= image_tag photo.url(:ablum_photo), class:"swiper-slide rounded-lg", id:"album-swiper" %>
+                  <% @graduation_album.images.each do |image| %> 
+                    <%= image_tag image, class:"swiper-slide rounded-lg", size: '320x240', id:"album-swiper" %>
                   <% end %>
                 </div><!-- .swiper-wrapper -->
                   <div class="swiper-pagination"></div>
@@ -49,11 +49,11 @@
 </div>
     
 <div class='pt-5'>
-  <% if @graduation_album.photos %>
+  <% if @graduation_album.images %>
     <div class="swiper loopSwiper">
       <div class="swiper-wrapper">
-        <% @graduation_album.photos.each do |photo| %> 
-          <%= image_tag photo.url(:ablum_photo), class:"swiper-slide rounded-lg", id:"loop-swiper" %>
+        <% @graduation_album.images.each do |image| %>
+          <%= image_tag image, class:"swiper-slide rounded-lg", id:"loop-swiper", size: '320x240' %>
         <% end %>
       </div>
     </div>

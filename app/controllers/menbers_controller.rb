@@ -13,20 +13,21 @@ class MenbersController < ApplicationController
       client = Aws::Rekognition::Client.new credentials: credentials
       face_id = @menber.face_id
       resp = client.search_faces({
-                                   collection_id:,
-                                   face_id:,
-                                   face_match_threshold: 90,
-                                   max_faces: 20
-                                 })
+                                  collection_id:,
+                                  face_id:,
+                                  face_match_threshold: 90,
+                                  max_faces: 10
+                                })
       if resp
         num = resp[:face_matches].size
         mathed_faces = []
         num.times do |num|
           mathed_faces.push(resp[:face_matches][num][:face][:image_id])
         end
-        @mathed_face_paths = []
+        @mathed_face_images = []
         mathed_faces.each do |image|
-          @mathed_face_paths.push(PhotoPath.where(graduation_album_id: @graduation_album.id).where(image_id: image))
+          photo_path = PhotoPath.where(graduation_album_id: @graduation_album.id).where(image_id: image).first
+          @mathed_face_images.push(ActiveStorage::Attachment.where(record_id: @graduation_album.id).where(blob_id: photo_path.path.to_i).first)
         end
       end
     end

@@ -6,12 +6,8 @@
       <%= f.text_field :album_name, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "アルバム名" %>
     </div>
     <div class="mb-8">
-      <%= f.label :photos, class: "text-sm block"%>
-      <% graduation_album.photos.each do |photo| %>
-        <%= hidden_field :graduation_album, :photos, multiple: true, value: photo.identifier %>
-        <%= image_tag photo.url, size: '300x200' %>
-      <% end %>
-      <%= f.file_field :photos, multiple: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
+      <%= f.label :images, class: "text-sm block"%>
+      <%= f.file_field :images, multiple: true, direct_upload: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
     </div>
     <div class="mb-8">
       <% unless current_user.followings.count == 0 %>
