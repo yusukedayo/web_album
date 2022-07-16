@@ -20,6 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class GraduationAlbum < ApplicationRecord
+  has_many_attached :images
   belongs_to :user
   has_many :message_for_everyones, dependent: :destroy
   has_many :message_for_each_menbers, dependent: :destroy
