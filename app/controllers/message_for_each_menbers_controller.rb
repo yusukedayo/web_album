@@ -13,7 +13,7 @@ class MessageForEachMenbersController < ApplicationController
 
   def update
     if @message_for_each_menber.update(message_for_each_menber_update_params)
-      redirect_to graduation_albums_path, notice: '編集に成功しました'
+      redirect_to graduation_album_menber_path(@message_for_each_menber.graduation_album, @message_for_each_menber.to_user), notice: '編集に成功しました'
     else
       flash.now['alert'] = '編集に失敗しました'
       render :edit
