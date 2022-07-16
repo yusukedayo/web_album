@@ -1,20 +1,35 @@
-<!-- person - start -->
-<div class="flex flex-col items-center">
-  <% if current_user.own?(message_for_each_menber) %>
-    <%= link_to edit_graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
-      <i class="fa-solid fa-pen-to-square fa-lg"></i>
-    <% end %>
-    <%= link_to graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
-      <i class="fa-solid fa-trash-can fa-lg"></i>
-    <% end %>
-  <% end %>
-  <div>
-    <p class="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4"></p>
-    <%= message_for_each_menber.body %>
+
+<div id="message_for_each_menber-<%= message_for_each_menber.id %>">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">
+      <div class="avatar">
+        <div class="w-12 rounded-full ">
+          <%= link_to graduation_album_menber_path(message_for_each_menber.graduation_album, message_for_each_menber.user) do %>
+            <%= image_tag current_user.avatar.to_s %>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to message_for_each_menber.user.name, graduation_album_menber_path(message_for_each_menber.graduation_album, message_for_each_menber.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+      </h2>
+        <div id="js-message_for_each_menber-<%= message_for_each_menber.id %>">
+          <%= message_for_each_menber.body %>
+        </div>
+      <div id="js-textarea-message_for_each_menber-box-<%= message_for_each_menber.id %>" style="display: none;">
+        <textarea id="js-textarea-message_for_each_menber-<%= message_for_each_menber.id %>" class="form-control mb-1"><%= message_for_each_menber.body %></textarea>
+        <button class="btn btn-light js-button-edit-message_for_each_menber-cancel" data-message_for_each_menber-id="<%= message_for_each_menber.id %>">キャンセル</button>
+        <button class="btn btn-success js-button-message_for_each_menber-update" data-message_for_each_menber-id="<%= message_for_each_menber.id %>">更新</button>
+      </div>
+      <div class="card-actions justify-end">
+        <% if current_user.own?(message_for_each_menber) %>
+          <%= link_to edit_graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+          <% end %>
+          <%= link_to graduation_album_message_for_each_menber_path(message_for_each_menber.graduation_album, message_for_each_menber), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100", remote: true do%>
+            <i class="fa-solid fa-trash-can fa-lg"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
-    <%= image_tag current_user.avatar.to_s %>
-  </div>
-    <%= link_to message_for_each_menber.user.name, graduation_album_menber_path(message_for_each_menber.graduation_album, message_for_each_menber.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
 </div>
-<!-- person - end -->
