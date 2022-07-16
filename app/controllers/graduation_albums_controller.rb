@@ -9,7 +9,7 @@ class GraduationAlbumsController < ApplicationController
   end
 
   def show
-    @graduation_album = GraduationAlbum.find(params[:id])
+    @graduation_album = GraduationAlbum.with_attached_images.find(params[:id])
     @message_for_everyones = @graduation_album.message_for_everyones.includes(:user).order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
     @events = @graduation_album.events.order(created_at: :desc)
@@ -25,7 +25,7 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.users << current_user
     if @graduation_album.save
-      if @graduation_album.photos
+      if @graduation_album.images
         credentials = Aws::Credentials.new(
           ENV.fetch('AWS_ACCESS_KEY_ID', nil),
           ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
@@ -39,16 +39,18 @@ class GraduationAlbumsController < ApplicationController
           collection.name = @graduation_album.id.to_s
           collection.save
         end
-        @graduation_album.photos.each do |image|
-            resp = client.index_faces({
-                                        collection_id: @graduation_album.id.to_s,
-                                        image: {
-                                          s3_object: {
-                                            bucket: 'aws-test-rails',
-                                            name: image.current_path
-                                          }
-                                        }
-                                      })
+        @graduation_album.images.each do |image|
+          resp = client.index_faces({
+            collection_id: @graduation_album.id.to_s,
+            image: {
+              s3_object: {
+                bucket: 'aws-test-rails',
+                name: image.key
+              }
+            }
+          })
+          image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s, image_id: resp.to_h[:face_records][0][:face][:image_id])
+          image_detail.save!
         end
       end
       redirect_to graduation_albums_path, notice: '作成に成功しました'
@@ -78,7 +80,7 @@ class GraduationAlbumsController < ApplicationController
   private
 
   def graduation_album_params
-    params.require(:graduation_album).permit(:album_name, { photos: [] }, { user_ids: [] })
+    params.require(:graduation_album).permit(:album_name, { user_ids: [] }, images: [])
   end
 
   def set_graduation_album
