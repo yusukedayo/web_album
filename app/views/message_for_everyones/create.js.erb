@@ -1,0 +1,7 @@
+$("#error_messages").remove()
+<% if @message_for_everyone.errors.present? %>
+  $("#new_message_for_everyone").prepend("<%= j(render('shared/error_messages', object: @message_for_everyone)) %>")
+<% else %>
+  $("#js-table-message_for_everyone").prepend("<%= j(render('message_for_everyones/message_for_everyone', message_for_everyone: @message_for_everyone)) %>")
+  $("#js-new-message_for_everyone-body").val('')
+<% end %>

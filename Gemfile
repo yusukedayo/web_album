@@ -92,3 +92,5 @@ gem 'dotenv-rails'
 gem 'aws-sdk-rekognition'
 # 画像のサイズ調節
 gem 'mini_magick'
+# 非同期処理のため
+gem 'jquery-rails'
