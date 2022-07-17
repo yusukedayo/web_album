@@ -30,3 +30,13 @@ ja:
         suprise_title: 'タイトル'
         suprise_message: 'メッセージ'
         suprise_time: 'サプライズ実行日'
+    errors:
+      models:
+        message_for_each_menber:
+          attributes:
+            graduation_album_id:
+              format: '%{message}'
+        message_for_everyone:
+          attributes:
+            graduation_album_id:
+              format: '%{message}'
