@@ -23,5 +23,49 @@
     </div>
     <%= render 'message_for_each_menbers/message_for_each_menbers', { message_for_each_menbers: @message_for_each_menbers } %>
     <%= render 'message_for_each_menbers/form', { graduation_album: @graduation_album, message_for_each_menber: @message_for_each_menber, menber: @menber } %>
+    <% unless @menber.ranks == [] %>
+      <div class="mb-10 md:mb-16">
+        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-6 md:mb-3"><%= "#{@menber.name}"%>さんが作成したランキング</h2>
+      </div>
+      <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks } %>
+    <% else %>
+      <div class="mb-10 md:mb-16">
+        <h3 class="text-gray-800 text-2xl font-bold text-center mb-6 mt-6 md:mb-3"><%= "#{@menber.name}"%>さんが作成したランキングはまだありません</h3>
+      <div class='text-center'>
+        <p>ランキングを作成してアルバムを盛り上げよう</p>
+          <button class="btn btn-outline"><%= link_to 'イベントを作成', new_graduation_album_rank_path(@graduation_album) %></button>
+        </div>
+      </div>
+    <% end %>
+
+    <% unless @menber.events == [] %>
+      <div class="mb-10 md:mb-16">
+        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><%= "#{@menber.name}"%>さんが作成したイベント</h2>
+      </div>
+      <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
+    <% else %>
+      <div class="mb-10 md:mb-16">
+        <h3 class="text-gray-800 text-2xl font-bold text-center mb-6 mt-6 md:mb-3"><%= "#{@menber.name}"%>さんが作成したイベントはまだありません</h3>
+      <div class='text-center'>
+        <p>イベントを作成してアルバムを盛り上げよう</p>
+          <button class="btn btn-outline"><%= link_to 'イベントを作成', new_graduation_album_event_path(@graduation_album) %></button>
+        </div>
+      </div>
+    <% end %>
+
+    <% unless @menber.suprise_messages == [] %>
+      <div class="mb-10 md:mb-16">
+        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><%= "#{@menber.name}"%>さんが作成したサプライズメッセージ</h2>
+      </div>
+      <%= render 'suprise_messages/suprise_messages', { graduation_album: @graduation_album, suprise_messages: @suprise_messages } %>
+    <% else %>
+      <div class="mb-10 md:mb-16">
+        <h3 class="text-gray-800 text-2xl font-bold text-center mb-6 mt-6 md:mb-3"><%= "#{@menber.name}"%>さんが作成したサプライズメッセージはまだありません</h3>
+      <div class='text-center'>
+        <p>サプライズメッセージを作成してアルバムを盛り上げよう</p>
+          <button class="btn btn-outline"><%= link_to 'イベントを作成', new_graduation_album_event_path(@graduation_album) %></button>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

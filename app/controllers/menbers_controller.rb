@@ -33,5 +33,8 @@ class MenbersController < ApplicationController
     end
     @message_for_each_menbers = @graduation_album.message_for_each_menbers.where(to_user: @menber.id).includes(:user).order(created_at: :desc)
     @message_for_each_menber = MessageForEachMenber.new
+    @ranks = @menber.ranks.includes([:graduation_album])
+    @suprise_messages = @menber.suprise_messages.includes([:graduation_album])
+    @events = @menber.events.includes([:graduation_album])
   end
 end
