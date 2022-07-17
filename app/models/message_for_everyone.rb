@@ -26,4 +26,5 @@ class MessageForEveryone < ApplicationRecord
   belongs_to :graduation_album
 
   validates :body, presence: true, length: { maximum: 65_535 }
+  validates_uniqueness_of :graduation_album_id,  message: "メッセージは1人1つまでです", scope: :user_id
 end
