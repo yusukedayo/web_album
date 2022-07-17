@@ -12,8 +12,12 @@
     <div class="mb-8">
       <% unless current_user.followings.count == 0 %>
         <%= f.label :user_ids, 'メンバー', class: "text-sm block"%>
-        <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
-        <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
+        <%= f.collection_check_boxes :user_ids, current_user.followings, :id, :name %>
+        <div class='text-center pt-6'>
+          <button class="btn btn-outline btn-accent">
+            <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
+          </button>
+        </div>
       <% else %>
         <%= f.label :user_ids, 'フォローしているユーザーがいません', class: "text-sm block"%>
         <div class='text-center pt-6'>
