@@ -11,20 +11,18 @@
       </div>
         <div class="flex flex-wrap justify-center">
             <div class="w-full flex justify-center">
-                <div class="relative">
-                    <%= image_tag @user.avatar.to_s ,class:"shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"%>
+                <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+                  <%= image_tag @user.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
                 </div>
             </div>
-            <div class="w-full text-center mt-20">
-                <div class="flex justify-center lg:pt-4 pt-8 pb-0">
-                    <div class="p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followers.count %></span>
-                        <span class="text-sm text-slate-400">フォロー</span>
-                    </div>
-                    <div class="p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followings.count %></span>
-                        <span class="text-sm text-slate-400">フォロワー</span>
-                    </div>
+            <div class="flex justify-center lg:pt-4 pt-8 pb-0">
+                <div class="p-3 text-center">
+                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followers.count %></span>
+                    <span class="text-sm text-slate-400">フォロー</span>
+                </div>
+                <div class="p-3 text-center">
+                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followings.count %></span>
+                    <span class="text-sm text-slate-400">フォロワー</span>
                 </div>
             </div>
         </div>
@@ -33,4 +31,110 @@
           <p class=" text-slate-700 font-bold leading-normal mb-1">メールアドレス：<%= @user.email %></p>
         </div>
     </div>
+</div>
+<div class="bg-white py-3 sm:py-4 lg:py-6">
+  <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+    <!-- text - start -->
+    <div class="mb-10 md:mb-16">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">ユーザー検索</h2>
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">ユーザーをフォローすることでグループに招待できます</p>
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">ユーザーはユーザー名かメールアドレスから検索することができます</p>
+      <div class='text-center py-8'>
+        <%= search_form_for @q, url: users_show_path(@user) do |f| %>
+          <%= f.search_field :name_or_email_cont, placeholder:"ユーザー名 or メールアドレス", class:"input input-bordered input-accent w-full max-w-xs" %>
+          <%= button_tag type: 'submit', class: "follow-btn" do %>
+            <i class="fa-solid fa-magnifying-glass fa-lg pl-4"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
+      <% @users.each do |user|%>
+        <div class="flex flex-col items-center">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= image_tag user.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center"><%= user.name %></div>
+            <% unless @user == user %>
+              <% if @user.following?(user) %>
+                <%= form_for(@user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(@user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- text - end -->
+    <!-- text - start -->
+    <div class="mb-5 md:mb-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-2 md:mb-3 pt-10">フォローしているユーザー</h2>
+    </div>
+    <!-- text - end -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
+      <!-- person - start -->
+      <% @following_users.each do |follower|%>
+        <div class="flex flex-col items-center">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= image_tag follower.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center"><%= follower.name %></div>
+            <% unless @user == follower %>
+              <% if @user.following?(follower) %>
+                <%= form_for(@user.relationships.find_by(follow_id: follower.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, follower.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(@user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, follower.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <!-- person - end -->
+    </div>
+
+    <!-- text - start -->
+    <div class="pt-5 md:pt-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-2 md:mb-3 pt-10">フォローされているユーザー</h2>
+    </div>
+    <!-- text - end -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
+      <!-- person - start -->
+      <% @followed_users.each do |followed|%>
+        <div class="flex flex-col items-center">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= image_tag followed.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center"><%= followed.name %></div>
+            <% unless @user == followed %>
+              <% if @user.following?(followed) %>
+                <%= form_for(@user.relationships.find_by(follow_id: followed.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, followed.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(@user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, followed.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  </div>
 </div>

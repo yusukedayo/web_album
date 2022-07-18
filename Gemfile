@@ -96,3 +96,5 @@ gem 'mini_magick'
 gem 'jquery-rails'
 #パンクズリスト
 gem 'gretel'
+#ユーザー検索
+gem 'ransack'
