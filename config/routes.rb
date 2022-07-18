@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     get 'logout', to: 'users/sessions#destroy'
   end
-  get "users/show" => "users#show"
+  get 'users/show' => 'users#show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome_pages#top'
   resources :graduation_albums do

@@ -41,18 +41,19 @@ class GraduationAlbumsController < ApplicationController
         end
         @graduation_album.images.each do |image|
           resp = client.index_faces({
-            collection_id: @graduation_album.id.to_s,
-            image: {
-              s3_object: {
-                bucket: 'aws-test-rails',
-                name: image.key
-              }
-            }
-          })
-          unless resp.to_h[:face_records] == []
-            image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s, image_id: resp.to_h[:face_records][0][:face][:image_id])
-            image_detail.save!
-          end
+                                      collection_id: @graduation_album.id.to_s,
+                                      image: {
+                                        s3_object: {
+                                          bucket: 'aws-test-rails',
+                                          name: image.key
+                                        }
+                                      }
+                                    })
+          next if resp.to_h[:face_records] == []
+
+          image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s,
+                                       image_id: resp.to_h[:face_records][0][:face][:image_id])
+          image_detail.save!
         end
       end
       redirect_to graduation_albums_path, notice: '作成に成功しました'

@@ -94,7 +94,7 @@ gem 'aws-sdk-rekognition'
 gem 'mini_magick'
 # 非同期処理のため
 gem 'jquery-rails'
-#パンクズリスト
+# パンクズリスト
 gem 'gretel'
-#ユーザー検索
+# ユーザー検索
 gem 'ransack'
