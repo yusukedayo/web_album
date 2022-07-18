@@ -31,17 +31,23 @@
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <!-- text - start -->
     <div class="mb-10 md:mb-16">
-      <% @graduation_album.users.each do |user| %>
-        <div class="flex flex-col items-center">
-          <%= link_to graduation_album_menber_path(@graduation_album, user), class:"w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
-            <%= image_tag user.avatar.to_s %>
-          <% end %>
-          <%= link_to user.name, graduation_album_menber_path(@graduation_album, user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
-        </div>
-      <% end %>
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center pt-4 mb-4 md:mb-6 underline">メンバーからのメッセージ</h2>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-x-2 lg:gap-x-4 gap-y-4 lg:gap-y-4">
+        <!-- person - start -->
+        <% @graduation_album.users.each do |user| %>
+          <div class="flex flex-col items-center">
+            <%= link_to graduation_album_menber_path(@graduation_album, user), class:"w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
+              <%= image_tag user.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+            <% end %>
+            <div class="text-indigo-500 md:text-lg font-bold text-center">
+              <%= link_to user.name, graduation_album_menber_path(@graduation_album, user)%>
+            </div>
+          </div>
+        <% end %>
+        <!-- person - end -->
+      </div>
     </div>
     <!-- text - end -->
+    <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center pt-4 mb-4 md:mb-6 underline pt-10">メンバーからのメッセージ</h2>
     <%if @message_for_everyones %>
       <%= render 'message_for_everyones/message_for_everyones', { message_for_everyones: @message_for_everyones } %>
     <% end %>
