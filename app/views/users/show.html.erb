@@ -39,13 +39,43 @@
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">ユーザー検索</h2>
       <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">ユーザーをフォローすることでグループに招待できます</p>
       <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">ユーザーはユーザー名かメールアドレスから検索することができます</p>
-      <input type="text" placeholder="Type here" class="input input-bordered input-accent w-full max-w-xs" />
+      <div class='text-center py-8'>
+        <%= search_form_for @q, url: users_show_path(@user) do |f| %>
+          <%= f.search_field :name_or_email_cont, placeholder:"ユーザー名 or メールアドレス", class:"input input-bordered input-accent w-full max-w-xs" %>
+          <%= button_tag type: 'submit', class: "follow-btn" do %>
+            <i class="fa-solid fa-magnifying-glass fa-lg pl-4"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
+      <% @users.each do |user|%>
+        <div class="flex flex-col items-center">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= image_tag user.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center"><%= user.name %></div>
+            <% unless @user == user %>
+              <% if @user.following?(user) %>
+                <%= form_for(@user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(@user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
     <!-- text - end -->
-
     <!-- text - start -->
-    <div class="mb-10 md:mb-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">フォローしているユーザー</h2>
+    <div class="mb-5 md:mb-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-2 md:mb-3 pt-10">フォローしているユーザー</h2>
     </div>
     <!-- text - end -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
@@ -77,8 +107,8 @@
     </div>
 
     <!-- text - start -->
-    <div class="pt-10 md:pt-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">フォローされているユーザー</h2>
+    <div class="pt-5 md:pt-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-2 md:mb-3 pt-10">フォローされているユーザー</h2>
     </div>
     <!-- text - end -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
