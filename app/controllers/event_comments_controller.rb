@@ -19,6 +19,7 @@ class EventCommentsController < ApplicationController
   end
 
   private
+
   def set_event_comment
     @event_comment = current_user.event_comments.find(params[:id])
   end
