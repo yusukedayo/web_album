@@ -1,16 +1,31 @@
-<% unless suprise_message.state == 'publish_wait' %>
-  <div class="card lg:card-side bg-base-100 my-6 shadow-xl">
-    <div class="card-body">
-        <h2 class="card-title"><%= link_to suprise_message.suprise_title, graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message)%></h2>
-        <p> <%= suprise_message.suprise_message %></p>
-        <div class="card-actions justify-end">
-          <% if current_user.own?(suprise_message) %>
-            <%= link_to '編集', edit_graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" %>
-            <%= link_to '削除', graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+
+    <div class="boxmi14">
+      <div class="boxmi14-title">
+        <%= suprise_message.suprise_title%>
+        <div class='text-right px-6'>
+        <% if current_user.own?(suprise_message) %>
+          <%= link_to edit_graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message) do %>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+          <% end %>
+          <%= link_to graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"} do %>
+            <i class="fa-solid fa-trash-can fa-lg"></i>
+          <% end %>
+        <% end %>
+      </div>
+      </div>
+      <div class="sen14 text-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100">
+        <%= suprise_message.suprise_message%>
+      </div>
+  <div class="grid grid-cols-8" >
+    <div class='flex items-center col-end-9 col-span-1'>
+      <div class="avatar ">
+        <div class="w-12 rounded-full ">
+          <%= link_to graduation_album_menber_path(suprise_message.graduation_album,suprise_message.user) do %>
+            <%= image_tag current_user.avatar.to_s %>
           <% end %>
         </div>
+      </div>
+      <%= link_to suprise_message.user.name, graduation_album_menber_path(suprise_message.graduation_album, suprise_message.user), class: "px-4 text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
     </div>
   </div>
-<% else %>
-  
-<% end %>
+</div>
