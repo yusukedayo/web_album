@@ -18,7 +18,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.with_attached_event_photos.find(params[:id])
+    @event_comments = @event.event_comments.order(created_at: :desc)
+    @event_comment = EventComment.new
   end
 
   def update
@@ -40,10 +42,10 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    params.require(:event).permit(:title, :description, :event_date, { event_photos: [] }).merge(graduation_album_id: params[:graduation_album_id])
+    params.require(:event).permit(:title, :description, :event_date, event_photos: []).merge(graduation_album_id: params[:graduation_album_id])
   end
 
   def event_update_params
-    params.require(:event).permit(:title, :description, :event_date, { event_photos: [] })
+    params.require(:event).permit(:title, :description, :event_date, event_photos: [])
   end
 end
