@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_16_105541) do
+ActiveRecord::Schema.define(version: 2022_07_19_094055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2022_07_16_105541) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "event_comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_event_comments_on_event_id"
+    t.index ["user_id"], name: "index_event_comments_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
@@ -71,7 +81,6 @@ ActiveRecord::Schema.define(version: 2022_07_16_105541) do
     t.bigint "graduation_album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.json "event_photos"
     t.index ["graduation_album_id"], name: "index_events_on_graduation_album_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -193,6 +202,8 @@ ActiveRecord::Schema.define(version: 2022_07_16_105541) do
   add_foreign_key "answers", "rank_choices"
   add_foreign_key "answers", "ranks"
   add_foreign_key "answers", "users"
+  add_foreign_key "event_comments", "events"
+  add_foreign_key "event_comments", "users"
   add_foreign_key "events", "graduation_albums"
   add_foreign_key "events", "users"
   add_foreign_key "graduation_albums", "users"

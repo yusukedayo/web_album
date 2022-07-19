@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     get 'logout', to: 'users/sessions#destroy'
   end
-  get "users/show" => "users#show"
+  get 'users/show' => 'users#show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome_pages#top'
   resources :graduation_albums do
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :ranks, only: %i[create update edit destroy new show] do
       resources :rank_choices, only: %i[create update edit destroy new show]
     end
-    resources :events, only: %i[create update edit destroy new show]
+    resources :events, only: %i[create update edit destroy new show] do
+      resources :event_comments, only: %i[create edit destroy update]
+    end
     resources :message_for_everyones, only: %i[create edit destroy update]
     resources :message_for_each_menbers, only: %i[create edit destroy update]
     resources :suprise_messages, only: %i[create edit destroy update new show]

@@ -5,7 +5,6 @@
 #  id                  :bigint           not null, primary key
 #  description         :text             not null
 #  event_date          :date
-#  event_photos        :json
 #  title               :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -23,9 +22,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Event < ApplicationRecord
-  mount_uploaders :event_photos, EventPhotoUploader
+  has_many_attached :event_photos
   belongs_to :user
   belongs_to :graduation_album
+  has_many :event_comments, dependent: :destroy
 
   validates :title, :description, presence: true
   validates :title, length: { maximum: 255 }

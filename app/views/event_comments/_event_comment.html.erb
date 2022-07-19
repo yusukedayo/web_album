@@ -1,0 +1,33 @@
+<div id="event_comment-<%= event_comment.id %>">
+  <div class="card w-80 h-60  shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">
+      <div class="avatar">
+        <div class="w-12 rounded-full">
+          <%= image_tag current_user.avatar.to_s %>
+        </div>
+      </div>
+      <%= link_to event_comment.user.name, graduation_album_menber_path(event_comment.event.graduation_album, event_comment.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+      </h2>
+        <div id="js-event_comment-<%= event_comment.id %>">
+          <%= event_comment.body %>
+        </div>
+      <div id="js-textarea-event_comment-box-<%= event_comment.id %>" style="display: none;">
+        <textarea id="js-textarea-event_comment-<%= event_comment.id %>" class="form-control mb-1"><%= event_comment.body %></textarea>
+        <button class="btn btn-light js-button-edit-event_comment-cancel" data-event_comment-id="<%= event_comment.id %>">キャンセル</button>
+        <button class="btn btn-success js-button-event_comment-update" data-event_comment-id="<%= event_comment.id %>">更新</button>
+      </div>
+      <div class="card-actions justify-end">
+        <% if current_user.own?(event_comment) %>
+          <%= link_to edit_graduation_album_event_event_comment_path(event_comment.event.graduation_album, event_comment.event, event_comment), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+          <% end %>
+          <%= link_to graduation_album_event_event_comment_path(event_comment.event.graduation_album, event_comment.event, event_comment), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100", remote: true do %>
+            <i class="fa-solid fa-trash-can fa-lg"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

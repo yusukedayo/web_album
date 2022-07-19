@@ -12,7 +12,7 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = GraduationAlbum.with_attached_images.find(params[:id])
     @message_for_everyones = @graduation_album.message_for_everyones.includes(:user).order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
-    @events = @graduation_album.events.order(created_at: :desc)
+    @events = @graduation_album.events.with_attached_event_photos.order(created_at: :desc)
     @ranks = @graduation_album.ranks.order(created_at: :desc)
     @suprise_messages = @graduation_album.suprise_messages.order(created_at: :desc)
   end
@@ -41,18 +41,19 @@ class GraduationAlbumsController < ApplicationController
         end
         @graduation_album.images.each do |image|
           resp = client.index_faces({
-            collection_id: @graduation_album.id.to_s,
-            image: {
-              s3_object: {
-                bucket: 'aws-test-rails',
-                name: image.key
-              }
-            }
-          })
-          unless resp.to_h[:face_records] == []
-            image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s, image_id: resp.to_h[:face_records][0][:face][:image_id])
-            image_detail.save!
-          end
+                                      collection_id: @graduation_album.id.to_s,
+                                      image: {
+                                        s3_object: {
+                                          bucket: 'aws-test-rails',
+                                          name: image.key
+                                        }
+                                      }
+                                    })
+          next if resp.to_h[:face_records] == []
+
+          image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s,
+                                       image_id: resp.to_h[:face_records][0][:face][:image_id])
+          image_detail.save!
         end
       end
       redirect_to graduation_albums_path, notice: '作成に成功しました'

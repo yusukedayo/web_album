@@ -13,11 +13,11 @@ class MenbersController < ApplicationController
       client = Aws::Rekognition::Client.new credentials: credentials
       face_id = @menber.face_id
       resp = client.search_faces({
-                                  collection_id:,
-                                  face_id:,
-                                  face_match_threshold: 90,
-                                  max_faces: 10
-                                })
+                                   collection_id:,
+                                   face_id:,
+                                   face_match_threshold: 90,
+                                   max_faces: 10
+                                 })
       if resp
         num = resp[:face_matches].size
         mathed_faces = []
