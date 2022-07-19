@@ -30,6 +30,8 @@ ja:
         suprise_title: 'タイトル'
         suprise_message: 'メッセージ'
         suprise_time: 'サプライズ実行日'
+      event_comment:
+        body: 'コメント'
     errors:
       models:
         message_for_each_menber:
