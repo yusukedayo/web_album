@@ -5,7 +5,6 @@
 #  id                  :bigint           not null, primary key
 #  description         :text             not null
 #  event_date          :date
-#  event_photos        :json
 #  title               :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
