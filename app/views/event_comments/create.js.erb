@@ -1,0 +1,7 @@
+$("#error_messages").remove()
+<% if @event_comment.errors.present? %>
+  $("#new_event_comment").prepend("<%= j(render('shared/error_messages', object: @event_comment)) %>")
+<% else %>
+  $("#js-table-event_comment").prepend("<%= j(render('event_comments/event_comment', event_comment: @event_comment)) %>")
+  $("#js-new-event_comment").val('')
+<% end %>

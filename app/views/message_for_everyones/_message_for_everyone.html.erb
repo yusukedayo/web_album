@@ -1,9 +1,9 @@
 <div id="message_for_everyone-<%= message_for_everyone.id %>">
-  <div class="card w-80 bg-base-100 shadow-xl">
+  <div class="card w-80 h-60 bg-base-100 shadow-xl">
     <div class="card-body">
       <h2 class="card-title">
       <div class="avatar">
-        <div class="w-12 rounded-full ">
+        <div class="w-12 rounded-full">
           <%= link_to graduation_album_menber_path(message_for_everyone.graduation_album, message_for_everyone.user) do %>
             <%= image_tag current_user.avatar.to_s %>
           <% end %>

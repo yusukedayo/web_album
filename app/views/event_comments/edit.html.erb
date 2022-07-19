@@ -1,0 +1,12 @@
+<div class="mt-8">
+  <%= form_with model: @event_comment,  url: [@event_comment.event.graduation_album, @event_comment.event, @event_comment], id: 'new_event_comment', class:"w-10/12 mx-auto md:max-w-md" do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="mb-8">
+      <%= f.label :body, class: "text-sm block"%>
+      <%= f.text_field :body, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50',id: 'js-new-event_comment', placeholder: "コメントを追加" %>
+    </div>
+    <div class='form-control mt-6'>
+      <%= f.submit '作成する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
