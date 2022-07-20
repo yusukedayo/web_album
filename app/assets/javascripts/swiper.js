@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Optional parameters
   loop: true,
   loopAdditionalSlides: 1,
-
   //アニメーションで動くように設定
   speed: 700,
   autoplay: {
@@ -18,8 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-
-  slidesPerView: 3,
+  slidesPerView: 1.35,
+  breakpoints: {
+    // スライドの表示枚数：500px以上の場合
+    500: {
+      slidesPerView: 2.75,
+    },
+  },
   spaceBetween: 30,
   centeredSlides: true,
   pagination: {
@@ -33,7 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const loopSwiper = new Swiper('.loopSwiper', {
   spaceBetween: 5,
   loop: true, // ループ有効
-  slidesPerView: 5, // 一度に表示する枚数
+  slidesPerView: 2,
+  breakpoints: {
+    // スライドの表示枚数：500px以上の場合
+    500: {
+      slidesPerView: 3,
+    },
+    700: {
+      slidesPerView: 4,
+    },
+    900: {
+      slidesPerView: 5,
+    },
+    1100: {
+      slidesPerView: 6,
+    }
+  },
   speed: 8000, // ループの時間
   allowTouchMove: false, // スワイプ無効
   autoplay: {

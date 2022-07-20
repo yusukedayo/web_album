@@ -10,7 +10,7 @@
               <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                   <% @graduation_album.images.each do |image| %> 
-                    <%= image_tag image, class:"swiper-slide rounded-lg", size: '320x240', id:"album-swiper" %>
+                    <%= image_tag image.variant(gravity: :center, resize:"600x600^", crop:"600x600+0+0").processed, class:"swiper-slide rounded-lg", id:"album-swiper" %>
                   <% end %>
                 </div><!-- .swiper-wrapper -->
                   <div class="swiper-pagination"></div>
@@ -82,7 +82,7 @@
     <div class="swiper loopSwiper">
       <div class="swiper-wrapper">
         <% @graduation_album.images.each do |image| %>
-          <%= image_tag image, class:"swiper-slide rounded-lg", id:"loop-swiper", size: '320x240' %>
+          <%= image_tag image, class:"swiper-slide rounded-lg", id:"loop-swiper" %>
         <% end %>
       </div>
     </div>
