@@ -17,15 +17,15 @@
         <%= suprise_message.suprise_message%>
       </div>
   <div class="grid grid-cols-8" >
-    <div class='flex items-center col-end-9 col-span-1'>
+    <div class='flex items-center col-end-9 col-span-3'>
       <div class="avatar ">
         <div class="w-12 rounded-full ">
           <%= link_to graduation_album_menber_path(suprise_message.graduation_album,suprise_message.user) do %>
             <%= image_tag current_user.avatar.to_s %>
           <% end %>
         </div>
+        <%= link_to suprise_message.user.name, graduation_album_menber_path(suprise_message.graduation_album, suprise_message.user), class: "px-4 text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
       </div>
-      <%= link_to suprise_message.user.name, graduation_album_menber_path(suprise_message.graduation_album, suprise_message.user), class: "px-4 text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
     </div>
   </div>
 </div>
