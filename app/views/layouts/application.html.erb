@@ -13,10 +13,12 @@
   </head>
 
   <body class="flex flex-col min-h-screen">
-    <% if user_signed_in? %>
+    <% if user_signed_in? != true %>
+      <%= render 'shared/before_login_header' %>
+    <% elsif request.path == '/users/show' || request.path == '/graduation_albums' || request.path == '/' %>
       <%= render 'shared/header' %>
     <% else %>
-      <%= render 'shared/before_login_header' %>
+      <%= render 'shared/album_header'%>
     <% end %>
     <%= render 'shared/flash' %>
     <div class='flex-grow'>
