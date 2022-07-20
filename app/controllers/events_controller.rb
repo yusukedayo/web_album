@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.with_attached_event_photos.find(params[:id])
+    @event = Event.find(params[:id])
     @event_comments = @event.event_comments.order(created_at: :desc)
     @event_comment = EventComment.new
   end
