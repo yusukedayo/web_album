@@ -22,10 +22,33 @@
         </div>
       </div>
     </div>
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"> 
+      <div class='text-center py-2'>
+        <button class="btn btn-outline btn-primary">
+          <%= link_to anchor: "event_top" do %>
+            <i class="fa-solid fa-plane fa-lg"></i>イベントへ移動
+          <% end %>
+        </button>
+      </div>
+      <div class='text-center py-2'>
+        <button class="btn btn-outline btn-secondary">
+        <%= link_to anchor: "rank_top" do %>
+            <i class="fa-solid fa-ranking-star fa-lg"></i>ランキングへ移動
+          <% end %>
+        </button>
+      </div>
+      <div class='text-center py-2'>
+        <button class="btn btn-outline btn-accent">
+        <%= link_to anchor: "suprise_top" do %>
+            <i class="fa-solid fa-gift fa-lg"></i>サプライズメッセージへ移動
+          <% end %>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 <!-- message for everyone -->
-<h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline">メンバー</h2>
+<h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6 underline pt-8">メンバー</h2>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <!-- text - start -->
@@ -67,18 +90,18 @@
 </div>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
-    <div class="mb-10 md:mb-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6">思い出の行事</h2>
+    <div class="mb-10 md:mb-16" id='event_top'>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><i class="fa-solid fa-plane fa-lg"></i>思い出の行事</h2>
       <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">みんなとの楽しい思い出を共有しよう</p>
     </div>
     <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
-    <div class="mb-10 md:mb-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6">メンバーランキング</h2>
+    <div class="mb-10 md:mb-16" id='rank_top'>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><i class="fa-solid fa-ranking-star fa-lg"></i>メンバーランキング</h2>
       <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">〇〇になりそうな人ランキングを作成しよう</p>
     </div>
     <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks} %>
-    <div class="mb-10 md:mb-16">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6">サプライズメッセージ</h2>
+    <div class="mb-10 md:mb-16" id='suprise_top'>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><i class="fa-solid fa-gift fa-lg"></i>サプライズメッセージ</h2>
       <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">未来に向けてメッセージを残そう</p>
     </div>
     <%= render 'suprise_messages/suprise_messages', { graduation_album: @graduation_album, suprise_messages: @suprise_messages } %>

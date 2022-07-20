@@ -1,9 +1,26 @@
 <header>
   <div class="navbar bg-green-100">
     <div class="flex-1">
-    <%= link_to 'Web卒アル', graduation_albums_path, class:"btn btn-ghost normal-case text-xl" %>
+      <%= link_to 'Web卒アル', graduation_albums_path, class:"btn btn-ghost normal-case text-xl" %>
     </div>
     <div class="flex-none">
+      <ul class="menu menu-horizontal p-0">
+        <li>
+          <%= link_to anchor: "event_top" do %>
+            <i class="fa-solid fa-plane fa-lg"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to anchor: "rank_top" do %>
+            <i class="fa-solid fa-ranking-star fa-lg"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to anchor: "suprise_top" do %>
+            <i class="fa-solid fa-gift fa-lg"></i>
+          <% end %>
+        </li>
+      </ul>
       <div class="dropdown dropdown-end" id='profile'>
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
