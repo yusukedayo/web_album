@@ -13,7 +13,7 @@
       <%= link_to message_for_each_menber.user.name, graduation_album_menber_path(message_for_each_menber.graduation_album, message_for_each_menber.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
       </h2>
         <div id="js-message_for_each_menber-<%= message_for_each_menber.id %>">
-          <%= message_for_each_menber.body %>
+          <%= simple_format(message_for_each_menber.body) %>
         </div>
       <div id="js-textarea-message_for_each_menber-box-<%= message_for_each_menber.id %>" style="display: none;">
         <textarea id="js-textarea-message_for_each_menber-<%= message_for_each_menber.id %>" class="form-control mb-1"><%= message_for_each_menber.body %></textarea>

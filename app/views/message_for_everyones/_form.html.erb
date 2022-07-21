@@ -3,7 +3,7 @@
   <%= render "shared/error_messages", object: f.object %>
     <div class="mb-8">
       <%= f.label :body, class: "text-sm block text-red-400"%>
-      <%= f.text_field :body, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-red-400 placeholder-opacity-50',id: 'js-new-message_for_everyone-body', placeholder: "メッセージを送ろう" %>
+      <%= f.text_area :body, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-red-400 placeholder-opacity-50',id: 'js-new-message_for_everyone-body', placeholder: "メッセージを送ろう" %>
     </div>
     <div class='form-control mt-6'>
       <%= f.submit '作成する', class: 'bg-red-400 hover:bg-red-600 text-white rounded px-4 py-2' %>
