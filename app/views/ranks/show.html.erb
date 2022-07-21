@@ -17,7 +17,7 @@
               <% end %>
             </div>
           </div>
-          <%= @rank.rank_description %>
+          <%= simple_format(@rank.rank_description) %>
         </div>
         <% @rank.rank_choices.order(answers_count: "DESC").each do |choice| %>
           <div class="grid grid-cols-12 flex items-center mt-4">

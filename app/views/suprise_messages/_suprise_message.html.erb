@@ -1,21 +1,21 @@
 
-    <div class="boxmi14">
-      <div class="boxmi14-title">
-        <%= suprise_message.suprise_title%>
-        <div class='text-right px-6'>
-        <% if current_user.own?(suprise_message) %>
-          <%= link_to edit_graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message) do %>
-            <i class="fa-solid fa-pen-to-square fa-lg"></i>
-          <% end %>
-          <%= link_to graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"} do %>
-            <i class="fa-solid fa-trash-can fa-lg"></i>
-          <% end %>
-        <% end %>
-      </div>
-      </div>
-      <div class="sen14 text-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100">
-        <%= suprise_message.suprise_message%>
-      </div>
+<div class="boxmi14">
+  <div class="boxmi14-title">
+    <%= suprise_message.suprise_title%>
+    <div class='text-right px-6'>
+    <% if current_user.own?(suprise_message) %>
+      <%= link_to edit_graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message) do %>
+        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+      <% end %>
+      <%= link_to graduation_album_suprise_message_path(suprise_message.graduation_album, suprise_message), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"} do %>
+        <i class="fa-solid fa-trash-can fa-lg"></i>
+      <% end %>
+    <% end %>
+  </div>
+  </div>
+  <div class="sen14 text-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100">
+    <%= simple_format(suprise_message.suprise_message) %>
+  </div>
   <div class="grid grid-cols-8" >
     <div class='flex items-center col-end-9 col-span-3'>
       <div class="avatar ">

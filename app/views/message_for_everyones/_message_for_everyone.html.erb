@@ -1,5 +1,5 @@
 <div id="message_for_everyone-<%= message_for_everyone.id %>">
-  <div class="card w-80 h-60 bg-base-100 shadow-xl">
+  <div class="card w-80 h-60 bg-base-100 shadow-xl border border-red-300">
     <div class="card-body">
       <h2 class="card-title">
       <div class="avatar">
@@ -12,7 +12,7 @@
       <%= link_to message_for_everyone.user.name, graduation_album_menber_path(message_for_everyone.graduation_album, message_for_everyone.user), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
       </h2>
         <div id="js-message_for_everyone-<%= message_for_everyone.id %>">
-          <%= message_for_everyone.body %>
+          <%= simple_format(message_for_everyone.body) %>
         </div>
       <div id="js-textarea-message_for_everyone-box-<%= message_for_everyone.id %>" style="display: none;">
         <textarea id="js-textarea-message_for_everyone-<%= message_for_everyone.id %>" class="form-control mb-1"><%= message_for_everyone.body %></textarea>
