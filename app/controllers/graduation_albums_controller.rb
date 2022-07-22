@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GraduationAlbumsController < ApplicationController
-  before_action :set_graduation_album, only: %i[edit update destroy]
+  before_action :set_graduation_album, only: %i[update destroy]
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   def index
     @graduation_albums = current_user.belong_albums.order(created_at: :desc)
@@ -56,14 +56,16 @@ class GraduationAlbumsController < ApplicationController
           image_detail.save!
         end
       end
-      redirect_to graduation_albums_path, notice: '作成に成功しました'
+      redirect_to graduation_album_path(@graduation_album), notice: '作成に成功しました'
     else
       flash.now['alert'] = '作成に失敗しました'
       render :new
     end
   end
 
-  def edit; end
+  def edit
+    @graduation_album = current_user.graduation_albums.with_attached_images.find(params[:id])
+  end
 
   def update
     if @graduation_album.update(graduation_album_params)
@@ -78,6 +80,12 @@ class GraduationAlbumsController < ApplicationController
   def destroy
     @graduation_album.destroy!
     redirect_to graduation_albums_path, notice: 'アルバムの削除に成功しました'
+  end
+
+  def destroy_each_photo
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.purge
+    redirect_to edit_graduation_album_path(image.record_id)
   end
 
   private

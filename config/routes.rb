@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome_pages#top'
   resources :graduation_albums do
+    member do
+      delete:destroy_each_photo
+    end
     resources :menbers, only: %i[show] do
       resources :register_faces, only: %i[create]
     end
