@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   slidesPerView: 1.35,
   breakpoints: {
     // スライドの表示枚数：500px以上の場合
-    500: {
+    600: {
       slidesPerView: 2.75,
     },
   },
