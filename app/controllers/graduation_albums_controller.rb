@@ -2,7 +2,7 @@
 
 class GraduationAlbumsController < ApplicationController
   before_action :set_graduation_album, only: %i[update destroy]
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!
   def index
     @graduation_albums = current_user.belong_albums.order(created_at: :desc)
     @users = User.all
