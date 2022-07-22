@@ -2,7 +2,7 @@
 
 class GraduationAlbumsController < ApplicationController
   before_action :set_graduation_album, only: %i[update destroy]
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!
   def index
     @graduation_albums = current_user.belong_albums.order(created_at: :desc)
     @users = User.all
@@ -70,7 +70,7 @@ class GraduationAlbumsController < ApplicationController
   def update
     if @graduation_album.update(graduation_album_params)
       @graduation_album.users << current_user
-      redirect_to graduation_albums_path, notice: '編集に成功しました'
+      redirect_to graduation_album_path(@graduation_album), notice: '編集に成功しました'
     else
       flash.now['alert'] = '編集に失敗しました'
       render :edit

@@ -1,2 +1,37 @@
 <% breadcrumb :graduation_album_new %>
-<%= render 'form', { graduation_album: @graduation_album } %>
+<div class="mt-8">
+  <%= form_with model: @graduation_album, class:"w-10/12 mx-auto md:max-w-2xl", local: true do |f| %>
+  <p class='pt-6'>写真を10枚投稿すると20秒ほど作成時間がかかってしまいます</p>
+  <p class='pb-6'>本リリースまでに改善予定です</p>
+  <%= render "shared/error_messages", object: f.object %>
+    <div class="mb-8">
+      <%= f.label :album_name, class: "text-sm block"%>
+      <%= f.text_field :album_name, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "アルバム名" %>
+    </div>
+    <div class="mb-8">
+      <%= f.label :images, class: "text-sm block"%>
+      <%= f.file_field :images, multiple: true, direct_upload: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
+    </div>
+    <div class="mb-8">
+      <% unless current_user.followings.count == 0 %>
+        <%= f.label :user_ids, 'メンバー', class: "text-sm block"%>
+        <%= f.collection_check_boxes :user_ids, current_user.followings, :id, :name %>
+        <div class='text-center pt-6'>
+          <button class="btn btn-outline btn-accent">
+            <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
+          </button>
+        </div>
+      <% else %>
+        <%= f.label :user_ids, 'フォローしているユーザーがいません', class: "text-sm block"%>
+        <div class='text-center pt-6'>
+          <button class="btn btn-outline btn-accent">
+            <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <div class='form-control mt-6 pb-6'>
+      <%= f.submit '作成する', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

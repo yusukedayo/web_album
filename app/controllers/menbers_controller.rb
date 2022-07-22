@@ -35,6 +35,6 @@ class MenbersController < ApplicationController
     @message_for_each_menber = MessageForEachMenber.new
     @ranks = @menber.ranks.includes([:graduation_album])
     @suprise_messages = @menber.suprise_messages.includes([:graduation_album])
-    @events = @menber.events.includes([:graduation_album])
+    @events = @menber.events.with_attached_event_photos.includes([:graduation_album])
   end
 end

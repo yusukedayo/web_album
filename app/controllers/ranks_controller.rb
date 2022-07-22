@@ -35,7 +35,7 @@ class RanksController < ApplicationController
   def destroy
     @rank = Rank.find(params[:id])
     @rank.destroy!
-    redirect_to root_path
+    redirect_to graduation_album_path(@rank.graduation_album)
   end
 
   private

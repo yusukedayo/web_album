@@ -27,7 +27,15 @@ class Event < ApplicationRecord
   belongs_to :graduation_album
   has_many :event_comments, dependent: :destroy
 
-  validates :title, :description, presence: true
+  validates :title, :description, :event_date, presence: true
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 65_535 }
+  FILE_NUMBER_LIMIT = 10
+  validate :validate_number_of_files
+
+  def validate_number_of_files
+    binding.pry
+    return if :event_photos.length <= FILE_NUMBER_LIMIT
+    errors.add(:event_photos, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
+  end
 end
