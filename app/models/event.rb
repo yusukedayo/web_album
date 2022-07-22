@@ -27,7 +27,7 @@ class Event < ApplicationRecord
   belongs_to :graduation_album
   has_many :event_comments, dependent: :destroy
 
-  validates :title, :description, presence: true
+  validates :title, :description, :event_date, presence: true
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 65_535 }
 end

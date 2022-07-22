@@ -11,7 +11,7 @@
     </div>
     <div class="mb-8">
       <%= f.label :event_date, class: "text-sm block"%>
-      <%= f.date_field :event_date, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "日付" %>
+      <%= f.date_field :event_date, value: Date.today, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "日付" %>
     </div>
     <div class="mb-8">
       <div class="mb-8">
