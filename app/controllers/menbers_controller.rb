@@ -4,7 +4,7 @@ class MenbersController < ApplicationController
   def show
     @menber = User.find(params[:id])
     @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
-    collection_id = @graduation_album.id.to_s
+    collection_id = @graduation_album.id.to_i + 1000
     if @menber.face_id && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
       credentials = Aws::Credentials.new(
         ENV.fetch('AWS_ACCESS_KEY_ID', nil),

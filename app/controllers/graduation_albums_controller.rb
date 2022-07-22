@@ -31,17 +31,17 @@ class GraduationAlbumsController < ApplicationController
           ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
         )
         client = Aws::Rekognition::Client.new credentials: credentials
-        unless PhotoCollection.find_by(name: @graduation_album.id)
+        unless PhotoCollection.find_by(name: (@graduation_album.id.to_i + 1000).to_s)
           client.create_collection({
-                                     collection_id: @graduation_album.id.to_s
+                                     collection_id: (@graduation_album.id.to_i + 1000).to_s
                                    })
           collection = PhotoCollection.new
-          collection.name = @graduation_album.id.to_s
+          collection.name = (@graduation_album.id.to_i + 1000).to_s
           collection.save
         end
         @graduation_album.images.each do |image|
           resp = client.index_faces({
-                                      collection_id: @graduation_album.id.to_s,
+                                      collection_id: (@graduation_album.id.to_i + 1000).to_s,
                                       image: {
                                         s3_object: {
                                           bucket: 'aws-test-rails',
