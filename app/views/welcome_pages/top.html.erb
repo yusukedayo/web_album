@@ -1,9 +1,40 @@
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content text-center">
-    <div class="max-w-md">
-      <h1 class="text-4xl font-bold">web卒アルにようこそ</h1>
-      <p class="py-6">web卒アルはあなたの大切な思い出を卒業アルバムの形に簡単に残すことができるサービスです。</p>
-      <button class="btn btn-primary">はじめる</button>
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+    <div class=" rounded-lg px-4 py-6 md:py-8 lg:py-12">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">web卒アルにようこそ</h2>
+
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">web卒アルは大切な思い出をルバムの形に残すことができるサービスです。</p>
+    </div>
+    <div class='container mx-auto text-center'>
+      <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">
+        <%= link_to 'はじめる', graduation_albums_path %>
+      </button>
+    </div>
+    <div class='container mx-auto text-center'>
+      <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">
+        <%= link_to 'ゲストログイン', graduation_albums_path %>
+      </button>
+    </div>
+    <div class='py-10 px-6'>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6"><i class="fa-solid fa-gears lg"></i> 機能紹介</h2>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/album_explanation' %>
+      </div>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/menber_explanation' %>
+      </div>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/message_explanation' %>
+      </div>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/rank_explanation' %>
+      </div>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/suprise_explanation' %>
+      </div>
+      <div class='py-6 px-6'>
+      <%= render 'graduation_albums/event_explanation' %>
+      </div>
     </div>
   </div>
 </div>
