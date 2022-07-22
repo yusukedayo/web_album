@@ -10,7 +10,7 @@
                 <div class="swiper-wrapper">
                   <% unless @graduation_album.images.blobs == [] %>
                     <% @graduation_album.images.each do |image| %> 
-                      <%= image_tag image, class:" h-80 w-90 swiper-slide rounded-lg", id:"album-swiper" %>
+                      <%= image_tag image, class:" h-80 w-80 swiper-slide rounded-lg", id:"album-swiper" %>
                     <% end %>
                   <% else %>
                     <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'default_album1' %></div>
