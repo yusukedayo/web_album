@@ -5,9 +5,6 @@
         <%= link_to edit_user_registration_path, class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
           <i class="fa-solid fa-pen-to-square fa-lg"></i>
         <% end %>
-        <%= link_to logout_path, method: :delete, id: "delete_button", data: {confirm: "ログアウトしますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
-          <i class="fas fa-sign-out-alt fa-lg"></i>
-        <% end %>
       </div>
         <div class="flex flex-wrap justify-center">
             <div class="w-full flex justify-center">
@@ -17,11 +14,11 @@
             </div>
             <div class="flex justify-center lg:pt-4 pt-8 pb-0">
                 <div class="p-3 text-center">
-                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followers.count %></span>
+                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followings.count %></span>
                     <span class="text-sm text-slate-400">フォロー</span>
                 </div>
                 <div class="p-3 text-center">
-                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followings.count %></span>
+                    <span class="text-xl font-bold block uppercase tracking-wide text-slate-700"><%= @user.followers.count %></span>
                     <span class="text-sm text-slate-400">フォロワー</span>
                 </div>
             </div>
