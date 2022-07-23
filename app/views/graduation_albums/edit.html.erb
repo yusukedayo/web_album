@@ -9,8 +9,9 @@
       <%= f.text_field :album_name, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "アルバム名" %>
     </div>
     <div class="mb-8">
-      <%= f.label :images, class: "text-sm block"%>
-      <%= f.file_field :images, multiple: true, direct_upload: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
+      <p>S3の無料プランを超えそうなので7月中は画像投稿行えません</p>
+      <%# <%= f.label :images, class: "text-sm block"%>
+      <%# <%= f.file_field :images, multiple: true, direct_upload: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-8">
       <% if @graduation_album.images != [] %>
         <% @graduation_album.images.each do |image| %>
