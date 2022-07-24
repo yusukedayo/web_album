@@ -46,7 +46,7 @@ config/environments/*.local.yml
 coverage/*
 
 # Ignore database.yml for local
-config/database.yml
+
 
 .solargraph.yml
 
