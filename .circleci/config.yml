@@ -41,6 +41,11 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
+      - run: 
+          name: Setup Chrome
+          command: |
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install ./google-chrome-stable_current_amd64.deb
       - run:
           name: Rspec
           command: bundle exec rspec
