@@ -8,7 +8,7 @@ workflows:
     jobs:
       - build
       - rubocop:
-          requires: 
+          requires:
             - build
       - rspec:
           requires:
@@ -21,15 +21,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
-      - deploy_stg:
-          requires:
-            - build
-            - rspec
-          filters:
-            branches:
-              only:
-                - staging
+                - main
 
 executors:
   default:
