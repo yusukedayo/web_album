@@ -27,7 +27,7 @@ executors:
   default:
     working_directory: ~/repo
     docker:
-      - image: ruby:3.1.2-stretch
+      - image: ruby:2.5.0-stretch
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
