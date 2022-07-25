@@ -9,7 +9,6 @@ jobs:
     docker:
       - image: cimg/ruby:3.1-browsers
     steps:
-      - browser-tools/install-browser-tools
       - checkout
       - ruby/install-deps
       - node/install-packages:
@@ -32,6 +31,7 @@ jobs:
       PGPASSWORD: ""
       RAILS_ENV: test
     steps:
+      - browser-tools/install-browser-tools
       - checkout
       - ruby/install-deps
       - node/install-packages:
