@@ -21,7 +21,7 @@
 require 'rails_helper'
 
 RSpec.describe GraduationAlbum, type: :model do
-  fdescribe 'バリデーション' do
+  describe 'バリデーション' do
     it 'アルバム名が存在し、どちらも255字以内の場合有効であること' do
       graduation_album = build(:graduation_album)
       expect(graduation_album).to be_valid
