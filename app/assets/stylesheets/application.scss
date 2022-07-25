@@ -32,6 +32,10 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   height: 100%;
 }
 
+.swiper-slide {
+  height: 300px;
+}
+
 .swiper-wrapper {
   transition-timing-function: linear;
 }
