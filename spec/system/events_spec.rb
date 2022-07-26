@@ -32,7 +32,7 @@ RSpec.describe "Events", type: :system do
         end
       end
     end
-    describe 'イベントの編集' do
+    xdescribe 'イベントの編集' do
       context 'イベントの入力値が正常' do
         it 'イベントの編集が成功する' do
           event
