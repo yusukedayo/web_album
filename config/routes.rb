@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post '/welcome_pages/guest_sign_in', to: 'welcome_pages#guest_sign_in'
   resources :graduation_albums do
     member do
-      delete:destroy_each_photo
+      delete :destroy_each_photo
     end
     resources :menbers, only: %i[show] do
       resources :register_faces, only: %i[create]
