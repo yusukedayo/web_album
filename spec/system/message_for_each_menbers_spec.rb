@@ -14,7 +14,7 @@ RSpec.describe 'MessageForEachMenbers', type: :system do
       context '個別メッセージの入力値が正常' do
         it '個別メッセージの新規作成が成功する' do
           visit graduation_album_menber_path(graduation_album, user)
-          fill_in 'メッセージ', with: 'メッセージテスト'
+          fill_in 'js-new-message_for_each_menber-body', with: 'メッセージテスト'
           click_button '作成する'
           visit graduation_album_menber_path(graduation_album, user)
           expect(page).to have_content 'メッセージテスト'
@@ -22,10 +22,10 @@ RSpec.describe 'MessageForEachMenbers', type: :system do
       end
       context 'bodyが未入力' do
         it '個別メッセージの新規作成が失敗する' do
-          visit graduation_album_path(graduation_album)
-          fill_in 'メッセージ', with: nil
+          visit graduation_album_menber_path(graduation_album, user)
+          fill_in 'js-new-message_for_each_menber-body', with: nil
           click_button '作成する'
-          expect(current_path).to eq graduation_album_path(graduation_album)
+          expect(current_path).to eq graduation_album_menber_path(graduation_album, user)
         end
       end
     end

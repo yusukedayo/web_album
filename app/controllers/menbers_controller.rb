@@ -21,8 +21,8 @@ class MenbersController < ApplicationController
       if resp
         num = resp[:face_matches].size
         mathed_faces = []
-        num.times do |num|
-          mathed_faces.push(resp[:face_matches][num][:face][:image_id])
+        num.times do |face|
+          mathed_faces.push(resp[:face_matches][face][:face][:image_id])
         end
         @mathed_face_images = []
         mathed_faces.each do |image|

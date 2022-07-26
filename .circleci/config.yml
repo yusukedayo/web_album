@@ -7,18 +7,35 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.1.2-browsers
+      - image: cimg/ruby:3.1-browsers
     steps:
-      - browser-tools/install-browser-tools
       - checkout
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
+  rubocop:
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:3.1-browsers
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: tsunemiyuusuke
+          POSTGRES_DB: album_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
   test:
     parallelism: 3
     docker:
-      - image: cimg/ruby:3.1.2-browsers
+      - image: cimg/ruby:3.1-browsers
       - image: circleci/postgres:9.5-alpine
         environment:
           POSTGRES_USER: tsunemiyuusuke
@@ -32,6 +49,7 @@ jobs:
       PGPASSWORD: ""
       RAILS_ENV: test
     steps:
+      - browser-tools/install-browser-tools
       - checkout
       - ruby/install-deps
       - node/install-packages:
@@ -46,12 +64,41 @@ jobs:
       - run:
           name: Rspec
           command: bundle exec rspec
-
+  deploy:
+    docker:
+      - image: cimg/ruby:3.1-browsers
+    steps:
+      - checkout
+      - run:
+          name: 'Install Heroku CLI, if necessary'
+          command: |
+            if [[ $(command -v heroku) == "" ]]; then
+              curl https://cli-assets.heroku.com/install.sh | sh
+            else
+              echo "Heroku is already installed. No operation was performed."
+            fi
+      - run:
+          name: Deploy to Heroku_Production
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_PRD.git main
+      - run:
+          name: db migration
+          command: |
+            heroku run rails db:migrate --app ${HEROKU_APP_NAME_PRD}
 workflows:
   version: 2
-  build_and_test:
+  build_and_rubocop_and_test:
     jobs:
       - build
+      - rubocop
       - test:
           requires:
             - build
+            - rubocop
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+              branches:
+                  only:
+                  - main

@@ -4,8 +4,8 @@ class RegisterFacesController < ApplicationController
     graduation_album = GraduationAlbum.find(params[:graduation_album_id])
     if user.avatar
       avatar_path = user.avatar.current_path
-      if avatar_path == nil
-        redirect_to graduation_album_menber_path(graduation_album, user), notice: 'プロフィール画像をデフォルトから変更してください' 
+      if avatar_path.nil?
+        redirect_to graduation_album_menber_path(graduation_album, user), notice: 'プロフィール画像をデフォルトから変更してください'
       else
         collection_id = (GraduationAlbum.find(params[:graduation_album_id]).id.to_i + 1000).to_s
         credentials = Aws::Credentials.new(
@@ -22,14 +22,14 @@ class RegisterFacesController < ApplicationController
                                       }
                                     }
                                   })
-        unless user.face_id = resp[:face_records] == []
+        if resp[:face_records] == []
+          redirect_to graduation_album_menber_path(graduation_album, user), notice: '人物の顔がはっきり写っているかを確認してください'
+        else
           user.face_id = resp[:face_records][0][:face][:face_id]
           user.save!
           registered_collection = RegisteredCollection.new(user_id: user.id, collection_name: collection_id)
           registered_collection.save!
           redirect_to graduation_album_menber_path(graduation_album, user), notice: '同じ人物の画像を取得しました'
-        else
-          redirect_to graduation_album_menber_path(graduation_album, user), notice: '人物の顔がはっきり写っているかを確認してください'
         end
       end
     else

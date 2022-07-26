@@ -20,7 +20,6 @@ class MessageForEveryonesController < ApplicationController
   end
 
   def destroy
-    graduation_album = GraduationAlbum.find(@message_for_everyone.graduation_album_id)
     @message_for_everyone.destroy!
   end
 
