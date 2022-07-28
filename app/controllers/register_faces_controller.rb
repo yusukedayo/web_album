@@ -7,7 +7,7 @@ class RegisterFacesController < ApplicationController
       if avatar_path.nil?
         redirect_to graduation_album_menber_path(graduation_album, user), notice: 'プロフィール画像をデフォルトから変更してください'
       else
-        collection_id = (GraduationAlbum.find(params[:graduation_album_id]).id.to_i + 1000).to_s
+        collection_id = 'graduation_album'
         credentials = Aws::Credentials.new(
           ENV.fetch('AWS_ACCESS_KEY_ID', nil),
           ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
