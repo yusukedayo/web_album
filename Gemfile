@@ -98,3 +98,5 @@ gem 'jquery-rails'
 gem 'gretel'
 # ユーザー検索
 gem 'ransack'
+# active job
+gem 'sidekiq'

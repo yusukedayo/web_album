@@ -26,35 +26,8 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album.users << current_user
     if @graduation_album.save
       if @graduation_album.images
-        credentials = Aws::Credentials.new(
-          ENV.fetch('AWS_ACCESS_KEY_ID', nil),
-          ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
-        )
-        client = Aws::Rekognition::Client.new credentials: credentials
-        unless PhotoCollection.find_by(name: (@graduation_album.id.to_i + 1000).to_s)
-          client.create_collection({
-                                     collection_id: (@graduation_album.id.to_i + 1000).to_s
-                                   })
-          collection = PhotoCollection.new
-          collection.name = (@graduation_album.id.to_i + 1000).to_s
-          collection.save
-        end
-        @graduation_album.images.each do |image|
-          resp = client.index_faces({
-                                      collection_id: (@graduation_album.id.to_i + 1000).to_s,
-                                      image: {
-                                        s3_object: {
-                                          bucket: 'aws-test-rails',
-                                          name: image.key
-                                        }
-                                      }
-                                    })
-          next if resp.to_h[:face_records] == []
-
-          image_detail = PhotoPath.new(graduation_album_id: @graduation_album.id, path: image.blob_id.to_s,
-                                       image_id: resp.to_h[:face_records][0][:face][:image_id])
-          image_detail.save!
-        end
+        image_ids = @graduation_album.images.map(&:id)
+        RegisterRekognitionJob.perform_later(image_ids)
       end
       redirect_to graduation_album_path(@graduation_album), notice: '作成に成功しました'
     else
