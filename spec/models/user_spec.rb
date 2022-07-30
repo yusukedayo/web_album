@@ -15,6 +15,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  face_id                :string
+#  social_unique_id       :string
 #
 # Indexes
 #
