@@ -50,5 +50,3 @@ coverage/*
 /public/uploads
 
 /.env
-
-config/auth0.yml
