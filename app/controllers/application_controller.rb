@@ -14,12 +14,12 @@ class ApplicationController < ActionController::Base
   private
 
   def check_social_signed_in?
-    if session[:userinfo].present?
-      return if @current_user
-      @current_user = User.find_by(social_unique_id: session[:userinfo]['sub']) || User.create!(name: session[:userinfo]['name'], email: "#{session[:userinfo]['sub']}@example.com",
-                                                                                            password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
-      sign_in @current_user
-    end
+    return unless session[:userinfo].present?
+    return if @current_user
+
+    @current_user = User.find_by(social_unique_id: session[:userinfo]['sub']) || User.create!(name: session[:userinfo]['name'], email: "#{session[:userinfo]['sub']}@example.com",
+                                                                                              password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
+    sign_in @current_user
   end
 
   # def authenticate_user!
