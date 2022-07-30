@@ -1,4 +1,5 @@
 class RanksController < ApplicationController
+  before_action :authenticate_user!
   def new
     @rank = Rank.new
   end

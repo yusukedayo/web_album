@@ -50,7 +50,7 @@ Metrics/BlockLength:
 
 # 一行の長さは100字まで。コメントは制限しない
 Metrics/LineLength:
-  Max: 150
+  Max: 220
   IgnoredPatterns: ["^ *# "]
   Exclude:
     - "db/migrate/*.rb"

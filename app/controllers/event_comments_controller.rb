@@ -1,5 +1,5 @@
 class EventCommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create edit update destroy]
+  before_action :authenticate_user!
   before_action :set_event_comment, only: %i[edit update destroy]
 
   def create
