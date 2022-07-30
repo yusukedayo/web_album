@@ -100,3 +100,7 @@ gem 'gretel'
 gem 'ransack'
 # active job
 gem 'sidekiq'
+# auth0
+gem 'omniauth-auth0', '~> 3.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
