@@ -1,4 +1,5 @@
 class RegisterFacesController < ApplicationController
+  before_action :authenticate_user!
   def create
     user = User.find(params[:menber_id])
     graduation_album = GraduationAlbum.find(params[:graduation_album_id])

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MenbersController < ApplicationController
+  before_action :authenticate_user!
   def show
     @menber = User.find(params[:id])
     @graduation_album = GraduationAlbum.find(params[:graduation_album_id])

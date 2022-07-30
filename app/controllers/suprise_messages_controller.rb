@@ -1,4 +1,5 @@
 class SupriseMessagesController < ApplicationController
+  before_action :authenticate_user!
   def new
     @suprise_message = SupriseMessage.new
   end
