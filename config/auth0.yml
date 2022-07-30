@@ -2,3 +2,8 @@ development:
   auth0_domain: dev-p3mz788c.us.auth0.com
   auth0_client_id: EZkoSPnrtcjewYbuRJxMNjG00k3EjExW
   auth0_client_secret: 8o3ePJH-slTZuG-AycVlwifAG372AApJHbVKeXxHvsYl9C5x3Bocj8rcwRA6aMhE
+
+test:
+  auth0_domain: dev-p3mz788c.us.auth0.com
+  auth0_client_id: EZkoSPnrtcjewYbuRJxMNjG00k3EjExW
+  auth0_client_secret: 8o3ePJH-slTZuG-AycVlwifAG372AApJHbVKeXxHvsYl9C5x3Bocj8rcwRA6aMhE
