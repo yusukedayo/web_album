@@ -5,7 +5,7 @@ class GraduationAlbumsController < ApplicationController
   # before_action :authenticate_user!
   def index
     # @graduation_albums = current_user.belong_albums.order(created_at: :desc)
-    @graduation_album = GraduationAlbum.all
+    @graduation_albums = GraduationAlbum.all
     @users = User.all
   end
 
