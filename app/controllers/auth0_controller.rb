@@ -16,6 +16,7 @@ class Auth0Controller < ApplicationController
   end
 
   private
+
   AUTH0_CONFIG = Rails.application.config_for(:auth0)
 
   def logout_url
@@ -28,6 +29,6 @@ class Auth0Controller < ApplicationController
   end
 
   def to_query(hash)
-    hash.map { |k, v| "#{k}=#{CGI.escape(v)}" unless v.nil? }.reject(&:nil?).join('&')
+    hash.map { |k, v| "#{k}=#{CGI.escape(v)}" unless v.nil? }.compact.join('&')
   end
 end

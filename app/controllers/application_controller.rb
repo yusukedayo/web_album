@@ -13,23 +13,19 @@ class ApplicationController < ActionController::Base
   private
 
   def user_signed_in?
-  session[:userinfo].present?
+    session[:userinfo].present?
   end
 
   def authenticate_user!
     if user_signed_in?
       return if @current_user
-      if User.find_by(social_unique_id: session[:userinfo]['sub'])
-        @current_user = User.find_by(social_unique_id: session[:userinfo]['sub'])
-      else 
-        @current_user = User.create!(name: session[:userinfo]['name'],email: session[:userinfo]['sub'] + '@example.com', password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
-      end
+
+      @current_user = User.find_by(social_unique_id: session[:userinfo]['sub']) || User.create!(name: session[:userinfo]['name'], email: "#{session[:userinfo]['sub']}@example.com",
+                                                                                                password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
     else
       redirect_to login_path
     end
   end
 
-  def current_user
-    @current_user
-  end
+  attr_reader :current_user
 end
