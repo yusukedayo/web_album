@@ -103,3 +103,5 @@ gem 'sidekiq'
 # auth0
 gem 'omniauth-auth0', '~> 3.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+# cndの追加
+gem 'asset_sync'
