@@ -9,4 +9,27 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name avatar face_id])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name avatar face_id])
   end
+
+  private
+
+  def user_signed_in?
+  session[:userinfo].present?
+  end
+
+  def authenticate_user!
+    if user_signed_in?
+      return if @current_user
+      if User.find_by(social_unique_id: session[:userinfo]['sub'])
+        @current_user = User.find_by(social_unique_id: session[:userinfo]['sub'])
+      else 
+        @current_user = User.create!(name: session[:userinfo]['name'],email: session[:userinfo]['sub'] + '@example.com', password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
+      end
+    else
+      redirect_to login_path
+    end
+  end
+
+  def current_user
+    @current_user
+  end
 end
