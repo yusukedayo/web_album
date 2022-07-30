@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_social_signed_in?
 
   protected
 
@@ -12,20 +13,23 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def user_signed_in?
-    session[:userinfo].present?
-  end
-
-  def authenticate_user!
-    if user_signed_in?
+  def check_social_signed_in?
+    if session[:userinfo].present?
       return if @current_user
-
       @current_user = User.find_by(social_unique_id: session[:userinfo]['sub']) || User.create!(name: session[:userinfo]['name'], email: "#{session[:userinfo]['sub']}@example.com",
-                                                                                                password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
-    else
-      redirect_to login_path
+                                                                                            password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
+      sign_in @current_user
     end
   end
 
-  attr_reader :current_user
+  # def authenticate_user!
+  #   if user_signed_in?
+  #     return if @current_user
+
+  #     @current_user = User.find_by(social_unique_id: session[:userinfo]['sub']) || User.create!(name: session[:userinfo]['name'], email: "#{session[:userinfo]['sub']}@example.com",
+  #                                                                                               password: SecureRandom.alphanumeric(10), avatar: session[:userinfo]['picture'], social_unique_id: session[:userinfo]['sub'])
+  #   else
+  #     redirect_to login_path
+  #   end
+  # end
 end
