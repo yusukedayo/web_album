@@ -3,7 +3,6 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  config.action_controller.asset_host = "https://d3qnuxipfve71d.cloudfront.net"
   OmniAuth.config.full_host = "https://web-album.herokuapp.com"
   # Settings specified here will take precedence over those in config/application.rb.
 
