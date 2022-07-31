@@ -3,7 +3,6 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  config.action_controller.asset_host = 'https://d3qnuxipfve71d.cloudfront.net'
   config.after_initialize do
     Bullet.enable        = true
     Bullet.alert         = true
