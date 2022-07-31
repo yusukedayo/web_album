@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @user = current_user
     @following_users = @user.followings
     @followed_users = @user.followers
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    set_search
   end
 end

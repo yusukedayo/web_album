@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.with_attached_event_photos.find(params[:id])
     @event_comments = @event.event_comments.order(created_at: :desc)
     @event_comment = EventComment.new
   end
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy!
-    redirect_to root_path
+    redirect_to graduation_album_path(@event.graduation_album)
   end
 
   private

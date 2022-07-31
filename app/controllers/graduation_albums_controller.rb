@@ -19,9 +19,11 @@ class GraduationAlbumsController < ApplicationController
 
   def new
     @graduation_album = GraduationAlbum.new
+    set_search
   end
 
   def create
+    set_search
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.users << current_user
     if @graduation_album.save
