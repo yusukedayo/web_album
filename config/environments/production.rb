@@ -3,7 +3,7 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  OmniAuth.config.full_host = "https://web-album.herokuapp.com"
+  OmniAuth.config.full_host = 'https://web-album.herokuapp.com'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
