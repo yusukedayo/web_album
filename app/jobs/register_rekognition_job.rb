@@ -7,14 +7,14 @@ class RegisterRekognitionJob < ApplicationJob
       ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
     )
     client = Aws::Rekognition::Client.new credentials: credentials
-    unless PhotoCollection.find_by(name: 'graduation_album')
-      client.create_collection({
-                                 collection_id: 'graduation_album'
-                               })
-      collection = PhotoCollection.new
-      collection.name = 'graduation_album'
-      collection.save
-    end
+    # unless PhotoCollection.find_by(name: 'graduation_album')
+    # client.create_collection({
+    #  collection_id: 'graduation_album'
+    #  })
+    # collection = PhotoCollection.new
+    # collection.name = 'graduation_album'
+    # collection.save
+    # end
     image_ids.each do |id|
       image = ActiveStorage::Attachment.find(id)
       resp = client.index_faces({
@@ -29,7 +29,7 @@ class RegisterRekognitionJob < ApplicationJob
       next if resp.to_h[:face_records] == []
 
       image_detail = PhotoPath.new(graduation_album_id: image.record_id, path: image.blob_id.to_s,
-                                   image_id: resp.to_h[:face_records][0][:face][:image_id])
+                                   image_id: resp.to_h[:face_records][0][:face][:image_id], s3_file_name: image.key)
       image_detail.save!
     end
   end
