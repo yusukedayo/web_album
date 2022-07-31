@@ -3,7 +3,9 @@
 # Table name: photo_paths
 #
 #  id                  :bigint           not null, primary key
+#  happy_score         :integer
 #  path                :string           not null
+#  s3_file_name        :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  graduation_album_id :bigint           not null
