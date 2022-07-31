@@ -1,15 +1,12 @@
 <% breadcrumb :graduation_album_new %>
 <div class="mt-8">
   <%= form_with model: @graduation_album, class:"w-10/12 mx-auto md:max-w-2xl", local: true do |f| %>
-  <p class='pt-6'>写真を10枚投稿すると20秒ほど作成時間がかかってしまいます</p>
-  <p class='pb-6'>本リリースまでに改善予定です</p>
   <%= render "shared/error_messages", object: f.object %>
     <div class="mb-8">
       <%= f.label :album_name, class: "text-sm block"%>
       <%= f.text_field :album_name, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50', placeholder: "アルバム名" %>
     </div>
     <div class="mb-8">
-      <p>S3の無料プランを超えそうなので7月中は画像投稿行えません</p>
       <%= f.label :images, class: "text-sm block"%>
       <%= f.file_field :images, multiple: true, direct_upload: true, class: 'w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50' %>
     </div>
@@ -17,22 +14,53 @@
       <% unless current_user.followings.count == 0 %>
         <%= f.label :user_ids, 'メンバー', class: "text-sm block"%>
         <%= f.collection_check_boxes :user_ids, current_user.followings, :id, :name %>
-        <div class='text-center pt-6'>
-          <button class="btn btn-outline btn-accent">
-            <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
-          </button>
-        </div>
       <% else %>
         <%= f.label :user_ids, 'フォローしているユーザーがいません', class: "text-sm block"%>
-        <div class='text-center pt-6'>
-          <button class="btn btn-outline btn-accent">
-            <%= link_to "招待したいユーザーをフォローしよう", users_show_path %>
-          </button>
-        </div>
       <% end %>
     </div>
     <div class='form-control mt-6 pb-6'>
       <%= f.submit '作成する', class: 'btn btn-primary' %>
     </div>
   <% end %>
+</div>
+<div class="bg-white py-3 sm:py-4 lg:py-6">
+  <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+    <!-- text - start -->
+    <div class="mb-6 md:mb-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">ユーザー検索</h2>
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">ユーザーをフォローすることでグループに招待できます</p>
+      <div class='text-center py-6'>
+        <%= search_form_for @q, url: new_graduation_album_path(@graduation_album) do |f| %>
+          <%= f.search_field :name_or_email_cont, placeholder:"ユーザー名 or メールアドレス", class:"input input-bordered input-accent w-full max-w-xs" %>
+          <%= button_tag type: 'submit', class: "follow-btn" do %>
+            <i class="fa-solid fa-magnifying-glass fa-lg pl-4"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 lg:gap-x-8 gap-y-8 lg:gap-y-12">
+      <% @users.each do |user|%>
+        <div class="flex flex-col items-center">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= image_tag user.avatar.to_s ,class: "w-full h-full object-cover object-center" %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center"><%= user.name %></div>
+            <% unless current_user == user %>
+              <% if current_user.following?(user) %>
+                <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(current_user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
