@@ -8,9 +8,15 @@
         <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
           とてもおしゃれなイベント詳細ページ</span>
         </h2>
+        
         <h3 class='text-xl md:text-3xl mt-10'>Coming Soon</h3>
         <p class="text-md md:text-xl mt-10"><a class="hover:underline" href="https://www.quicktoolz.com">本リリースで実装予定です</p>
       </div>
     </div>
   </div>
+</div>
+<div class="h-200 w-200">
+  <% @event.event_photos.each do |photo| %> 
+    <%= image_tag photo %>
+  <% end %>
 </div>
