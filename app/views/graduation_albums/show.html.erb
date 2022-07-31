@@ -87,7 +87,7 @@
       <div class="swiper-wrapper">
         <% unless @graduation_album.images.blobs == [] %>
     <% @graduation_album.images.each do |image| %>
-      <%= image_tag image, class:"swiper-slide rounded-lg", id:"loop-swiper" %>
+      <%= image_tag image, class:"swiper-slide rounded-lg", id:"loop-swiper", loading:"lazy" %>
     <% end %>
   <% else %>
     <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album1' %></div>

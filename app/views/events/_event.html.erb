@@ -10,7 +10,7 @@
           <div class="w-full sm:w-1/2 lg:w-2/5 h-48 sm:h-auto order-first sm:order-none bg-indigo-100">
             <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
               <% event.event_photos.each do |photo| %>
-                <%= image_tag photo, class:'object-contai'%>
+                <%= image_tag photo, class:'object-contai', loading:"lazy"%>
               <% end %>
             <% end %>
           </div>
