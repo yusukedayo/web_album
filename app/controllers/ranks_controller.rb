@@ -20,7 +20,6 @@ class RanksController < ApplicationController
 
   def show
     @rank = Rank.find(params[:id])
-    @rank_choices = @rank.rank_choices
   end
 
   def update
