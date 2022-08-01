@@ -37,6 +37,6 @@ class RankChoicesController < ApplicationController
   private
 
   def set_rank_choice
-    params.require(:rank_choice).permit(:content).merge(rank_id: params[:rank_id])
+    params.require(:rank_choice).permit(:content, rank_choice_images: []).merge(rank_id: params[:rank_id])
   end
 end
