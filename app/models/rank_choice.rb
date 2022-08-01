@@ -18,7 +18,7 @@
 #  fk_rails_...  (rank_id => ranks.id)
 #
 class RankChoice < ApplicationRecord
-  has_many_attached :rank_choice_images
+  has_one_attached :rank_choice_image
   belongs_to :rank
   has_many :answers, dependent: :destroy
 
