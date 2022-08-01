@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :message_for_each_menbers, only: %i[create edit destroy update]
     resources :suprise_messages, only: %i[create edit destroy update new show]
     resources :auto_make_events, only: %i[create]
+    resources :auto_make_ranks, only: %i[create]
   end
   resources :answers, only: %i[create]
   resources :relationships, only: %i[create destroy]
