@@ -117,9 +117,10 @@
     </div>
     
     <div class="mb-10 md:mb-16" id='rank_top'>
-      <h2 class="text-pink-500 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><i class="fa-solid fa-ranking-star fa-lg"></i> メンバーランキング</h2>
+      <h2 class="text-pink-500 text-2xl lg:text-3xl font-bold text-center mb-3 mt-6 md:mb-3"><i class="fa-solid fa-ranking-star fa-lg"></i> メンバーランキング</h2>
       <p class="max-w-screen-md text-pink-500 md:text-lg text-center mx-auto">〇〇になりそうな人ランキングを作成しよう</p>
     </div>
+    <div class='py-2 text-center'><button class="btn btn-outline btn-secondary"><%= link_to 'ランキングを自動で作成する', graduation_album_auto_make_ranks_path(@graduation_album), method: :post %></div>
     <% if @ranks != [] %>
       <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks} %>
     <% else %>
