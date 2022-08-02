@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class GraduationAlbumDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -22,7 +22,7 @@ class GraduationAlbumDashboard < Administrate::BaseDashboard
     id: Field::Number,
     album_name: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

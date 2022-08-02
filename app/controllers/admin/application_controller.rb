@@ -9,9 +9,7 @@ module Admin
     before_action :authenticate_admin
 
     def authenticate_admin
-      if current_user.admin == false
-        redirect_to root_path
-      end
+      redirect_to root_path if current_user.admin == false
     end
 
     # Override this value to specify the number of elements to display at a time

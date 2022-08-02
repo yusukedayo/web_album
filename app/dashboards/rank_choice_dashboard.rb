@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class RankChoiceDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -16,7 +16,7 @@ class RankChoiceDashboard < Administrate::BaseDashboard
     content: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    answers_count: Field::Number,
+    answers_count: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES

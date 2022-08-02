@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class PhotoPathDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -15,7 +15,7 @@ class PhotoPathDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     s3_file_name: Field::String,
-    happy_score: Field::Number,
+    happy_score: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES

@@ -2,24 +2,24 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-      resources :users
-      resources :album_users
-      resources :answers
-      resources :rank_choices
-      resources :events
-      resources :event_comments
-      resources :graduation_albums
-      resources :message_for_each_menbers
-      resources :message_for_everyones
-      resources :photo_collections
-      resources :photo_paths
-      resources :ranks
-      resources :registered_collections
-      resources :relationships
-      resources :suprise_messages
+    resources :users
+    resources :album_users
+    resources :answers
+    resources :rank_choices
+    resources :events
+    resources :event_comments
+    resources :graduation_albums
+    resources :message_for_each_menbers
+    resources :message_for_everyones
+    resources :photo_collections
+    resources :photo_paths
+    resources :ranks
+    resources :registered_collections
+    resources :relationships
+    resources :suprise_messages
 
-      root to: "users#index"
-    end
+    root to: 'users#index'
+  end
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
