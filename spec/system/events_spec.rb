@@ -32,9 +32,9 @@ RSpec.describe "Events", type: :system do
         end
       end
     end
-    xdescribe 'イベントの編集' do
+    describe 'イベントの編集' do
       context 'イベントの入力値が正常' do
-        it 'イベントの編集が成功する' do
+        xit 'イベントの編集が成功する' do
           event
           visit graduation_album_path(graduation_album)
           click_link '編集'
@@ -45,7 +45,7 @@ RSpec.describe "Events", type: :system do
         end
       end
       context 'タイトルが未入力' do
-        it 'イベントの編集が失敗する' do
+        xit 'イベントの編集が失敗する' do
           event
           visit graduation_album_path(graduation_album)
           click_link '編集'

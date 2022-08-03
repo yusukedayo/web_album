@@ -56,12 +56,12 @@
               <% if @user.following?(user) %>
                 <%= form_for(@user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
                   <%= hidden_field_tag :follow_id, user.id %>
-                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                  <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block', id: 'unfollow_btn' %>
                 <% end %>
               <% else %>
                 <%= form_for(@user.relationships.build) do |f| %>
                   <%= hidden_field_tag :follow_id, user.id %>
-                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                  <%= f.submit 'Follow', class: 'btn btn-primary btn-block', id: 'follow_btn' %>
                 <% end %>
               <% end %>
             <% end %>

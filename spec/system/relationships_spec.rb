@@ -10,22 +10,22 @@ RSpec.describe "Relationships", type: :system do
       login_as(user)
     end
     describe 'ユーザーをフォローできる' do
-      xit 'ユーザーのフォローが成功する' do
+      it 'ユーザーのフォローが成功する' do
         user
         other_user
         visit users_show_path
         click_button 'Follow'
-        expect(page).to have_content 'UNFOLLOW'
+        user.followings.length == 1
       end
     end
     describe 'フォローを解除できる' do
-      xit 'ユーザーのフォロー解除が成功する' do
+      it 'ユーザーのフォロー解除が成功する' do
         user
         other_user
-        visit users_show_path
+        visit new_graduation_album_path
         click_button 'Follow'
-        click_button 'UNFOLLOW'
-        expect(page).to have_content 'Follow'
+        click_button 'Unfollow'
+        user.followings.length == 0
       end
     end
   end
