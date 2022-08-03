@@ -3,8 +3,8 @@
 class MenbersController < ApplicationController
   before_action :authenticate_user!
   def show
+    @graduation_album = current_user.graduation_albums.find(params[:graduation_album_id])
     @menber = User.find(params[:id])
-    @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
     collection_id = 'graduation_album'
     if @menber.face_id && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
       credentials = Aws::Credentials.new(
@@ -34,8 +34,8 @@ class MenbersController < ApplicationController
     end
     @message_for_each_menbers = @graduation_album.message_for_each_menbers.where(to_user: @menber.id).includes(:user).order(created_at: :desc)
     @message_for_each_menber = MessageForEachMenber.new
-    @ranks = @menber.ranks.includes([:graduation_album])
-    @suprise_messages = @menber.suprise_messages.includes([:graduation_album])
-    @events = @menber.events.with_attached_event_photos.includes([:graduation_album])
+    @ranks = @menber.ranks.where(graduation_album_id: @graduation_album.id).includes([:graduation_album])
+    @suprise_messages = @menber.suprise_messages.where(graduation_album_id: @graduation_album.id).includes([:graduation_album])
+    @events = @menber.events.where(graduation_album_id: @graduation_album.id).with_attached_event_photos.includes([:graduation_album])
   end
 end

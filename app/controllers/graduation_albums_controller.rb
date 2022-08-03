@@ -9,7 +9,7 @@ class GraduationAlbumsController < ApplicationController
   end
 
   def show
-    @graduation_album = GraduationAlbum.with_attached_images.find(params[:id])
+    @graduation_album = current_user.graduation_albums.with_attached_images.find(params[:id])
     @message_for_everyones = @graduation_album.message_for_everyones.includes(:user).order(created_at: :desc)
     @message_for_everyone = MessageForEveryone.new
     @events = @graduation_album.events.with_attached_event_photos.order(created_at: :desc)
