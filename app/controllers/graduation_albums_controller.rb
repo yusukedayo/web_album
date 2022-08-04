@@ -27,7 +27,7 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.users << current_user
     if @graduation_album.save
-      if @graduation_album.images
+      unless @graduation_album.images.empty?
         image_ids = @graduation_album.images.map(&:id)
         RegisterRekognitionJob.perform_later(image_ids)
       end
