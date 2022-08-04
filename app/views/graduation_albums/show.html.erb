@@ -106,28 +106,41 @@
     <div class="mb-5 md:mb-8" id='event_top'>
       <h2 class="text-indigo-700 text-2xl lg:text-3xl font-bold text-center mb-3 mt-8 md:mb-3"><i class="fa-solid fa-plane fa-lg"></i> 思い出の行事</h2>
     </div>
-    <div class='py-2 text-center'><button class="btn btn-outline btn-primary"><%= link_to 'イベントを自動で作成する', graduation_album_auto_make_events_path(@graduation_album), method: :post %></div>
+    <div class='py-2 text-center'>
+    <%= link_to graduation_album_auto_make_events_path(@graduation_album), method: :post do %>
+      <button class="btn btn-outline btn-primary">イベントを自動で作成する</button>
+    <% end %>
+    </div>
     <% if @events != [] %>
       <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
     <% else %>
       <%= render 'event_explanation' %>
     <% end %>
     <div class='flex flex-col text-center py-6'>
-      <div class='py-6'><button class="btn btn-outline btn-primary"><%= link_to 'イベントを作成', new_graduation_album_event_path(@graduation_album) %></button></div>
+      <%= link_to new_graduation_album_event_path(@graduation_album) do %>
+        <div class='py-6'><button class="btn btn-outline btn-primary">イベントを作成</button>
+      <% end %>
+    </div>
     </div>
     
     <div class="mb-10 md:mb-16" id='rank_top'>
       <h2 class="text-pink-500 text-2xl lg:text-3xl font-bold text-center mb-3 mt-6 md:mb-3"><i class="fa-solid fa-ranking-star fa-lg"></i> メンバーランキング</h2>
       <p class="max-w-screen-md text-pink-500 md:text-lg text-center mx-auto">〇〇になりそうな人ランキングを作成しよう</p>
     </div>
-    <div class='py-2 text-center'><button class="btn btn-outline btn-secondary"><%= link_to 'ランキングを自動で作成する', graduation_album_auto_make_ranks_path(@graduation_album), method: :post %></div>
+    <div class='py-2 text-center'>
+      <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
+        <button class="btn btn-outline btn-secondary">ランキングを自動で作成する</button>
+      <% end %>
+    </div>
     <% if @ranks != [] %>
       <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks} %>
     <% else %>
       <%= render 'rank_explanation' %>
     <% end %>
     <div class='text-center py-6'>
-      <button class="btn btn-outline btn-secondary"><%= link_to 'ランキングを作成', new_graduation_album_rank_path(@graduation_album) %></button>
+    <%= link_to new_graduation_album_rank_path(@graduation_album) do %>
+      <button class="btn btn-outline btn-secondary">ランキングを作成</button>
+    <% end %>
     </div>
 
     <div class="mb-10 md:mb-16" id='suprise_top'>
@@ -140,7 +153,9 @@
       <%= render 'suprise_explanation' %>
     <% end %>
     <div class='text-center py-6'>
-      <button class="btn btn-outline btn-accent"><%= link_to 'サプライズメッセージを作成', new_graduation_album_suprise_message_path(@graduation_album) %></button>
+    <%= link_to new_graduation_album_suprise_message_path(@graduation_album) do %>
+      <button class="btn btn-outline btn-accent">サプライズメッセージを作成</button>
+    <% end %>
     </div>
   </div>
 </div>

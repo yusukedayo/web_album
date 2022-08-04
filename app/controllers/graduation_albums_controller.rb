@@ -40,6 +40,7 @@ class GraduationAlbumsController < ApplicationController
 
   def edit
     @graduation_album = current_user.graduation_albums.with_attached_images.find(params[:id])
+    set_search
   end
 
   def update

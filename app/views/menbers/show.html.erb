@@ -11,9 +11,9 @@
               <%= @menber.name %>
             </div>
             <div class='mx-auto'>
-            <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">
-              <%= link_to '写真の取得', graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post %>
-            </button>
+            <%= link_to graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post do %>
+              <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">写真の取得</button>
+            <% end %>
             </div>
           </div>
           <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
@@ -42,7 +42,9 @@
       </div>
     <% end %>
     <div class='text-center py-3'>
-      <button class="btn btn-outline btn-primary"><%= link_to 'イベントを作成', new_graduation_album_event_path(@graduation_album) %></button>
+      <%= link_to new_graduation_album_event_path(@graduation_album) do %>
+        <button class="btn btn-outline btn-primary">イベントを作成</button>
+      <% end %>
     </div>
 
     <% unless @menber.ranks == [] %>
@@ -57,7 +59,9 @@
       </div>
     <% end %>
     <div class='text-center py-3'>
-      <button class="btn btn-outline btn-secondary"><%= link_to 'ランキングを作成', new_graduation_album_rank_path(@graduation_album) %></button>
+      <%= link_to new_graduation_album_rank_path(@graduation_album) do %>
+        <button class="btn btn-outline btn-secondary">ランキングを作成</button>
+      <% end %>
     </div>
 
     <% unless @menber.suprise_messages == [] %>
@@ -72,7 +76,9 @@
       </div>
     <% end %>
     <div class='text-center py-3'>
-      <button class="btn btn-outline btn-accent"><%= link_to 'サプライズメッセージを作成', new_graduation_album_suprise_message_path(@graduation_album) %></button>
+      <%= link_to new_graduation_album_suprise_message_path(@graduation_album) do %>
+        <button class="btn btn-outline btn-accent">サプライズメッセージを作成</button>
+      <% end %>
     </div>
   </div>
 </div>
