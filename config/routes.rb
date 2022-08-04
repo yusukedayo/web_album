@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'users/show' => 'users#show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'welcome_pages#top'
+  get 'static_pages/privacy' => 'static_pages#privacy'
+  get 'static_pages/terms_service' => 'static_pages#terms_service'
   post '/welcome_pages/guest_sign_in', to: 'welcome_pages#guest_sign_in'
   resources :graduation_albums do
     member do
