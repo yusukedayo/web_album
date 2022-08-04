@@ -13,22 +13,20 @@ RSpec.describe 'GraduationAlbums', type: :system do
 
     describe 'アルバムの新規作成' do
       context 'フォームの入力値が正常' do
-        xit 'アルバムの新規作成が成功する' do
+        it 'アルバムの新規作成が成功する' do
           visit new_graduation_album_path
           fill_in 'アルバム名', with: 'test'
           click_button '作成する'
           expect(page).to have_content '作成に成功しました'
-          expect(current_path).to eq graduation_albums_path
         end
       end
 
       context 'タイトルが未入力' do
-        xit 'アルバムの新規作成が失敗する' do
+        it 'アルバムの新規作成が失敗する' do
           visit new_graduation_album_path
-          fill_in 'アルバム名', with: 'test'
+          fill_in 'アルバム名', with: nil
           click_button '作成する'
           expect(page).to have_content '作成に失敗しました'
-          expect(current_path).to eq graduation_albums_path
         end
       end
 
