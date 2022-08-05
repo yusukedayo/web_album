@@ -3,17 +3,17 @@
     <div class="card-body">
       <div class='p-2'>
         <div class="grid grid-cols-5 gap-4">
-            <div class="col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-2xl font-bold"><%= link_to "#{rank.rank_title}",graduation_album_rank_path(rank.graduation_album, rank) %></div>
-            <div class="col-end-6 col-span-1 text-pink-500 text-center px-4 py-2 m-2">
+            <div class="col-start-1 col-span-2 sm:col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-sm sm:text-2xl font-bold"><%= link_to "#{rank.rank_title}",graduation_album_rank_path(rank.graduation_album, rank) %></div>
+            <div class="col-end-6 col-span-2 sm:col-span-1 text-pink-500 text-center px-4 py-2 m-2">
               <% if current_user.own?(rank) %>
-                <%= link_to edit_graduation_album_rank_path(rank.graduation_album, rank), class: "text-pink-500 hover:text-pink-500 text-lg lg:text-xl font-bold transition duration-100 p-2" do %>
+                <%= link_to edit_graduation_album_rank_path(rank.graduation_album, rank), class: "text-pink-500 hover:text-pink-500 font-bold transition duration-100" do %>
                   <i class="fa-solid fa-pen-to-square fa-lg"></i>
                 <% end %>
-                <%= link_to graduation_album_rank_path(rank.graduation_album, rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-pink-500 hover:text-pink-500 text-lg lg:text-xl font-bold transition duration-100" do%>
+                <%= link_to graduation_album_rank_path(rank.graduation_album, rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-pink-500 hover:text-pink-500 font-bold transition duration-100" do%>
                   <i class="fa-solid fa-trash-can fa-lg"></i>
                 <% end %>
               <% else %>
-                <%= link_to "詳細へ",graduation_album_rank_path(rank.graduation_album, rank), class:'text-pink-500 text-center px-4 py-2 m-2 text-xl font-bold' %>
+                <%= link_to "詳細",graduation_album_rank_path(rank.graduation_album, rank), class:'text-pink-500 text-xs sm:text-2xl font-bold' %>
               <% end %>
             </div>
           </div>
@@ -31,7 +31,7 @@
             </div>
         <% end %>
         <div class="grid grid-cols-12 flex items-center my-4">
-          <div class="text-2xl col-span-3 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+          <div class="text-sm sm:text-2xl col-span-3 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
             <i class="fa-solid fa-crown"></i> <%= link_to "#{choice.content}",edit_graduation_album_rank_rank_choice_path(rank.graduation_album, rank, choice) %>
           </div>
           <div class="self-center col-span-6 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
@@ -41,10 +41,10 @@
               <div class="col-span-6 h-5 bg-yellow-400 rounded" style="width:0%"></div>
             <% end %>
           </div>
-          <input type="number" value="<%= choice.answers.count %>" style="text-align:right" class='text-pink-600 text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-2xl'>票</span>
+          <input type="number" value="<%= choice.answers.count %>" style="text-align:right" class='text-pink-600 text-sm sm:text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-sm sm:text-2xl'>票</span>
           <span class="self-center col-span-1 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
             <%= link_to answers_path(rank_id: rank.id, id: choice.id), id:"up", class:'button', method: :post do %>
-              <i class="fa-solid fa-check-to-slot fa-2x"></i>
+              <i class="fa-solid fa-check-to-slot fa-lg"></i>
             <% end %>
           </span>
         </div>
