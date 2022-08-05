@@ -8,6 +8,7 @@ RSpec.describe "Ranks", type: :system do
   describe 'ログイン後' do
     before do
       login_as(user)
+      graduation_album.users << user
     end
     describe 'ランキングの新規作成' do
       context 'ランキングの入力値が正常' do
@@ -35,20 +36,20 @@ RSpec.describe "Ranks", type: :system do
     end
     describe 'ランキングの編集' do
       context 'ランキングの入力値が正常' do
-        xit 'ランキングの編集が成功する' do
+        it 'ランキングの編集が成功する' do
           rank
           visit graduation_album_rank_path(graduation_album, rank)
-          find('fa-solid fa-pen-to-square fa-lg').click
+          click_link('edit_button')
           fill_in 'タイトル', with: '編集後'
           click_button '作成する'
           expect(page).to have_content '編集後'
         end
       end
       context 'タイトルが未入力' do
-        xit 'ランキングの編集が成功する' do
+        it 'ランキングの編集が成功する' do
           rank
           visit graduation_album_rank_path(graduation_album, rank)
-          click_link 'svg-inline--fa fa-pen-to-square fa-lg'
+          click_link('edit_button')
           fill_in 'タイトル', with: nil
           click_button '作成する'
           expect(page).to have_content 'タイトル'

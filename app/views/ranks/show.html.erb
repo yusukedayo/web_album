@@ -8,7 +8,7 @@
             <div class="col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-2xl font-bold"><%= @rank.rank_title %></div>
             <div class="col-end-6 col-span-1 text-pink-500 text-center px-4 py-2 m-2">
               <% if current_user.own?(@rank) %>
-                <%= link_to edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-pink-500 text-lg lg:text-xl font-bold transition duration-100 p-2" do %>
+                <%= link_to edit_graduation_album_rank_path(@rank.graduation_album, @rank), id: "edit_button", class: "text-pink-500 text-lg lg:text-xl font-bold transition duration-100 p-2" do %>
                   <i class="fa-solid fa-pen-to-square fa-lg"></i>
                 <% end %>
                 <%= link_to graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-pink-500 text-lg lg:text-xl font-bold transition duration-100" do%>
