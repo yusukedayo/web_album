@@ -50,7 +50,9 @@
           </div>
         <% end %>
         <div class='pt-6'>
-          <button class="btn btn-outline"><%= link_to '選択肢を追加', new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) %></button>
+          <%= link_to new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) do %>
+            <button class="btn btn-outline">選択肢を追加</button>
+          <% end %>
         </div>
       </div>
     </div>

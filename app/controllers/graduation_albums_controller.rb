@@ -40,9 +40,11 @@ class GraduationAlbumsController < ApplicationController
 
   def edit
     @graduation_album = current_user.graduation_albums.with_attached_images.find(params[:id])
+    set_search
   end
 
   def update
+    set_search
     if @graduation_album.update(graduation_album_params)
       @graduation_album.users << current_user
       redirect_to graduation_album_path(@graduation_album), notice: '編集に成功しました'
