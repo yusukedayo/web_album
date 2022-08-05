@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action ::set_event, only: %i[update destroy edit show]
+  before_action :set_event, only: %i[update destroy edit show]
   def new
     @event = Event.new
   end
@@ -15,8 +15,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @event_comments = @event.event_comments.order(created_at: :desc)
