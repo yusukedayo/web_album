@@ -5,45 +5,45 @@
       <div class="card-body">
         <div class='p-2'>
           <div class="grid grid-cols-5 gap-4">
-            <div class="col-start-2 col-span-3 text-gray-700 text-center px-4 py-2 m-2 text-2xl font-bold"><%= @rank.rank_title %></div>
-            <div class="col-end-6 col-span-1 text-gray-700 text-center px-4 py-2 m-2">
+            <div class="col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-2xl font-bold"><%= @rank.rank_title %></div>
+            <div class="col-end-6 col-span-1 text-pink-500 text-center px-4 py-2 m-2">
               <% if current_user.own?(@rank) %>
-                <%= link_to edit_graduation_album_rank_path(@rank.graduation_album, @rank), class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do %>
+                <%= link_to edit_graduation_album_rank_path(@rank.graduation_album, @rank), id: "edit_button", class: "text-pink-500 text-lg lg:text-xl font-bold transition duration-100 p-2" do %>
                   <i class="fa-solid fa-pen-to-square fa-lg"></i>
                 <% end %>
-                <%= link_to graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100" do%>
+                <%= link_to graduation_album_rank_path(@rank.graduation_album, @rank), method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "text-pink-500 text-lg lg:text-xl font-bold transition duration-100" do%>
                   <i class="fa-solid fa-trash-can fa-lg"></i>
                 <% end %>
               <% end %>
             </div>
           </div>
-          <%= simple_format(@rank.rank_description) %>
+          <div class='text-pink-500'><%= simple_format(@rank.rank_description) %></div>
         </div>
         <% @rank.rank_choices.order(answers_count: "DESC").with_attached_rank_choice_image.each_with_index do |choice, index| %>
-        <% if choice.rank_choice_image.variant( rotate: 2 )  %>
-            <div class="group h-80 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-            <% if index.even? %>
-              <%= image_tag choice.rank_choice_image.variant( rotate: 2 ).processed, loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
-            <% else %>
-              <%= image_tag choice.rank_choice_image.variant( rotate: -2 ).processed, loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
-            <% end %>
-              <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
-            </div>
-        <% end %>
-          <div class="grid grid-cols-12 flex items-center my-4">
-            <div class="text-2xl col-span-3 text-sm font-medium text-blue-600 dark:text-blue-500 text-center">
-              <i class="fa-solid fa-crown"></i> <%= choice.content %>
-            </div>
-            <div class="self-center col-span-7 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-              <% unless choice.answers.count == 0 %>
-                <div class="col-span-7 h-5 bg-yellow-400 rounded" style="width:<%= (choice.answers.count.quo(@rank.answers.count).to_f*100).floor %>%"></div>
+          <% if choice.rank_choice_image.variant( rotate: 2 )  %>
+              <div class="group h-80 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+              <% if index.even? %>
+                <%= image_tag choice.rank_choice_image.variant( rotate: 2 ).processed, loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
               <% else %>
-                <div class="col-span-7 h-5 bg-yellow-400 rounded" style="width:0%"></div>
+                <%= image_tag choice.rank_choice_image.variant( rotate: -2 ).processed, loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
+              <% end %>
+                <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
+              </div>
+          <% end %>
+          <div class="grid grid-cols-12 flex items-center my-4">
+            <div class="text-2xl col-span-3 text-sm font-medium text-pink-500 dark:text-pink-500 text-center">
+              <i class="fa-solid fa-crown"></i><%= link_to "#{choice.content}",edit_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank, choice) %>
+            </div>
+            <div class="self-center col-span-6 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+              <% unless choice.answers.count == 0 %>
+                <div class="col-span-6 h-5 bg-yellow-400 rounded" style="width:<%= (choice.answers.count.quo(@rank.answers.count).to_f*100).floor %>%"></div>
+              <% else %>
+                <div class="col-span-6 h-5 bg-yellow-400 rounded" style="width:0%"></div>
               <% end %>
             </div>
-            <span class="self-center col-span-1 text-sm font-medium text-blue-600 dark:text-blue-500 text-center text-2xl"><%= choice.answers.count %>票</span>
-            <span class="self-center col-span-1 text-sm font-medium text-blue-600 dark:text-blue-500 text-center">
-              <%= link_to answers_path(rank_id: @rank.id, id: choice.id), method: :post do %>
+            <input type="number" value="<%= choice.answers.count %>" style="text-align:right" class='text-pink-500 text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-2xl'>票</span>
+            <span class="self-center col-span-1 text-sm font-medium text-pink-500 dark:text-pink-500 text-center">
+              <%= link_to answers_path(rank_id: @rank.id, id: choice.id), id:"up", class:'button', method: :post do %>
                 <i class="fa-solid fa-check-to-slot fa-2x"></i>
               <% end %>
             </span>
@@ -51,7 +51,7 @@
         <% end %>
         <div class='pt-6'>
           <%= link_to new_graduation_album_rank_rank_choice_path(@rank.graduation_album, @rank) do %>
-            <button class="btn btn-outline">選択肢を追加</button>
+            <button class="btn btn-outline btn-secondary">選択肢を追加</button>
           <% end %>
         </div>
       </div>
@@ -59,3 +59,13 @@
   </div>
 </div>
 
+<script>
+(() => {
+  const upbutton = document.getElementById('up');
+  const text = document.getElementById('textbox');
+
+  upbutton.addEventListener('click', (event) => {
+    text.value++;
+  })
+})();
+</script>

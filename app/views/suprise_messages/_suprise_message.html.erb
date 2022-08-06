@@ -1,6 +1,10 @@
 
-<% if suprise_message.state == 'published' %>
+<% if suprise_message.state == 'published' || current_user.own?(suprise_message) %>
 <div class="boxmi14">
+  <% unless suprise_message.state == 'published' %>
+      <div class='text-center'>このメッセージは現在作成者にのみ表示されています</div>
+      <div class='text-center pb-3'><%= l suprise_message.suprise_time%>になるとメンバーに公開されます</div>
+    <% end %>
   <div class="boxmi14-title">
     <%= suprise_message.suprise_title%>
     <div class='text-right px-6'>

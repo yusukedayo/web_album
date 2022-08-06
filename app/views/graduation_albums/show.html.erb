@@ -30,21 +30,21 @@
       <div class='text-center py-2'>
         <button class="btn btn-outline btn-primary">
           <%= link_to anchor: "event_top" do %>
-            <i class="fa-solid fa-plane fa-lg"></i>イベントへ移動
+            <i class="fa-solid fa-plane fa-lg"></i> イベントへ移動
           <% end %>
         </button>
       </div>
       <div class='text-center py-2'>
         <button class="btn btn-outline btn-secondary">
         <%= link_to anchor: "rank_top" do %>
-            <i class="fa-solid fa-ranking-star fa-lg"></i>ランキングへ移動
+            <i class="fa-solid fa-ranking-star fa-lg"></i> ランキングへ移動
           <% end %>
         </button>
       </div>
       <div class='text-center py-2'>
-        <button class="btn btn-outline btn-accent">
+        <button class='px-2 py-3 text-green-600 border border-green-500 font-semibold rounded-md hover:bg-green-700 hover:text-white'>
         <%= link_to anchor: "suprise_top" do %>
-            <i class="fa-solid fa-gift fa-lg"></i>サプライズメッセージへ移動
+            <i class="fa-solid fa-gift fa-lg"></i> サプライズメッセージへ移動
           <% end %>
         </button>
       </div>
@@ -147,14 +147,16 @@
       <h2 class="text-green-600 text-2xl lg:text-3xl font-bold text-center mb-6 mt-12 md:mb-6"><i class="fa-solid fa-gift fa-lg"></i> サプライズメッセージ</h2>
       <p class="max-w-screen-md text-green-600 md:text-lg text-center mx-auto">未来に向けてメッセージを残そう</p>
     </div>
-    <% unless @suprise_messages == [] %>
+    <% unless @suprise_messages.empty? %>
       <%= render 'suprise_messages/suprise_messages', { graduation_album: @graduation_album, suprise_messages: @suprise_messages } %>
     <% else %>
       <%= render 'suprise_explanation' %>
     <% end %>
     <div class='text-center py-6'>
     <%= link_to new_graduation_album_suprise_message_path(@graduation_album) do %>
-      <button class="btn btn-outline btn-accent">サプライズメッセージを作成</button>
+      <div class="m-3">
+        <button class="px-2 py-3 text-green-600 border border-green-500 font-semibold rounded-md hover:bg-green-700 hover:text-white">サプライズメッセージを作成</button>
+      </div>
     <% end %>
     </div>
   </div>

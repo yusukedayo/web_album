@@ -10,6 +10,7 @@ RSpec.describe 'MessageForEveryones', type: :system do
   describe 'ログイン後' do
     before do
       login_as(user)
+      graduation_album.users << user
     end
     describe 'メッセージの新規作成' do
       context 'メッセージの入力値が正常' do

@@ -74,9 +74,10 @@ RSpec.describe 'GraduationAlbums', type: :system do
 
     describe 'アルバムの削除' do
       context '作成ユーザーが自分のアルバムを削除' do
-        xit 'アルバムの削除が成功する' do
+        it 'アルバムの削除が成功する' do
           user
           graduation_album
+          graduation_album.users << user
           visit graduation_albums_path
           page.accept_confirm do
             click_on :delete_button

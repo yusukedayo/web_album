@@ -40,6 +40,6 @@ class RanksController < ApplicationController
   end
 
   def set_rank
-    @rank = current_user.ranks.find(params[:id])
+    @rank = GraduationAlbum.find(params[:graduation_album_id]).ranks.find(params[:id])
   end
 end
