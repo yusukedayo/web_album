@@ -12,19 +12,17 @@
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-            <a class="justify-between">
-              <%= link_to "プロフィール", users_show_path %>
-            </a>
+            <%= link_to "プロフィール", users_show_path %>
           </li>
           <% if current_user.social_unique_id %>
-            <li><%= link_to 'ログアウト', 'auth/logout', method: :get %></li>
+            <li><%= link_to 'ログアウト', '/auth/logout', method: :get %></li>
           <% else %>
             <li><%= link_to "ログアウト", logout_path %></li>
           <% end %>
           <li>
-            <a class="justify-between">
+            <% if current_user.admin == true %>
               <%= link_to "管理画面", admin_root_path %>
-            </a>
+            <% end %>
           </li>
         </ul>
       </div>
