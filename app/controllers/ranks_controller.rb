@@ -8,6 +8,7 @@ class RanksController < ApplicationController
 
   def create
     @rank = current_user.ranks.build(params_rank)
+    @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
     if @rank.save
       redirect_to graduation_album_rank_path(@rank.graduation_album, @rank), notice: 'ランキングを投稿しました'
     else

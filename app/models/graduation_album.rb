@@ -4,11 +4,12 @@
 #
 # Table name: graduation_albums
 #
-#  id         :bigint           not null, primary key
-#  album_name :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id              :bigint           not null, primary key
+#  album_name      :string           not null
+#  analysis_status :integer          default(0), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
@@ -31,6 +32,7 @@ class GraduationAlbum < ApplicationRecord
   has_many :photo_paths, dependent: :destroy
 
   validates :album_name, presence: true, length: { maximum: 255 }
+  enum analysis_status: { before: 0, doing: 1, done: 2 }
 
   FILE_NUMBER_LIMIT = 10
   validate :validate_number_of_files

@@ -39,7 +39,7 @@ class AutoMakeEventsController < ApplicationController
         flash[:danger] = 'イベントの作成に失敗しました 笑顔の写真を追加してください'
         redirect_back(fallback_location: root_path)
       else
-        @event = Event.create!(title: 'ハッピー写真集', description: 'アルバムに投稿された写真から笑顔の写真を抜粋しました！みんなの笑顔の写真を見て癒されましょう！', event_date: Date.today, user_id: current_user.id, graduation_album_id: params[:graduation_album_id])
+        @event = Event.create!(title: 'みんなの笑顔集', description: 'アルバムに投稿された写真から笑顔の写真を抜粋しました！みんなの笑顔の写真を見て癒されましょう！', event_date: Date.today, user_id: current_user.id, graduation_album_id: params[:graduation_album_id])
         happy_photo_ids.each do |id|
           ActiveStorage::Attachment.create!(name: 'event_photos', record_type: 'Event', record_id: @event.id, blob_id: id)
         end

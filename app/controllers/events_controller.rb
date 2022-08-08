@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
+    @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
     if @event.save
       redirect_to graduation_album_event_path(@event.graduation_album, @event), notice: 'コメントを投稿しました'
     else
