@@ -3,7 +3,7 @@
 class MenbersController < ApplicationController
   before_action :authenticate_user!
   def show
-    @graduation_album = current_user.graduation_albums.find(params[:graduation_album_id])
+    @graduation_album = current_user.belong_albums.find(params[:graduation_album_id])
     @menber = User.find(params[:id])
     collection_id = 'graduation_album'
     if @menber.face_id && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
