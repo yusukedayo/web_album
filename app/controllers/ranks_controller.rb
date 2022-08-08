@@ -3,6 +3,7 @@ class RanksController < ApplicationController
   before_action :set_rank, only: %i[update destroy edit show]
   def new
     @rank = Rank.new
+    @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
   end
 
   def create
