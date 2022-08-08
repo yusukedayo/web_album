@@ -133,9 +133,9 @@
     <div class='text-center py-6'>
     <%= link_to new_graduation_album_rank_path(@graduation_album) do %>
       <button class="btn btn-outline btn-secondary mx-4">ランキングを作成</button>
-      <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
-        <button class="btn btn-outline btn-secondary">ランキングを自動で作成する</button>
-      <% end %>
+    <% end %>
+    <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
+      <button class="btn btn-outline btn-secondary">ランキングを自動で作成する</button>
     <% end %>
     </div>
 
