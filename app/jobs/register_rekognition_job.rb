@@ -22,6 +22,7 @@ class RegisterRekognitionJob < ApplicationJob
                                   }
                                 })
       next if resp.to_h[:face_records] == []
+
       image_detail = PhotoPath.new(graduation_album_id: image.record_id, path: image.blob_id.to_s,
                                    image_id: resp.to_h[:face_records][0][:face][:image_id], s3_file_name: image.key)
       image_detail.save!
