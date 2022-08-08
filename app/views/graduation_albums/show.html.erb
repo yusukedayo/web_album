@@ -106,11 +106,6 @@
     <div class="mb-5 md:mb-8" id='event_top'>
       <h2 class="text-indigo-700 text-2xl lg:text-3xl font-bold text-center mb-3 mt-8 md:mb-3"><i class="fa-solid fa-plane fa-lg"></i> 思い出の行事</h2>
     </div>
-    <div class='py-2 text-center'>
-    <%= link_to graduation_album_auto_make_events_path(@graduation_album), method: :post do %>
-      <button class="btn btn-outline btn-primary">イベントを自動で作成する</button>
-    <% end %>
-    </div>
     <% if @events != [] %>
       <%= render 'events/events', { graduation_album: @graduation_album, events: @events } %>
     <% else %>
@@ -118,7 +113,10 @@
     <% end %>
     <div class='flex flex-col text-center py-6'>
       <%= link_to new_graduation_album_event_path(@graduation_album) do %>
-        <div class='py-6'><button class="btn btn-outline btn-primary">イベントを作成</button>
+        <div class='py-6 px-4'><button class="btn btn-outline btn-primary mx-4">イベントを作成</button>
+      <% end %>
+      <%= link_to graduation_album_auto_make_events_path(@graduation_album), method: :post do %>
+        <button class="btn btn-outline btn-primary">イベントを自動で作成する</button>
       <% end %>
     </div>
     </div>
@@ -127,11 +125,6 @@
       <h2 class="text-pink-500 text-2xl lg:text-3xl font-bold text-center mb-3 mt-6 md:mb-3"><i class="fa-solid fa-ranking-star fa-lg"></i> メンバーランキング</h2>
       <p class="max-w-screen-md text-pink-500 md:text-lg text-center mx-auto">〇〇になりそうな人ランキングを作成しよう</p>
     </div>
-    <div class='py-2 text-center'>
-      <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
-        <button class="btn btn-outline btn-secondary">ランキングを自動で作成する</button>
-      <% end %>
-    </div>
     <% if @ranks != [] %>
       <%= render 'ranks/ranks', { graduation_album: @graduation_album, ranks: @ranks} %>
     <% else %>
@@ -139,7 +132,10 @@
     <% end %>
     <div class='text-center py-6'>
     <%= link_to new_graduation_album_rank_path(@graduation_album) do %>
-      <button class="btn btn-outline btn-secondary">ランキングを作成</button>
+      <button class="btn btn-outline btn-secondary mx-4">ランキングを作成</button>
+      <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
+        <button class="btn btn-outline btn-secondary">ランキングを自動で作成する</button>
+      <% end %>
     <% end %>
     </div>
 
