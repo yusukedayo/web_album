@@ -10,14 +10,22 @@
             <div class="text-blue-500 md:text-lg font-bold text-center">
               <%= @menber.name %>
             </div>
-            <div class='mx-auto'>
+          <% if @graduation_album.analysis_status == 'done'%>
+          <div class='flex justify-center'>
             <%= link_to graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post do %>
               <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">写真の取得</button>
             <% end %>
-            </div>
           </div>
-          <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
-          <p class='pb-6 text-center text-blue-500'> プロフィール画像に顔が写っているかを確認してボタンをクリックしよう！</p>
+            <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
+            <p class='pb-6 text-center text-blue-500'> プロフィール画像に顔が写っているかを確認してボタンをクリックしよう！</p>
+          <% elsif @graduation_album.analysis_status == 'doing' %>
+            <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像を分析中です</p>
+            <p class='pb-6 text-center text-blue-500'> 分析が終わるとアルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
+          <% else %>
+            <p class='pt-6 text-center text-blue-500'> アルバムに写真を投稿してみよう！</p>
+            <p class='pb-6 text-center text-blue-500'> 投稿するとアルバムの画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
+          <% end %>
+          </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2">
         <% if @mathed_face_images && @mathed_face_images.count != 0 %>
           <% @mathed_face_images.each do |image| %>
