@@ -1,10 +1,12 @@
 <header>
   <div class="navbar bg-base-300">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">Web卒アル</a>
+    <%= link_to graduation_albums_path, class:"btn btn-ghost normal-case text-xl" do %>
+      <%= image_tag 'header_logo.png'%>
+    <% end %>
     </div>
-    <div class="flex-none">
-        <%= link_to 'ログイン', '/auth/auth0', method: :post %>
+    <div class="flex-none px-6">
+      <%= link_to 'ログイン / 新規登録', '/auth/auth0', method: :post %>
   </div>
 </header>
 

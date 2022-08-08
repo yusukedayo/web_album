@@ -22,6 +22,16 @@ crumb :menber_show do |graduation_album, menber|
   parent :graduation_album, graduation_album
 end
 
+crumb :new_graduation_album_event do |graduation_album|
+  link 'イベント作成'
+  parent :graduation_album, graduation_album
+end
+
+crumb :new_graduation_album_rank do |graduation_album|
+  link 'ランキング作成'
+  parent :graduation_album, graduation_album
+end
+
 crumb :event_show do |graduation_album, event|
   link event.title.to_s
   parent :graduation_album, graduation_album

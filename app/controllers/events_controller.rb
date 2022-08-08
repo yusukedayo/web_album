@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[update destroy edit show]
   def new
     @event = Event.new
+    @graduation_album = GraduationAlbum.find(params[:graduation_album_id])
   end
 
   def create

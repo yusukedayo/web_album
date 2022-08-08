@@ -1,9 +1,11 @@
 <header>
   <div class="navbar bg-green-100">
     <div class="flex-1">
-    <%= link_to 'Web卒アル', graduation_albums_path, class:"btn btn-ghost normal-case text-xl" %>
+      <%= link_to graduation_albums_path, class:"btn btn-ghost normal-case text-xl" do %>
+        <%= image_tag 'header_logo.png'%>
+      <% end %>
     </div>
-    <div class="flex-none">
+    <div class="flex-none px-2">
       <div class="dropdown dropdown-end" id='profile'>
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
@@ -11,6 +13,9 @@
           </div>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <%= link_to "トップページ", root_path %>
+          </li>
           <li>
             <%= link_to "プロフィール", users_show_path %>
           </li>

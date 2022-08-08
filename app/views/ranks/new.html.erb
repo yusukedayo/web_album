@@ -1,3 +1,4 @@
+<% breadcrumb :new_graduation_album_rank, @graduation_album %>
 <div class="mt-8">
   <%= form_with model: @rank, url: graduation_album_ranks_path, class:"w-10/12 mx-auto md:max-w-md", local: true do |f| %>
   <%= render "shared/error_messages", object: f.object %>
@@ -13,4 +14,20 @@
       <%= f.submit '作成する', class: 'btn btn-primary' %>
     </div>
   <% end %>
+</div>
+
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+    <!-- text - start -->
+    <div class="mb-5 md:mb-8">
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">ランキングを自動で作成する</h2>
+      <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">アルバムに投稿された画像を感情分析して<br>幸福度の高い画像上位3つを取得してイベントを自動作成します</p>
+    </div>
+    <!-- text - end -->
+    <div class='text-center'>
+      <%= link_to graduation_album_auto_make_ranks_path(@graduation_album), method: :post do %>
+        <button class="btn btn-outline btn-secondary">自動で作成する</button>
+      <% end %>
+    </div>
+  </div>
 </div>
