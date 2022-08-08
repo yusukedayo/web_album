@@ -6,7 +6,7 @@ class MenbersController < ApplicationController
     @graduation_album = current_user.belong_albums.find(params[:graduation_album_id])
     @menber = User.find(params[:id])
     collection_id = 'graduation_album'
-    if @menber.face_id && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
+    if @menber.face_id && @graduation_album.analysis_status == 'done' && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
       credentials = Aws::Credentials.new(
         ENV.fetch('AWS_ACCESS_KEY_ID', nil),
         ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
@@ -28,7 +28,7 @@ class MenbersController < ApplicationController
         @mathed_face_images = []
         mathed_faces.each do |image|
           photo_path = PhotoPath.where(graduation_album_id: @graduation_album.id).where(image_id: image).first
-          @mathed_face_images.push(ActiveStorage::Attachment.where(record_id: @graduation_album.id).where(blob_id: photo_path.path.to_i).first)
+          @mathed_face_images.push(ActiveStorage::Attachment.where(record_id: @graduation_album.id).where(blob_id: photo_path.path.to_i).first) if photo_path
         end
       end
     end
