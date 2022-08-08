@@ -59,7 +59,7 @@ RSpec.describe "Ranks", type: :system do
       end
     end
     describe 'ランキングの削除' do
-      fit 'ランキングの削除が成功する' do
+      it 'ランキングの削除が成功する' do
           rank
           visit graduation_album_rank_path(graduation_album, rank)
           page.accept_confirm do
