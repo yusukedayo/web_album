@@ -34,12 +34,12 @@ class GraduationAlbum < ApplicationRecord
   validates :album_name, presence: true, length: { maximum: 255 }
   enum analysis_status: { before: 0, doing: 1, done: 2 }
 
-  FILE_NUMBER_LIMIT = 10
+  FILE_NUMBER_LIMIT = 15
   validate :validate_number_of_files
 
   def validate_number_of_files
     return if images.length <= FILE_NUMBER_LIMIT
 
-    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
+    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}枚までです。")
   end
 end
