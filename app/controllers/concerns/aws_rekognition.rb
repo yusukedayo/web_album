@@ -6,20 +6,19 @@ module AwsRekognition
       ENV.fetch('AWS_ACCESS_KEY_ID', nil),
       ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
     )
-    client = Aws::Rekognition::Client.new credentials: credentials
-    return client
+    Aws::Rekognition::Client.new credentials:
   end
 
   def collect_happy_faces(image, client)
     attrs = {
-          image: {
-            s3_object: {
-              bucket: 'aws-test-rails',
-              name: image.s3_file_name
-            }
-          },
-          attributes: ['ALL']
+      image: {
+        s3_object: {
+          bucket: 'aws-test-rails',
+          name: image.s3_file_name
         }
+      },
+      attributes: ['ALL']
+    }
     result = client.detect_faces attrs
     number = if result.to_h[:face_details].length > 5
                5
@@ -31,6 +30,6 @@ module AwsRekognition
       happy_score_count += result.to_h[:face_details][count][:emotions][0][:confidence].round
     end
     image.happy_score = happy_score_count
-    return image
+    image
   end
 end

@@ -30,6 +30,6 @@ class Answer < ApplicationRecord
     self.rank_id = rank.id
     self.rank_choice_id = rank_choice.id
     self.user_id = user_id
-    self.save!
+    save!
   end
 end

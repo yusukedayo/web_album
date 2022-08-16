@@ -11,7 +11,7 @@ class AutoMakeRanksController < ApplicationController
       if having_face_images
         client = rekognition_client
         having_face_images.each do |image|
-          image= collect_happy_faces(image, client)
+          image = collect_happy_faces(image, client)
           image.save!
         end
       end

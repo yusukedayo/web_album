@@ -69,6 +69,6 @@ class User < ApplicationRecord
 
   def register_face_id(resp)
     self.face_id = resp[:face_records][0][:face][:face_id]
-    self.save!
+    save!
   end
 end
