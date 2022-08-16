@@ -27,10 +27,7 @@ class GraduationAlbumsController < ApplicationController
     @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.users << current_user
     if @graduation_album.save
-      unless @graduation_album.images.empty?
-        image_ids = @graduation_album.images.map(&:id)
-        RegisterRekognitionJob.perform_later(image_ids)
-      end
+      @graduation_album.register_images
       redirect_to graduation_album_path(@graduation_album), notice: '作成に成功しました'
     else
       flash.now['alert'] = '作成に失敗しました'

@@ -1,4 +1,6 @@
 class AutoMakeRanksController < ApplicationController
+  include AwsRekognition
+
   def create
     if GraduationAlbum.find(params[:graduation_album_id]).images_blobs == []
       flash[:danger] = 'イベント作成するためには写真を追加してください'
@@ -7,32 +9,9 @@ class AutoMakeRanksController < ApplicationController
       # 既にhappy_scoreが設定されているものは除外する
       having_face_images = PhotoPath.where(graduation_album_id: params[:graduation_album_id]).where(happy_score: nil)
       if having_face_images
-        credentials = Aws::Credentials.new(
-          ENV.fetch('AWS_ACCESS_KEY_ID', nil),
-          ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
-        )
-        client = Aws::Rekognition::Client.new credentials: credentials
+        client = rekognition_client
         having_face_images.each do |image|
-          attrs = {
-            image: {
-              s3_object: {
-                bucket: 'aws-test-rails',
-                name: image.s3_file_name
-              }
-            },
-            attributes: ['ALL']
-          }
-          result = client.detect_faces attrs
-          number = if result.to_h[:face_details].length > 5
-                     5
-                   else
-                     result.to_h[:face_details].length
-                   end
-          happy_score_count = 0
-          number.times do |count|
-            happy_score_count += result.to_h[:face_details][count][:emotions][0][:confidence].round
-          end
-          image.happy_score = happy_score_count
+          image = collect_happy_faces(image, client)
           image.save!
         end
       end

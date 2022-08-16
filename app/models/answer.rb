@@ -25,4 +25,11 @@ class Answer < ApplicationRecord
   belongs_to :rank_choice, counter_cache: true
   belongs_to :rank
   belongs_to :user
+
+  def answer_count(rank, rank_choice, user_id)
+    self.rank_id = rank.id
+    self.rank_choice_id = rank_choice.id
+    self.user_id = user_id
+    save!
+  end
 end

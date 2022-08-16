@@ -42,4 +42,11 @@ class GraduationAlbum < ApplicationRecord
 
     errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}枚までです。")
   end
+
+  def register_images
+    return if images.empty?
+
+    image_ids = images.map(&:id)
+    RegisterRekognitionJob.perform_later(image_ids)
+  end
 end

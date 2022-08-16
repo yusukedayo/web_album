@@ -59,11 +59,11 @@ Metrics/LineLength:
 # メソッドの行数を20行までにする
 Metrics/MethodLength:
   CountComments: false
-  Max: 48
+  Max: 28
 
 # ABC sizeは緩めにする
 Metrics/AbcSize:
-  Max: 64 # default 15
+  Max: 53
 
 Metrics/PerceivedComplexity:
   Max: 10
