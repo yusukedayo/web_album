@@ -1,16 +1,14 @@
 class AutoMakeEventsController < ApplicationController
   before_action :authenticate_user!
+  include AwsRekognition
+
   def create
     if GraduationAlbum.find(params[:graduation_album_id]).images_blobs == []
       flash[:danger] = 'イベント作成するためには写真を追加してください'
       redirect_back(fallback_location: root_path)
     else
       having_face_images = PhotoPath.where(graduation_album_id: params[:graduation_album_id])
-      credentials = Aws::Credentials.new(
-        ENV.fetch('AWS_ACCESS_KEY_ID', nil),
-        ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
-      )
-      client = Aws::Rekognition::Client.new credentials: credentials
+      client = rekognition_client
       having_face_images.each do |image|
         attrs = {
           image: {

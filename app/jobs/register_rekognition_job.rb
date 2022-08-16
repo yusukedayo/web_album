@@ -1,15 +1,12 @@
 class RegisterRekognitionJob < ApplicationJob
+  include AwsRekognition
   queue_as :default
 
   def perform(image_ids)
     graduation_album_id = ActiveStorage::Attachment.find(image_ids.first).record_id
     graduation_album = GraduationAlbum.find(graduation_album_id)
     graduation_album.update_attribute(:analysis_status, 'doing')
-    credentials = Aws::Credentials.new(
-      ENV.fetch('AWS_ACCESS_KEY_ID', nil),
-      ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
-    )
-    client = Aws::Rekognition::Client.new credentials: credentials
+    client = rekognition_client
     image_ids.each do |id|
       image = ActiveStorage::Attachment.find(id)
       resp = client.index_faces({
