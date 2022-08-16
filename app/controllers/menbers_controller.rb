@@ -2,16 +2,14 @@
 
 class MenbersController < ApplicationController
   before_action :authenticate_user!
+  include AwsRekognition
+
   def show
     @graduation_album = current_user.belong_albums.find(params[:graduation_album_id])
     @menber = User.find(params[:id])
     collection_id = 'graduation_album'
-    if @menber.face_id && @graduation_album.analysis_status == 'done' && @menber.registered_collections.pluck(:collection_name).include?(collection_id.to_s)
-      credentials = Aws::Credentials.new(
-        ENV.fetch('AWS_ACCESS_KEY_ID', nil),
-        ENV.fetch('AWS_SECRET_ACCESS_KEY', nil)
-      )
-      client = Aws::Rekognition::Client.new credentials: credentials
+    if @menber.face_id && @graduation_album.analysis_status == 'done'
+      client = rekognition_client
       face_id = @menber.face_id
       resp = client.search_faces({
                                    collection_id:,
