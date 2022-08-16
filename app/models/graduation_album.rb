@@ -40,13 +40,13 @@ class GraduationAlbum < ApplicationRecord
   def validate_number_of_files
     return if images.length <= 15
 
-    errors.add(:images, "に添付できる画像は15枚までです。")
+    errors.add(:images, 'に添付できる画像は15枚までです。')
   end
 
   def validate_number_of_album
     return if user.graduation_albums.length <= 2
 
-    errors.add(:id, "作成できるアルバムは2つまでです。")
+    errors.add(:id, '作成できるアルバムは2つまでです。')
   end
 
   def register_images
