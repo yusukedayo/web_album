@@ -7,22 +7,11 @@ class MenbersController < ApplicationController
   def show
     @graduation_album = current_user.belong_albums.find(params[:graduation_album_id])
     @menber = User.find(params[:id])
-    collection_id = 'graduation_album'
     if @menber.face_id && @graduation_album.analysis_status == 'done'
-      client = rekognition_client
-      face_id = @menber.face_id
-      resp = client.search_faces({
-                                   collection_id:,
-                                   face_id:,
-                                   face_match_threshold: 90,
-                                   max_faces: 10
-                                 })
+      resp = collect_menber_faces(@menber)
       if resp
-        num = resp[:face_matches].size
         mathed_faces = []
-        num.times do |face|
-          mathed_faces.push(resp[:face_matches][face][:face][:image_id])
-        end
+        resp[:face_matches].size.times { |face| mathed_faces.push(resp[:face_matches][face][:face][:image_id]) }
         @mathed_face_images = []
         mathed_faces.each do |image|
           photo_path = PhotoPath.where(graduation_album_id: @graduation_album.id).where(image_id: image).first

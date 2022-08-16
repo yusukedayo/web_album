@@ -26,10 +26,20 @@ module AwsRekognition
                result.to_h[:face_details].length
              end
     happy_score_count = 0
-    number.times do |count|
-      happy_score_count += result.to_h[:face_details][count][:emotions][0][:confidence].round
-    end
+    number.times { |count| happy_score_count += result.to_h[:face_details][count][:emotions][0][:confidence].round }
     image.happy_score = happy_score_count
     image
+  end
+
+  def collect_menber_faces(menber)
+    client = rekognition_client
+    face_id = menber.face_id
+    collection_id = 'graduation_album'
+    client.search_faces({
+                          collection_id:,
+                          face_id:,
+                          face_match_threshold: 90,
+                          max_faces: 10
+                        })
   end
 end
