@@ -8,8 +8,10 @@
         <div class="md:h-80 flex flex-col sm:flex-row bg-indigo-100 rounded-lg overflow-hidden">
           <!-- image - start -->
           <div class="w-full sm:w-1/2 lg:w-2/5 h-48 sm:h-auto order-first sm:order-none bg-indigo-100">
-            <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
-              <%= image_tag event.event_photos.blobs.first, class:'object-contai', loading:"lazy"%>
+            <% if event.event_photos.blobs.first %>
+              <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
+                <%= image_tag event.event_photos.blobs.first, class:'object-contai', loading:"lazy"%>
+              <% end %>
             <% end %>
           </div>
           <!-- image - end -->
