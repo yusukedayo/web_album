@@ -9,4 +9,28 @@ module AwsRekognition
     client = Aws::Rekognition::Client.new credentials: credentials
     return client
   end
+
+  def collect_happy_faces(image, client)
+    attrs = {
+          image: {
+            s3_object: {
+              bucket: 'aws-test-rails',
+              name: image.s3_file_name
+            }
+          },
+          attributes: ['ALL']
+        }
+    result = client.detect_faces attrs
+    number = if result.to_h[:face_details].length > 5
+               5
+             else
+               result.to_h[:face_details].length
+             end
+    happy_score_count = 0
+    number.times do |count|
+      happy_score_count += result.to_h[:face_details][count][:emotions][0][:confidence].round
+    end
+    image.happy_score = happy_score_count
+    return image
+  end
 end
