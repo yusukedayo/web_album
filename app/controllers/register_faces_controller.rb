@@ -24,10 +24,7 @@ class RegisterFacesController < ApplicationController
         if resp[:face_records] == []
           redirect_to graduation_album_menber_path(graduation_album, user), notice: '人物の顔がはっきり写っているかを確認してください'
         else
-          user.face_id = resp[:face_records][0][:face][:face_id]
-          user.save!
-          registered_collection = RegisteredCollection.new(user_id: user.id, collection_name: collection_id)
-          registered_collection.save!
+          user.register_face_id(resp)
           redirect_to graduation_album_menber_path(graduation_album, user), notice: '同じ人物の画像を取得しました'
         end
       end
