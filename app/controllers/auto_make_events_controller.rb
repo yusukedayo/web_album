@@ -3,7 +3,7 @@ class AutoMakeEventsController < ApplicationController
   include AwsRekognition
 
   def create
-    if GraduationAlbum.find(params[:graduation_album_id]).images_blobs == []
+    if GraduationAlbum.find(params[:graduation_album_id]).images_blobs.empty?
       flash[:danger] = 'アルバムに写真を追加してください'
       redirect_back(fallback_location: root_path)
     else

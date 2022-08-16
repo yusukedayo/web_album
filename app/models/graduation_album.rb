@@ -49,5 +49,4 @@ class GraduationAlbum < ApplicationRecord
     image_ids = images.map(&:id)
     RegisterRekognitionJob.perform_later(image_ids)
   end
-
 end
