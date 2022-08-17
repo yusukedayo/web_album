@@ -8,15 +8,15 @@
         <div class="md:h-80 flex flex-col sm:flex-row bg-indigo-100 rounded-lg overflow-hidden">
           <!-- image - start -->
           <div class="w-full sm:w-1/2 lg:w-2/5 h-48 sm:h-auto order-first sm:order-none bg-indigo-100">
-            <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
-              <% event.event_photos.each do |photo| %>
-                <%= image_tag photo, class:'object-contai', loading:"lazy"%>
+            <% if event.event_photos.blobs.first %>
+              <%= link_to graduation_album_event_path(event.graduation_album, event) do %>
+                <%= image_tag event.event_photos.blobs.first, class:'object-contai', loading:"lazy"%>
               <% end %>
             <% end %>
           </div>
           <!-- image - end -->
           <!-- content - start -->
-          <div class="w-full sm:w-1/2 lg:w-3/5 flex flex-col p-4 sm:p-8">
+          <div class="w-full sm:w-full flex flex-col p-4 sm:p-8">
             <h2 class="text-indigo-700 text-xl md:text-2xl lg:text-4xl font-bold mb-4"><%= link_to event.title, graduation_album_event_path(event.graduation_album, event)%></h2>
             <p class="max-w-md text-indigo-700 mb-8"><%= simple_format(event.description) %></p>
             <div class="mt-auto text-right">

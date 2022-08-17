@@ -44,3 +44,7 @@ ja:
           attributes:
             graduation_album_id:
               format: '%{message}'
+        graduation_album:
+          attributes:
+            id:
+              format: '%{message}'
