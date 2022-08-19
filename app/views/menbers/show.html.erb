@@ -13,11 +13,9 @@
           <% if @graduation_album.analysis_status == 'done'%>
           <div class='flex justify-center'>
             <%= link_to graduation_album_menber_register_faces_path(@graduation_album, @menber), method: :post do %>
-              <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2">写真の取得</button>
+              <button class="bg-blue-500 hover:bg-blue-300 text-white rounded px-4 py-2"><%=@menber.name%>さんの写真を取得</button>
             <% end %>
           </div>
-            <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
-            <p class='pb-6 text-center text-blue-500'> プロフィール画像に顔が写っているかを確認してボタンをクリックしよう！</p>
           <% elsif @graduation_album.analysis_status == 'doing' %>
             <p class='pt-6 text-center text-blue-500'> アルバムに投稿された画像を分析中です</p>
             <p class='pb-6 text-center text-blue-500'> 分析が終わるとアルバムに投稿された画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
@@ -26,13 +24,15 @@
             <p class='pb-6 text-center text-blue-500'> 投稿するとアルバムの画像の中から<%=@menber.name%>さんが写っている写真をこのページに表示できます</p>
           <% end %>
           </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2">
-        <% if @mathed_face_images && @mathed_face_images.count != 0 %>
-          <% @mathed_face_images.each do |image| %>
-            <%= image_tag image , size: '240x240'%>
-          <% end %> 
-        <% end %>
-      </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5 xl:gap-2 pt-6">
+            <% if @mathed_face_images && @mathed_face_images.count != 0 %>
+              <% @mathed_face_images.each do |image| %>
+                <div class="photo transform -rotate-12">
+                  <%= image_tag image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0").processed %>
+                </div>
+              <% end %> 
+            <% end %>
+          </div>
       <h2 class="text-red-400 text-2xl lg:text-3xl font-bold text-center pt-4 mb-4 md:mb-6 pt-10"><i class="fa-regular fa-comment"></i>メンバーからのメッセージ</h2>
     </div>
     <%= render 'message_for_each_menbers/message_for_each_menbers', { message_for_each_menbers: @message_for_each_menbers } %>
