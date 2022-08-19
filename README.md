@@ -52,29 +52,27 @@
 ## 使用技術
 
 #### バックエンド
-- Ruby (2.7.4)
-- Rails (6.0.4.1)
+- Ruby (3.1.2)
+- Rails (6.1.6)
+- auth0 (LINE,Twitterログイン)
+- Circle Ci
 <br>
 
 <details>
 <summary>Gem</summary>
-sorcery ・・・ Twitterの認証に使用
-
-config  ・・・ Twitter認証後のコールバックURLの環境毎の定数管理に使用
+devise ・・・ ユーザー登録機能に使用
   
-carrierwave ・・・ 受け取ったレターのアップロードするために使用
-  
-fog-aws ・・・ 受け取ったレターの画像をS3にアップロードするために使用
+fog-aws ・・・ 投稿された画像をS3にアップロードするために使用
 
-meta-tags ・・・ 複数のmetaタグ設定を最適化に使用
+aws-sdk-rekognition ・・・ 画像の人物識別・感情分析に使用
 
-twitter ・・・ Twitterプロフを再取得する機能実装に使用
+sidekiq ・・・ active jobを実行するために使用
 
 rubocop ・・・ Railsのコード最適化に使用
 
 administrate ・・・ 管理画面の構築に使用
-  
-jb 　    　　・・・ JSONのシリアライズに使用
+
+omniauth-auth0 ・・・ auth0によるSNS認証ログインのために使用
 
 </details>
 
