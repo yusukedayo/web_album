@@ -36,12 +36,44 @@
 
 ## 機能紹介
 
-### メイン機能
+### アルバム作成機能
+<div align="center">
+<img src="https://i.gyazo.com/e2e5b842590266ad8562f96e553d6687.png" width="60%">
+</div>
+アルバム名・招待するユーザー・写真を投稿するだけ↓のようなアルバムページが生成されます。
+<div align="center">
+<img src="https://i.gyazo.com/935ed886cd08d59c3011f2b24c98e836.jpg" width="60%">
+</div>
 
+### 写真自動識別機能
+Amazon Rekognitionの顔識別を使用してアルバムに投稿された写真の中からこのページメンバーが写った写真だけを取得できます。
+<div align="center">
+<img src="https://i.gyazo.com/4ec31b45930bef196ccb6e56532d337c.jpg" width="60%">
+</div>
+
+### イベント作成・自動作成機能
+アルバム内で特に印象に残っている思い出をイベントとして作成できます。
+また、イベントは自動作成機能がありこれを使うとRekognitionの感情分析で幸福度の高い写真を取得して↓のようにアルバムを自動で作成できます。
+<div align="center">
+<img src="https://i.gyazo.com/64f387bd642649e159b9efa7199658bd.jpg" width="60%">
+</div>
+
+### ランキング作成・自動作成機能
+アルバム内で「将来〇〇になりそうな人」や「映え写真」など任意のランキングが作成できます。
+ランキングには選択肢を追加でき、投票が行えます。
+また、このランキングも自動作成機能がついており幸福度の高い写真を取得してランキングを取得できます。
+<div align="center">
+<img src="https://i.gyazo.com/f14cbcc0d65886927c7deabc81adfbf9.jpg" width="60%">
+</div>
+
+### サプライズメッセージ機能
+アルバム内で任意の日時を指定してその日付になると表示されるメッセージを投稿できます。
+1年後などに設定しておくとメンバーでまた集まるきっかけになると思います！
+<div align="center">
+<img src="https://i.gyazo.com/f12c315068306e1af82928ab476a059e.png" width="60%">
+</div>
 
 <br>
-
-
 <br>
 
 ### その他の機能
@@ -54,8 +86,6 @@
 #### バックエンド
 - Ruby (3.1.2)
 - Rails (6.1.6)
-- auth0 (LINE,Twitterログイン)
-- Circle Ci
 <br>
 
 <details>
@@ -78,24 +108,21 @@ omniauth-auth0 ・・・ auth0によるSNS認証ログインのために使用
 
 <br>
 
+### インフラ
+- heroku
+- Amazon S3
+- PostgreSQL
+- auth0 (LINE,Twitterログイン)
+- Circle Ci
+
 #### フロントエンド
 - JavaScript
 - tailwind
 - HTML
 - CSS
 <br>
-
-<br>
-
-### インフラ
-- heroku
-- Amazon S3
-- PostgreSQL
-
 <br>
 
 ## ER図
 <a href="https://gyazo.com/45bad3718d10fea03ecc7e123c65cfcd"><img src="https://i.gyazo.com/45bad3718d10fea03ecc7e123c65cfcd.png" alt="Image from Gyazo" width="710"/></a>
 
-## その他
-<br>
