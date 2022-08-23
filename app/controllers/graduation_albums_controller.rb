@@ -24,8 +24,8 @@ class GraduationAlbumsController < ApplicationController
 
   def create
     set_search
-    @graduation_album = current_user.graduation_albums.build(graduation_album_params)
-    @graduation_album.users << current_user
+    @graduation_album = current_user.graduation_albums.new(graduation_album_params)
+    @graduation_album.set_album_menbers(params[:graduation_album][:user_ids], current_user.id)
     if @graduation_album.save
       @graduation_album.register_images
       redirect_to graduation_album_path(@graduation_album), notice: '作成に成功しました'
@@ -65,7 +65,7 @@ class GraduationAlbumsController < ApplicationController
   private
 
   def graduation_album_params
-    params.require(:graduation_album).permit(:album_name, { user_ids: [] }, images: [])
+    params.require(:graduation_album).permit(:album_name, images: [])
   end
 
   def set_graduation_album
