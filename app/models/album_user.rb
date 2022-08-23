@@ -21,4 +21,5 @@
 class AlbumUser < ApplicationRecord
   belongs_to :graduation_album
   belongs_to :user
+  validates :user_id, uniqueness: { scope: :graduation_album_id }
 end
