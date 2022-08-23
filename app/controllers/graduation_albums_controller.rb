@@ -42,8 +42,8 @@ class GraduationAlbumsController < ApplicationController
 
   def update
     set_search
+    @graduation_album.set_album_menbers(params[:graduation_album][:user_ids], current_user.id)
     if @graduation_album.update(graduation_album_params)
-      @graduation_album.users << current_user
       redirect_to graduation_album_path(@graduation_album), notice: '編集に成功しました'
     else
       flash.now['alert'] = '編集に失敗しました'
