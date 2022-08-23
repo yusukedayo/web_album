@@ -24,7 +24,7 @@ class GraduationAlbumsController < ApplicationController
 
   def create
     set_search
-    @graduation_album = current_user.graduation_albums.new(graduation_album_params)
+    @graduation_album = current_user.graduation_albums.build(graduation_album_params)
     @graduation_album.set_album_menbers(params[:graduation_album][:user_ids], current_user.id)
     if @graduation_album.save
       @graduation_album.register_images
