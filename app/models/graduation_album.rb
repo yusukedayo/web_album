@@ -58,7 +58,7 @@ class GraduationAlbum < ApplicationRecord
 
   def set_album_menbers(menber_ids, current_user)
     (menber_ids << current_user).reject(&:blank?).map(&:to_i).each do |id|
-      self.users << User.find(id)
+      users << User.find(id)
     end
   end
 end
