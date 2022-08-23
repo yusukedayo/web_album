@@ -55,4 +55,11 @@ class GraduationAlbum < ApplicationRecord
     image_ids = images.map(&:id)
     RegisterRekognitionJob.perform_later(image_ids)
   end
+
+  def set_album_menbers(menber_ids, current_user)
+    menber_ids ||= []
+    (menber_ids << current_user).reject(&:blank?).map(&:to_i).each do |id|
+      users << User.find(id)
+    end
+  end
 end
