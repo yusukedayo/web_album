@@ -37,16 +37,16 @@ RSpec.describe MessageForEveryone, type: :model do
       expect(message_for_everyone_without_body.errors[:body]).to eq ['を入力してください']
     end
 
-    it 'タイトルが255文字の場合有効であること' do
-      message_for_everyone_with_65535_character_body = build(:message_for_everyone, body: 'a' * 65_535)
-      expect(message_for_everyone_with_65535_character_body).to be_valid
-      expect(message_for_everyone_with_65535_character_body.errors).to be_empty
+    it 'タイトルが200文字の場合有効であること' do
+      message_for_everyone_with_200_character_body = build(:message_for_everyone, body: 'a' * 200)
+      expect(message_for_everyone_with_200_character_body).to be_valid
+      expect(message_for_everyone_with_200_character_body.errors).to be_empty
     end
 
-    it 'タイトルが256文字の場合不正であること' do
-      message_for_everyone_with_256_character_body = build(:message_for_everyone, body: 'a' * 65_536)
-      expect(message_for_everyone_with_256_character_body).to be_invalid
-      expect(message_for_everyone_with_256_character_body.errors[:body]).to eq ['は65535文字以内で入力してください']
+    it 'タイトルが201文字の場合不正であること' do
+      message_for_everyone_with_201_character_body = build(:message_for_everyone, body: 'a' * 201)
+      expect(message_for_everyone_with_201_character_body).to be_invalid
+      expect(message_for_everyone_with_201_character_body.errors[:body]).to eq ['は200文字以内で入力してください']
     end
   end
 end

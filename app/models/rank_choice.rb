@@ -22,5 +22,5 @@ class RankChoice < ApplicationRecord
   belongs_to :rank
   has_many :answers, dependent: :destroy
 
-  validates :content, presence: true, length: { maximum: 255 }
+  validates :content, presence: true, length: { maximum: 20 }
 end
