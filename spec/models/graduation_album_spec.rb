@@ -35,16 +35,16 @@ RSpec.describe GraduationAlbum, type: :model do
       expect(graduation_album_without_album_name.errors[:album_name]).to eq ['を入力してください']
     end
 
-    it 'アルバム名が255文字の場合有効であること' do
-      graduation_album_with_255_character_album_name = build(:graduation_album, album_name: 'a' * 255)
-      expect(graduation_album_with_255_character_album_name).to be_valid
-      expect(graduation_album_with_255_character_album_name.errors).to be_empty
+    it 'アルバム名が30文字の場合有効であること' do
+      graduation_album_with_30_character_album_name = build(:graduation_album, album_name: 'a' * 30)
+      expect(graduation_album_with_30_character_album_name).to be_valid
+      expect(graduation_album_with_30_character_album_name.errors).to be_empty
     end
 
-    it 'アルバム名が256文字の場合不正であること' do
-      graduation_album_with_256_character_album_name = build(:graduation_album, album_name: 'a' * 256)
-      expect(graduation_album_with_256_character_album_name).to be_invalid
-      expect(graduation_album_with_256_character_album_name.errors[:album_name]).to eq ['は255文字以内で入力してください']
+    it 'アルバム名が31文字の場合不正であること' do
+      graduation_album_with_31_character_album_name = build(:graduation_album, album_name: 'a' * 31)
+      expect(graduation_album_with_31_character_album_name).to be_invalid
+      expect(graduation_album_with_31_character_album_name.errors[:album_name]).to eq ['は30文字以内で入力してください']
     end
   end
 end

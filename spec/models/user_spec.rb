@@ -64,16 +64,16 @@ RSpec.describe User, type: :model do
       expect(user_without_name.errors[:name]).to eq ['を入力してください']
     end
 
-    it '名前が255文字の場合有効であること' do
-      user_with_255_character_name = build(:user, name: 'a' * 255)
+    it '名前が20文字の場合有効であること' do
+      user_with_255_character_name = build(:user, name: 'a' * 20)
       expect(user_with_255_character_name).to be_valid
       expect(user_with_255_character_name.errors).to be_empty
     end
 
-    it '名前が256文字の場合不正であること' do
-      user_without_name = build(:user, name: 'a' * 256)
+    it '名前が21文字の場合不正であること' do
+      user_without_name = build(:user, name: 'a' * 21)
       expect(user_without_name).to be_invalid
-      expect(user_without_name.errors[:name]).to eq ['は255文字以内で入力してください']
+      expect(user_without_name.errors[:name]).to eq ['は20文字以内で入力してください']
     end
   end
 end

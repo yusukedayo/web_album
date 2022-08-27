@@ -43,28 +43,28 @@ RSpec.describe Event, type: :model do
       expect(event_without_description.errors[:description]).to eq ['を入力してください']
     end
 
-    it '詳細が65535文字の場合有効であること' do
-      event_with_65535_character_description = build(:event, description: 'a' * 65_535)
-      expect(event_with_65535_character_description).to be_valid
-      expect(event_with_65535_character_description.errors).to be_empty
+    it '詳細が200文字の場合有効であること' do
+      event_with_200_character_description = build(:event, description: 'a' * 200)
+      expect(event_with_200_character_description).to be_valid
+      expect(event_with_200_character_description.errors).to be_empty
     end
 
-    it '詳細が65536文字の場合不正であること' do
-      event_with_256_character_description = build(:event, description: 'a' * 65_536)
-      expect(event_with_256_character_description).to be_invalid
-      expect(event_with_256_character_description.errors[:description]).to eq ['は65535文字以内で入力してください']
+    it '詳細が201文字の場合不正であること' do
+      event_with_201_character_description = build(:event, description: 'a' * 201)
+      expect(event_with_201_character_description).to be_invalid
+      expect(event_with_201_character_description.errors[:description]).to eq ['は200文字以内で入力してください']
     end
 
-    it 'タイトルが255文字の場合有効であること' do
-      event_with_65535_character_title = build(:event, title: 'a' * 255)
-      expect(event_with_65535_character_title).to be_valid
-      expect(event_with_65535_character_title.errors).to be_empty
+    it 'タイトルが30文字の場合有効であること' do
+      event_with_30_character_title = build(:event, title: 'a' * 30)
+      expect(event_with_30_character_title).to be_valid
+      expect(event_with_30_character_title.errors).to be_empty
     end
 
-    it 'タイトルが256文字の場合不正であること' do
-      event_with_256_character_title = build(:event, title: 'a' * 256)
-      expect(event_with_256_character_title).to be_invalid
-      expect(event_with_256_character_title.errors[:title]).to eq ['は255文字以内で入力してください']
+    it 'タイトルが31文字の場合不正であること' do
+      event_with_31_character_title = build(:event, title: 'a' * 31)
+      expect(event_with_31_character_title).to be_invalid
+      expect(event_with_31_character_title.errors[:title]).to eq ['は30文字以内で入力してください']
     end
   end
 end

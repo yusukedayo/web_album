@@ -33,16 +33,16 @@ RSpec.describe RankChoice, type: :model do
       expect(rank_choice_without_content.errors[:content]).to eq ['を入力してください']
     end
 
-    it 'contentが255文字の場合有効であること' do
-      rank_choice_with_255_character_content = build(:rank_choice, content: 'a' * 255)
-      expect(rank_choice_with_255_character_content).to be_valid
-      expect(rank_choice_with_255_character_content.errors).to be_empty
+    it 'contentが20文字の場合有効であること' do
+      rank_choice_with_20_character_content = build(:rank_choice, content: 'a' * 20)
+      expect(rank_choice_with_20_character_content).to be_valid
+      expect(rank_choice_with_20_character_content.errors).to be_empty
     end
 
-    it 'contentが256文字の場合不正であること' do
-      rank_choice_with_256_character_content = build(:rank_choice, content: 'a' * 256)
-      expect(rank_choice_with_256_character_content).to be_invalid
-      expect(rank_choice_with_256_character_content.errors[:content]).to eq ['は255文字以内で入力してください']
+    it 'contentが21文字の場合不正であること' do
+      rank_choice_with_21_character_content = build(:rank_choice, content: 'a' * 21)
+      expect(rank_choice_with_21_character_content).to be_invalid
+      expect(rank_choice_with_21_character_content.errors[:content]).to eq ['は20文字以内で入力してください']
     end
   end
 end
