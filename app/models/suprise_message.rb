@@ -28,6 +28,6 @@ class SupriseMessage < ApplicationRecord
 
   enum state: { publish_wait: 0, published: 1 }
   validates :suprise_title, :suprise_message, :suprise_time, presence: true
-  validates :suprise_title, length: { maximum: 30 }
+  validates :suprise_title, length: { maximum: 20 }
   validates :suprise_message, length: { maximum: 500 }
 end

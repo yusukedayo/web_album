@@ -27,6 +27,6 @@ class Rank < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validates :rank_title, :rank_description, presence: true
-  validates :rank_title, length: { maximum: 40 }
-  validates :rank_description, length: { maximum: 250 }
+  validates :rank_title, length: { maximum: 20 }
+  validates :rank_description, length: { maximum: 200 }
 end

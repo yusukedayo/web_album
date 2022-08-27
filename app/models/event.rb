@@ -28,8 +28,8 @@ class Event < ApplicationRecord
   has_many :event_comments, dependent: :destroy
 
   validates :title, :description, :event_date, presence: true
-  validates :title, length: { maximum: 255 }
-  validates :description, length: { maximum: 65_535 }
+  validates :title, length: { maximum: 30 }
+  validates :description, length: { maximum: 200 }
   FILE_NUMBER_LIMIT = 10
   validate :validate_number_of_files
 
