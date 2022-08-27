@@ -31,7 +31,7 @@ class GraduationAlbum < ApplicationRecord
   has_many :suprise_messages, dependent: :destroy
   has_many :photo_paths, dependent: :destroy
 
-  validates :album_name, presence: true, length: { maximum: 255 }
+  validates :album_name, presence: true, length: { maximum: 30 }
   enum analysis_status: { before: 0, doing: 1, done: 2 }
 
   validate :validate_number_of_files
