@@ -1,6 +1,7 @@
 <h1>Web卒アル</h1>
 
-## [サービスリンク](https://web-album.herokuapp.com)
+### [サービスリンク](https://web-album.herokuapp.com)
+### [公式Twitter](https://twitter.com/web_album)
 
 ## 概要
 #### 写真を投稿してもらうだけで卒業アルバムページを作成することができるサービスです。
