@@ -124,6 +124,9 @@ omniauth-auth0 ・・・ auth0によるSNS認証ログインのために使用
 <br>
 <br>
 
+## インフラ構成図
+[![Image from Gyazo](https://i.gyazo.com/9370b028b6645f7182e9d92f477b4261.png)](https://gyazo.com/9370b028b6645f7182e9d92f477b4261)
+
 ## ER図
 <a href="https://gyazo.com/45bad3718d10fea03ecc7e123c65cfcd"><img src="https://i.gyazo.com/45bad3718d10fea03ecc7e123c65cfcd.png" alt="Image from Gyazo" width="710"/></a>
 
