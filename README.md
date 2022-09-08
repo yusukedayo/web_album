@@ -97,20 +97,13 @@ Amazon Rekognitionの顔識別を使用してアルバムに投稿された写�
 
 <details>
 <summary>Gem</summary>
-devise ・・・ ユーザー登録機能に使用
-  
-fog-aws ・・・ 投稿された画像をS3にアップロードするために使用
-
-aws-sdk-rekognition ・・・ 画像の人物識別・感情分析に使用
-
-sidekiq ・・・ active jobを実行するために使用
-
-rubocop ・・・ Railsのコード最適化に使用
-
-administrate ・・・ 管理画面の構築に使用
-
-omniauth-auth0 ・・・ auth0によるSNS認証ログインのために使用
-
+・　devise ・・・ ユーザー登録機能に使用<br>
+・　fog-aws ・・・ 投稿された画像をS3にアップロードするために使用<br>
+・　aws-sdk-rekognition ・・・ 画像の人物識別・感情分析に使用<br>
+・　sidekiq ・・・ active jobを実行するために使用<br>
+・　rubocop ・・・ Railsのコード最適化に使用<br>
+・　administrate ・・・ 管理画面の構築に使用<br>
+・　omniauth-auth0 ・・・ auth0によるSNS認証ログインのために使用<br>
 </details>
 
 <br>
