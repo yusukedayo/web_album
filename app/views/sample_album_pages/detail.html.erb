@@ -7,9 +7,13 @@
           <div class="swiper-container">
               <div class="swiper mySwiper">
                 <div class="swiper-wrapper h-80 w-80">
-                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'default_album1' %></div>
-                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'default_album2' %></div>
-                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'default_album3' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event_winter.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_men.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_man_3.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_man_a_2.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event_4.jpg' %></div>
+                    <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_men_3.jpg' %></div>
                 </div><!-- .swiper-wrapper -->
                   <div class="swiper-pagination"></div>
                   <div class="swiper-button-prev"></div>
@@ -49,10 +53,11 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
+    <!-- person - start -->
         <div class="flex flex-col items-center bg-blue-100 rounded-lg p-4 lg:p-8">
           <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
             <%= link_to '#', class:"w-24 md:w-32 h-24 md:h-32 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
-              <%= image_tag 'default.jpg',class: "w-full h-full object-cover object-center" %>
+              <%= image_tag 'sample_man_a_2.jpg',class: "w-full h-full object-cover object-center" %>
             <% end %>
           </div>
           <div>
@@ -64,7 +69,41 @@
           <% end %>
           </div>
         </div>
-        <!-- person - end -->
+      <!-- person - end -->
+      <!-- person - start -->
+        <div class="flex flex-col items-center bg-blue-100 rounded-lg p-4 lg:p-8">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= link_to '#', class:"w-24 md:w-32 h-24 md:h-32 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
+              <%= image_tag 'sample_man_b.jpg',class: "w-full h-full object-cover object-center" %>
+            <% end %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center">
+              <%= link_to '山田', '#'%>
+            </div>
+          <%= link_to '#' do %>
+            <p class="text-indigo-500 text-sm md:text-base text-center mb-3 md:mb-4">詳細へ <i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></p>
+          <% end %>
+          </div>
+        </div>
+      <!-- person - end -->
+      <!-- person - start -->
+        <div class="flex flex-col items-center bg-blue-100 rounded-lg p-4 lg:p-8">
+          <div class="w-24 md:w-32 h-24 md:h-32 bg-gray-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
+            <%= link_to '#', class:"w-24 md:w-32 h-24 md:h-32 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4" do %>
+              <%= image_tag 'sample_man_3.jpg',class: "w-full h-full object-cover object-center" %>
+            <% end %>
+          </div>
+          <div>
+            <div class="text-indigo-500 md:text-lg font-bold text-center">
+              <%= link_to '山内', '#'%>
+            </div>
+          <%= link_to '#' do %>
+            <p class="text-indigo-500 text-sm md:text-base text-center mb-3 md:mb-4">詳細へ <i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i></p>
+          <% end %>
+          </div>
+        </div>
+      <!-- person - end -->
     </div>
   </div>
 </div>
@@ -79,13 +118,13 @@
         <div class="avatar">
           <div class="w-12 rounded-full">
             <%= link_to '#' do %>
-              <%= image_tag  'default.jpg' %>
+              <%= image_tag  'sample_man_a_2.jpg' %>
             <% end %>
           </div>
         </div>
-        <%= link_to 'たなか', '#', class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+        <%= link_to '田中', '#', class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
         </h2>
-          <div>こんちは</div>
+          <div>また集まりたいです〜！</div>
       </div>
     </div>
     <div class="card w-80 h-60 bg-base-100 shadow-xl border border-red-300 container mx-auto">
@@ -94,13 +133,28 @@
         <div class="avatar">
           <div class="w-12 rounded-full">
             <%= link_to '#' do %>
-              <%= image_tag  'default.jpg' %>
+              <%= image_tag  'sample_man_b.jpg' %>
             <% end %>
           </div>
         </div>
-        <%= link_to 'たなか', '#', class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+        <%= link_to '山田', '#', class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
         </h2>
-          <div>こんちは</div>
+          <div>いつも楽しい思い出をありがとうございます！</div>
+      </div>
+    </div>
+    <div class="card w-80 h-60 bg-base-100 shadow-xl border border-red-300 container mx-auto">
+      <div class="card-body">
+        <h2 class="card-title">
+        <div class="avatar">
+          <div class="w-12 rounded-full">
+            <%= link_to '#' do %>
+              <%= image_tag  'sample_man_3.jpg' %>
+            <% end %>
+          </div>
+        </div>
+        <%= link_to '山内', '#', class: "text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+        </h2>
+          <div>また遊びいきましょう！！</div>
       </div>
     </div>
   </div>
@@ -122,17 +176,17 @@
 <div class='pt-5'>
   <div class="swiper loopSwiper">
     <div class="swiper-wrapper">
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album1' %></div>
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album2' %></div>
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album3' %></div>
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album1' %></div>
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album2' %></div>
-        <div class='swiper-slide rounded-lg' id="loop-swiper"><%= image_tag 'default_album3' %></div>
-      </div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event_winter.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_men.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_man_3.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_man_a_2.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_event_4.jpg' %></div>
+        <div class='swiper-slide rounded-lg' id="album-swiper"><%= image_tag 'sample_men_3.jpg' %></div>
     </div>
   </div>
 </div>
-<div class="bg-white py-6 sm:py-8 lg:py-12">
+<div class="bg-white py-3 sm:py-4 lg:py-8">
   <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
     <div class="mb-5 md:mb-8" id='event_top'>
       <h2 class="text-indigo-700 text-2xl lg:text-3xl font-bold text-center mb-3 mt-8 md:mb-3"><i class="fa-solid fa-plane fa-lg"></i> 思い出の行事</h2>
@@ -143,21 +197,21 @@
         <span class="flex absolute -left-3 justify-center items-center w-10 h-10 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
           <i class="fa-solid fa-plane-departure"></i>
         </span>
-        <h3 class="flex items-center mb-1 text-lg font-semibold text-indigo-700 dark:text-white px-4 pt-2"><div class='text-right'>2022/03/11</div></h3>
+        <h3 class="flex items-center mb-1 text-lg font-semibold text-indigo-700 dark:text-white px-4 pt-2"><div class='text-right'>2021/10/31</div></h3>
           <div class="bg-white py-3 sm:py-4 lg:py-6">
             <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
               <div class="md:h-80 flex flex-col sm:flex-row bg-indigo-100 rounded-lg overflow-hidden">
                 <!-- image - start -->
-                <div class="w-full sm:w-1/2 lg:w-2/5 h-48 sm:h-auto order-first sm:order-none bg-indigo-100">
+                <div class="w-full h-full">
                   <%= link_to '#' do %>
-                    <%= image_tag 'default.jpg', class:'object-contai', loading:"lazy"%>
+                    <%= image_tag 'sample_event_4', class:'object-contai', loading:"lazy"%>
                   <% end %>
                 </div>
                 <!-- image - end -->
                 <!-- content - start -->
                 <div class="w-full sm:w-full flex flex-col p-4 sm:p-8">
-                  <h2 class="text-indigo-700 text-xl md:text-2xl lg:text-4xl font-bold mb-4"><%= link_to 'こんちは', '#'%></h2>
-                  <p class="max-w-md text-indigo-700 mb-8">こんちはこんちは</p>
+                  <h2 class="text-indigo-700 text-xl md:text-2xl lg:text-4xl font-bold mb-4"><%= link_to 'ハロウィン', '#'%></h2>
+                  <p class="max-w-md text-indigo-700 mb-8">今年のハロウィンです <i class="fa-solid fa-ghost"></i></p>
                   <div class="mt-auto text-right">
                       <%= link_to '#', method: :delete, id: "delete_button", data: {confirm: "本当に削除しますか？"},  class: "inline-block bg-white hover:bg-gray-100 active:bg-gray-200 focus-visible:ring ring-indigo-300 text-indigo-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" do%>
                         <i class="fa-solid fa-trash-can fa-lg"></i>
@@ -193,18 +247,16 @@
         <div class="card-body">
           <div class='p-2'>
             <div class="grid grid-cols-5 gap-4">
-                <div class="col-start-1 col-span-2 sm:col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-sm sm:text-2xl font-bold"><%= link_to "タイトル", '#' %></div>
+                <div class="col-start-1 col-span-2 sm:col-start-2 col-span-3 text-pink-500 text-center px-4 py-2 m-2 text-sm sm:text-2xl font-bold"><%= link_to "ベスト笑顔ランキング", '#' %></div>
                 <div class="col-end-6 col-span-2 sm:col-span-1 text-pink-500 text-center px-4 py-2 m-2">
                   <%= link_to "詳細",'#', class:'text-pink-500 text-xs sm:text-2xl font-bold' %>
                 </div>
               </div>
           </div>
+            <%# first %>
             <div class="grid grid-cols-12 flex items-center my-4">
-              <div class="text-sm sm:text-2xl col-span-3 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
-                <%= link_to "こんてんつ", '#' %>
-              </div>
-              <div class="self-center col-span-6 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="col-span-6 h-5 bg-yellow-400 rounded" style="width: 80"></div>
+              <div class="text-sm sm:text-2xl col-span-8 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+                <i class="fa-solid fa-1"></i>位　ハロウィン
               </div>
               <input type="number" style="text-align:right" class='text-pink-600 text-sm sm:text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-sm sm:text-2xl'>8票</span>
               <span class="self-center col-span-1 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
@@ -212,6 +264,48 @@
                   <i class="fa-solid fa-check-to-slot fa-lg"></i>
                 <% end %>
               </span>
+            </div>
+            <div class="flex justify-center">
+              <div class="group h-80 w-80 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+                <%= image_tag 'sample_event_4.jpg', loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
+                <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
+              </div>
+            </div>
+            <%# second %>
+            <div class="grid grid-cols-12 flex items-center my-4">
+              <div class="text-sm sm:text-2xl col-span-8 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+                <i class="fa-solid fa-2"></i>位　クリスマス
+              </div>
+              <input type="number" style="text-align:right" class='text-pink-600 text-sm sm:text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-sm sm:text-2xl'>6票</span>
+              <span class="self-center col-span-1 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+                <%= link_to '#', id:"up", class:'button' do %>
+                  <i class="fa-solid fa-check-to-slot fa-lg"></i>
+                <% end %>
+              </span>
+            </div>
+            <div class="flex justify-center">
+              <div class="group h-80 w-80 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+                <%= image_tag 'sample_event_6.jpg', loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
+                <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
+              </div>
+            </div>
+            <%# third %>
+            <div class="grid grid-cols-12 flex items-center my-4">
+              <div class="text-sm sm:text-2xl col-span-8 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+                <i class="fa-solid fa-3"></i>位　遊園地
+              </div>
+              <input type="number" style="text-align:right" class='text-pink-600 text-sm sm:text-2xl inline-block col-span-1' id="textbox"><span class='text-pink-600 text-sm sm:text-2xl'>4票</span>
+              <span class="self-center col-span-1 text-sm font-medium text-pink-600 dark:text-pink-500 text-center">
+                <%= link_to '#', id:"up", class:'button' do %>
+                  <i class="fa-solid fa-check-to-slot fa-lg"></i>
+                <% end %>
+              </span>
+            </div>
+            <div class="flex justify-center">
+              <div class="group h-80 w-80 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+                <%= image_tag 'sample_men_3.jpg', loading:"lazy", alt:"Photo by Fakurian Design", class:"w-full h-full object-cover object-center absolute inset-0 transition duration-200" %>
+                <div class="bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 absolute inset-0 pointer-events-none"></div>
+              </div>
             </div>
         </div>
       </div>
@@ -235,20 +329,22 @@
 
 <div class="boxmi14">
   <div class="boxmi14-title">
-    タイトル
+    半年ぶりの飲み会
   </div>
   <div class="sen14 text-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100">
-    こんちは
+    お久しぶりです！<br>
+    このアルバムを作成してから半年が経ちました。元気にしてますか？<br>
+    久しぶりに飲みにいきましょ〜！
   </div>
   <div class="grid grid-cols-8" >
     <div class='flex items-center col-end-9 col-span-3'>
       <div class="avatar ">
         <div class="w-12 rounded-full ">
           <%= link_to '#' do %>
-            <%= image_tag 'default.jpg' %>
+            <%= image_tag 'sample_man_a_2.jpg' %>
           <% end %>
         </div>
-        <%= link_to 'たなか', '#', class: "pl-1 self-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
+        <%= link_to '田中', '#', class: "pl-1 self-center text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100"%>
       </div>
     </div>
   </div>
