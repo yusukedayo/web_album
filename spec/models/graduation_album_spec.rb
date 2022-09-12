@@ -6,7 +6,7 @@
 #
 #  id              :bigint           not null, primary key
 #  album_name      :string           not null
-#  analysis_status :integer          default(0), not null
+#  analysis_status :integer          default("before"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  user_id         :bigint           not null
